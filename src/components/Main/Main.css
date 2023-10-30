@@ -3,21 +3,22 @@
     display: flex;
     flex-direction: row;
     width: var(--width-extra-large);
-    height: var(--height-medium);
+
 
 }
 
 .main-container {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
 
 }
 
 .main-container-child {
+    margin-top: var(--gap-small);
     flex: 1;
 
 }
 
 .main-image {
-    width:500px;
+    width:250px;
 }

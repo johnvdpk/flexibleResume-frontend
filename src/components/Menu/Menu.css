@@ -1,6 +1,24 @@
 .menu-wrapper {
-
+    display: flex;
     width: var(--width-total);
-    height: 100px;
     background-color: black;
+    justify-content: center;
 }
+
+.navigationbar {
+    display: flex;
+    justify-content: space-between;
+    width: var(--width-total);
+
+}
+
+.nav-logo-image {
+    margin:1em;
+    width: 18%;
+}
+
+.menu-icon {
+    margin:1em;
+    width: 10%;
+}
+

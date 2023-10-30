@@ -1,9 +1,9 @@
 .header-wrapper {
     margin-top: var(--gap-extra-extra-large);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: var(--width-extra-large);
-    height: var(--height-medium);
+
 
 }
 
@@ -27,12 +27,12 @@
 }
 
 .header-logo {
-    width: 200px;
+    width: 100px;
     margin-left: -15px;
     margin-bottom: var(--gap-medium);
 
 }
 
 .headerimage {
-    width: 600px;
+    width: 250px;
 }

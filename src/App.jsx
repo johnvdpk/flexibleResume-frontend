@@ -5,6 +5,7 @@ import './App.css'
 import Header from "./components/Header/Header.jsx";
 import Menu from "./components/Menu/Menu.jsx";
 import Main from "./components/Main/Main.jsx";
+import FAQ from "./components/FAQ/FAQ.jsx";
 
 function App() {
 
@@ -12,9 +13,10 @@ function App() {
   return (
     <>
         <body>
-      <Menu/>
-      <Header/>
+        <Menu/>
+        <Header/>
         <Main/>
+        <FAQ/>
         </body>
     </>
   )
