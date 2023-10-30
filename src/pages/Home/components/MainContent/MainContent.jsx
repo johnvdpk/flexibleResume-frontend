@@ -1,7 +1,7 @@
-import './Main.css'
-import mainimage from '../../assets/manatwork.png'
+import './MainContent.css'
+import mainimage from '../../../../assets/manatwork.png'
 
-function Main() {
+function MainContent() {
 
 
     return (
@@ -29,4 +29,4 @@ function Main() {
     )
 }
 
-export default Main
+export default MainContent

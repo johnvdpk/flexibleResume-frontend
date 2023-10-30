@@ -1,8 +1,8 @@
-import './Menu.css'
+import './Navigation.css'
 import navlogo from './assets/FlexibleResume-menu-logo.png'
 import menuicon from './assets/menu-icon.png'
 
-function Main() {
+function Navigation() {
 
 
     return (
@@ -20,4 +20,4 @@ function Main() {
     )
 }
 
-export default Main
+export default Navigation

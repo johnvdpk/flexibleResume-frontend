@@ -72,14 +72,6 @@
 }
 
 
-/*/////////////////       BODY       /////////////////*/
-
-body {
-
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-}
 
 /*/////////////////       H1,H2,H3,H4,H5,H6 + P       /////////////////*/
 

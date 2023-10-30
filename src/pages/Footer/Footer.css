@@ -1,0 +1,19 @@
+.footer-wrapper {
+    margin-top: 1rem;
+    display: flex;
+    width: var(--width-total);
+    background-color: black;
+    justify-content: center;
+}
+
+.footerbar {
+    display: flex;
+    justify-content: space-between;
+    width: var(--width-total);
+
+}
+
+.footer-logo-image {
+    margin:1em;
+    width: 18%;
+}
