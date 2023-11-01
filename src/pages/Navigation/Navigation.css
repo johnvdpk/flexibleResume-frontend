@@ -1,7 +1,7 @@
 .menu-wrapper {
     display: flex;
     width: var(--width-total);
-    background-color: black;
+    background-color:var(--almost-black);
     justify-content: center;
 }
 
@@ -14,7 +14,7 @@
 
 .nav-logo-image {
     margin:1em;
-    width: 18%;
+    width: 4rem;
 }
 
 .menu-icon {

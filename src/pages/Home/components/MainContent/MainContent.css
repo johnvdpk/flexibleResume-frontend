@@ -20,5 +20,21 @@
 }
 
 .main-image {
-    width:250px;
+    width:var(--size-vw-large);
+}
+
+
+
+@media (min-width: 550px) {
+
+    .main-container {
+        flex-direction: row-reverse;
+    }
+
+
+
+    .main-image {
+        width: var(--size-vw-small);
+    }
+
 }

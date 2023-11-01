@@ -18,7 +18,8 @@
 .header-container-buttons {
     margin-top: var(--gap-extra-large);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    
 }
 
 .header-image-container {
@@ -34,11 +35,28 @@
 }
 
 .headerimage {
-    width: 250px;
+    width: var(--size-vw-medium);
 }
 
 Link {
 
     text-decoration: none;
     color: inherit;
+}
+
+@media (min-width: 550px) {
+
+    .header-container-buttons {
+        flex-direction: row;
+
+    }
+
+    .header-wrapper {
+        flex-direction: row;
+    }
+
+    .headerimage {
+        width: var(--size-vw-small);
+    }
+
 }

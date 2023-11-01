@@ -1,29 +1,32 @@
-import './Nav.css';
 import HamburgerMenu from "../hamburger-menu/HamburgerMenu.jsx";
+import {useState} from "react";
 
-function Nav({props}) {
-console.log(props)
 
-    return(
 
+function Nav() {
+
+    const [hamburgerOpen, setHamburgerOpen] = useState(false);
+    const toggleHamburger = () => {
+        setHamburgerOpen(!hamburgerOpen)
+    }
+
+    return (
         <>
             <div className="navigation">
-                <ul>
-                    <li>{props.pageone}</li>
-                    <li>{props.pagetwo}</li>
-                    <li>{props.pagethree}</li>
-                    <li>{props.pagefour}</li>
-                </ul>
+                {/*<ul style={{ display: hamburgerOpen ? 'inline' : 'none' }}>*/}
+                <div className="menu-links">
+                    <p className='p-link'>About</p>
+                    <p className='p-link'>Registeren</p>
+                    <p className='p-link'>Inloggen</p>
+                    <p className='p-link'>Contact</p>
+                </div>
 
-                <div className="hamburge">
-                <HamburgerMenu />
+                <div className="hamburger" onClick={toggleHamburger}>
+                    <HamburgerMenu />
                 </div>
             </div>
-
-
         </>
-    )
-
+    );
 }
 
 export default Nav

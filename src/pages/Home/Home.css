@@ -12,6 +12,7 @@
     --button-color-pressed:#E5DCCD;
 
     --almost-white:#FFFDF9;
+    --almost-black:#0E191B;
 
 
 
@@ -32,6 +33,12 @@
     --width-large: 40%;
     --width-extra-large:80%;
     --width-total: 100%;
+
+    --size-vw-extra-small: 33vw;
+    --size-vw-small: 50vw;
+    --size-vw-medium: 66vw;
+    --size-vw-large: 80vw;
+    --size-vw-total:100vw;
 
 
     /*/////////////////       RADIUS        /////////////////*/

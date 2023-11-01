@@ -1,6 +1,7 @@
 import './FAQ.css';
 import { useState } from 'react';
 import faqs from './FAQData.json';
+import { CSSTransition } from 'react-transition-group';
 
 
 function FAQ() {
@@ -28,11 +29,16 @@ function FAQ() {
                         <button className="FAQ-button" onClick={() => toggleVisibility(index)}>
                             Wat is het antwoord?&nbsp;&nbsp;{visibleFAQIndex === index ? '  -' : '  +'}
                         </button>
-                        {visibleFAQIndex === index && (
+                        <CSSTransition
+                            in={visibleFAQIndex === index}
+                            timeout={500}
+                            classNames="faq-transition"
+                            unmountOnExit
+                        >
                             <div className="FAQ-div">
                                 <p className="FAQ-p">{faq.answer}</p>
                             </div>
-                        )}
+                        </CSSTransition>
                     </div>
                 ))}
             </div>
