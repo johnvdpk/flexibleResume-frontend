@@ -1,6 +1,7 @@
 import './Navigation.css'
 import navlogo from './assets/FlexibleResume-menu-logo.png'
-import menuicon from './assets/menu-icon.png'
+
+import Nav from "./components/Nav/Nav.jsx";
 
 function Navigation() {
 
@@ -9,8 +10,15 @@ function Navigation() {
         <>
             <div className="menu-wrapper">
                 <div className="navigationbar">
-                    <img src={navlogo} className="nav-logo-image"/>
-                    <img src={menuicon} className="menu-icon" />
+                    <img src={navlogo} className="nav-logo-image" alt="Home Logo"/>
+                    <Nav
+                        pageone="About"
+                        pagetwo="Inloggen"
+                        pagethree="Registeren"
+                        pagefour="Contact"
+
+                    />
+
                 </div>
 
 
