@@ -1,7 +1,8 @@
 .footer-wrapper {
+
     margin-top: 1rem;
     display: flex;
-    width: var(--width-total);
+    width: var(--size-vw-total);
     background-color: black;
     justify-content: center;
 }

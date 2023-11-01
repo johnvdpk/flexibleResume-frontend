@@ -1,7 +1,7 @@
 import './Navigation.css'
 import navlogo from './assets/FlexibleResume-menu-logo.png'
 
-import Nav from "./components/Nav/Nav.jsx";
+import {Link} from "react-router-dom";
 
 function Navigation() {
 
@@ -10,7 +10,7 @@ function Navigation() {
         <>
             <div className="menu-wrapper">
                 <div className="navigationbar">
-                    <img src={navlogo} className="nav-logo-image" alt="Home Logo"/>
+                    <Link to="/"> <img src={navlogo} className="nav-logo-image" alt="Home Logo"/> </Link>
 
 
                 </div>

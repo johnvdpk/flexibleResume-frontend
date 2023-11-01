@@ -1,0 +1,14 @@
+.signin-wrapper {
+
+    display: flex;
+    width: var(--size-vw-total);
+
+}
+
+.signin-image {
+    width: var(--size-vw-medium);
+}
+
+.signin-logo-image {
+    width: var(--size-vw-extra-extra-small);
+}

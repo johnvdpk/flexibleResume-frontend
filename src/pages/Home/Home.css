@@ -34,6 +34,7 @@
     --width-extra-large:80%;
     --width-total: 100%;
 
+    --size-vw-extra-extra-small: 10vw;
     --size-vw-extra-small: 33vw;
     --size-vw-small: 50vw;
     --size-vw-medium: 66vw;
@@ -116,30 +117,3 @@ p {
 /*/////////////////       BUTTONS AND LINKS       /////////////////*/
 
 
-
-button {
-
-    border-radius: var(--radius-medium);
-    border: 1px solid transparent;
-    background-color: var(--button-color);
-    color:var(--text-color-invert);
-    padding: var(--gap-small)var(--gap-large);
-    margin: var(--gap-small);
-    font-size: 1em;
-    cursor: pointer;
-    transition: border-color 0.25s;
-}
-
-button:hover {
-    background-color: var(--button-color-hover);
-}
-
-button.secondary-button {
-
-    background-color: var(--brand-color);
-
-}
-
-button.secondary-button:hover {
-    background-color: var(--button-color-hover);
-}

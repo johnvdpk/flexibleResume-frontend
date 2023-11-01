@@ -1,6 +1,6 @@
 .menu-wrapper {
     display: flex;
-    width: var(--width-total);
+    width: var(--size-vw-total);
     background-color:var(--almost-black);
     justify-content: center;
 }
