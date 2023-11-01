@@ -4,25 +4,25 @@
     /*/////////////////       COLORS        /////////////////*/
     --primary-color: #6F66AE;
     --secondary-color: #E5DCCD;
-    --brand-color:#393361;
+    --brand-color: #393361;
     --background-color: #FFFDF9;
 
-    --button-color:#8D964F;
-    --button-color-hover:#E5DCCD;
-    --button-color-pressed:#E5DCCD;
+    --button-color: #8D964F;
+    --button-color-hover: #E5DCCD;
+    --button-color-pressed: #E5DCCD;
 
-    --almost-white:#FFFDF9;
-    --almost-black:#0E191B;
+    --almost-white: #FFFDF9;
+    --almost-black: #0E191B;
+    --gray: #BFBFBF;
 
 
+    --text-color: #292546;
+    --text-color-brand: #393361;
+    --text-color-invert: #FFFDF9;
 
-    --text-color:#292546;
-    --text-color-brand:#393361;
-    --text-color-invert:#FFFDF9;
-
-    --border-color:#8D964F;
-    --border-color-secondary:#393361;
-    --border-color-invert:#E5DCCD;
+    --border-color: #8D964F;
+    --border-color-secondary: #393361;
+    --border-color-invert: #E5DCCD;
 
     --height-small: 200px;
     --height-medium: 400px;
@@ -31,7 +31,7 @@
     --width-small: 15%;
     --width-medium: 30%;
     --width-large: 40%;
-    --width-extra-large:80%;
+    --width-extra-large: 80%;
     --width-total: 100%;
 
     --size-vw-extra-extra-small: 10vw;
@@ -39,7 +39,7 @@
     --size-vw-small: 50vw;
     --size-vw-medium: 66vw;
     --size-vw-large: 80vw;
-    --size-vw-total:100vw;
+    --size-vw-total: 100vw;
 
 
     /*/////////////////       RADIUS        /////////////////*/
@@ -54,20 +54,24 @@
     --gap-small: 0.5em;
     --gap-medium: 1em;
     --gap-large: 1.5em;
-    --gap-extra-large:2em;
-    --gap-extra-extra-large:4em;
+    --gap-extra-large: 2em;
+    --gap-extra-extra-large: 4em;
 
     /*/////////////////       FONTSIZES       /////////////////*/
 
     --font-size: 16px;
 
+    /*/////////////////       SCREENS       /////////////////*/
+
+    --mobile-breakpoint: 600px;
+    --tablet-breakpoint: 900px;
 
     /*/////////////////       OTHERSTUFF       /////////////////*/
 
     font-size: var(--font-size);
-    font-family: Raleway,Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-    line-height: 1.5;
-    font-weight: 400;
+    font-family: Raleway, Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+    line-height: 1;
+    font-weight: 500;
 
     color: var(--text-color);
     background-color: var(--background-color);
@@ -77,6 +81,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-text-size-adjust: 100%;
+
+
+
 }
 
 
@@ -114,6 +121,9 @@ p {
 
 
 
-/*/////////////////       BUTTONS AND LINKS       /////////////////*/
+/*/////////////////       EXTRA    /////////////////*/
 
+.div-space {
+    padding:var(--gap-small);
+}
 

@@ -1,6 +1,6 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import './index.css'
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import './index.css';
 import Home from "./pages/Home/Home.jsx";
 import Navigation from "./pages/Navigation/Navigation.jsx";
 import { Route, Routes, BrowserRouter } from "react-router-dom";

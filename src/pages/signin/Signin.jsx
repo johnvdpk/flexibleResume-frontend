@@ -3,6 +3,7 @@ import logo from '../../assets/flexible resume.svg'
 import signinImage from '../../assets/signinimage.png'
 import Button from "../globalcomponents/Buttons/Button.jsx";
 import Switch from "../globalcomponents/Buttons/Switch.jsx";
+import LoginForm from "../globalcomponents/input/LoginForm.jsx";
 function Signin() {
 
 
@@ -12,19 +13,19 @@ function Signin() {
 
                <div className="div-signin">
                    <img src={logo} className="signin-logo-image" alt="logo" />
-                    <h6>Aanmelden</h6>
+                    <h2 className="titel-signin">Aanmelden</h2>
                    <Switch
                         rectangleIndex={1}
                         text="werkzoekende"
 
                    />
-                   {/*<Input />*/}
+                   <div className="div-space"></div>
+                   <LoginForm />
+                   <div className="div-space"></div>
                    <Button
 
                        link="/"
                        text="Login"
-
-
                    />
                </div>
 
