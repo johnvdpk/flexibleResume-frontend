@@ -1,0 +1,15 @@
+.global-form-style {
+
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    margin: 2rem;
+
+
+}
+
+.h-maintitel {
+    font-size: 1.3rem;
+    font-family: Raleway-semibold;
+    margin: 0.2rem 0.1rem 2rem 0.1rem;
+}

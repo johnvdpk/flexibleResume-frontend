@@ -1,0 +1,40 @@
+.main-wrapper {
+    margin-top: var(--gap-extra-extra-large);
+    display: flex;
+    flex-direction: row;
+    width: var(--width-extra-large);
+
+
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.main-container-child {
+    margin-top: var(--gap-small);
+    flex: 1;
+
+}
+
+.main-image {
+    width:var(--size-vw-large);
+}
+
+
+
+@media (min-width: 550px) {
+
+    .main-container {
+        flex-direction: row-reverse;
+    }
+
+
+
+    .main-image {
+        width: var(--size-vw-small);
+    }
+
+}

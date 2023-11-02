@@ -1,9 +1,9 @@
 .header-wrapper {
     margin-top: var(--gap-extra-extra-large);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: var(--width-extra-large);
-    height: var(--height-medium);
+
 
 }
 
@@ -18,7 +18,8 @@
 .header-container-buttons {
     margin-top: var(--gap-extra-large);
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    
 }
 
 .header-image-container {
@@ -27,12 +28,35 @@
 }
 
 .header-logo {
-    width: 200px;
+    width: 100px;
     margin-left: -15px;
     margin-bottom: var(--gap-medium);
 
 }
 
 .headerimage {
-    width: 600px;
+    width: var(--size-vw-medium);
+}
+
+Link {
+
+    text-decoration: none;
+    color: inherit;
+}
+
+@media (min-width: 550px) {
+
+    .header-container-buttons {
+        flex-direction: row;
+
+    }
+
+    .header-wrapper {
+        flex-direction: row;
+    }
+
+    .headerimage {
+        width: var(--size-vw-small);
+    }
+
 }

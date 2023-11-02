@@ -1,0 +1,55 @@
+[
+  {
+    "maintitel": "Persoonlijkegegevens:"
+
+  },
+
+  {
+    "field": "voornaam",
+    "label": "Voornaam:",
+    "type": "text",
+    "placeholder": "Wat is je voornaam?"
+  },
+  {
+    "field": "achternaam",
+    "label": "Achternaam:",
+    "type": "text",
+    "placeholder": "Wat is je achternaam?"
+  },
+  {
+    "field": "Adres",
+    "label": "Adres:",
+    "type": "text",
+    "placeholder": "Wat is je adres?"
+  },
+  {
+    "field": "Postcode",
+    "label": "Postcode:",
+    "type": "text",
+    "placeholder": "Wat is je Postcode?"
+  },
+  {
+    "field": "Woonplaats",
+    "label": "Woonplaats:",
+    "type": "text",
+    "placeholder": "Wat is je Woonplaats?"
+  },
+  {
+    "field": "Geboortedatum",
+    "label": "Geboortedatum:",
+    "type": "text",
+    "placeholder": "Wat is je Geboortedatum?"
+  },
+  {
+    "field": "Inlogcode",
+    "label": "Nieuwe inlogcode?:",
+    "type": "text",
+    "placeholder": "Wat is je inlogcode?"
+  },
+  {
+    "field": "Nogmaals je Inlogcode",
+    "label": "Nogmaals je inlogcode?:",
+    "type": "text",
+    "placeholder": "Type nog een keer je nieuwe code"
+  }
+]

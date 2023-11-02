@@ -1,0 +1,24 @@
+.menu-wrapper {
+    display: flex;
+    width: var(--size-vw-total);
+    background-color:var(--almost-black);
+    justify-content: center;
+}
+
+.navigationbar {
+    display: flex;
+    justify-content: space-between;
+    width: var(--width-total);
+
+}
+
+.nav-logo-image {
+    margin:1em;
+    width: 4rem;
+}
+
+.menu-icon {
+    margin:1em;
+    width: 10%;
+}
+

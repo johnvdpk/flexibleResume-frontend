@@ -1,0 +1,21 @@
+.navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: var(--width-medium);
+    height: 50px;
+}
+
+.menu-links {
+
+    display: flex;
+    gap: 10px;
+}
+
+.p-link {
+  flex: 1;
+    margin-right: 10px;
+
+
+}
+
