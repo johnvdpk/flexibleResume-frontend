@@ -24,7 +24,7 @@ function Signin() {
                    <div className="div-space"></div>
                    <Button
 
-                       link="/"
+                       link="/jobapplicantprofile"
                        text="Login"
                    />
                </div>

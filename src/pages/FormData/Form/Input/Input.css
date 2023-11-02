@@ -1,0 +1,24 @@
+
+.global-label {
+    flex: 1;
+    margin-bottom: 0.5rem;
+}
+
+.global-label-p {
+
+    margin: 0.4rem;
+
+}
+
+.global-input{
+    flex: 1;
+    font-family: Raleway;
+    color: var(--text-color);
+    border-radius: var(--radius-small);
+    border: solid 1.5px var(--button-color);
+    margin: 0.2rem;
+    padding-left: var(--gap-extra-large);
+    padding-right: var(--gap-extra-large);
+    padding-top: var(--gap-medium);
+    padding-bottom: var(--gap-medium);
+}

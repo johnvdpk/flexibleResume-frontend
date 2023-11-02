@@ -1,0 +1,10 @@
+.global-form-style {
+
+    display: flex;
+    flex-direction: column;
+    color: var(--text-color);
+    margin: 2rem;
+
+
+}
+
