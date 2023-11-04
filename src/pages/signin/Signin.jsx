@@ -3,7 +3,7 @@ import logo from '../../assets/flexible resume.svg'
 import signinImage from '../../assets/signinimage.png'
 import Button from "../globalcomponents/Buttons/Button.jsx";
 import Switch from "../globalcomponents/Buttons/Switch.jsx";
-import LoginForm from "../globalcomponents/input/LoginForm.jsx";
+import LoginForm from "../globalcomponents/input/SignUpForm.jsx";
 function Signin() {
 
 
@@ -22,11 +22,7 @@ function Signin() {
                    <div className="div-space"></div>
                    <LoginForm />
                    <div className="div-space"></div>
-                   <Button
 
-                       link="/jobapplicantprofile"
-                       text="Login"
-                   />
                </div>
 
                <div className="div-signin-image">

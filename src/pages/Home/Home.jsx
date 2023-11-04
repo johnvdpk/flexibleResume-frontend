@@ -8,14 +8,12 @@ function Home() {
 
 
   return (
-    <>
-        <body>
-
+        <>
             <Header/>
             <MainContent/>
             <FAQ/>
-        </body>
-    </>
+        </>
+
   )
 }
 
