@@ -1,0 +1,34 @@
+.inlog-form{
+    display: flex;
+    flex-direction: column;
+    font-family: Raleway;
+    color: var(--gray);
+
+}
+
+.input-email-icon {
+    background: url("src/assets/loginLogoutAndSignIn/icons/usericon.png") no-repeat right 1rem center;
+    background-size: 1rem;
+    border-radius: var(--radius-small);
+    border: solid 1.5px var(--button-color);
+    margin: 0.2rem;
+    padding-left: var(--gap-extra-large);
+    padding-right: var(--gap-extra-large);
+    padding-top: var(--gap-medium);
+    padding-bottom: var(--gap-medium);
+}
+
+.input-password-icon {
+
+    background: url("src/assets/loginLogoutAndSignIn/icons/inlogpassword.png") no-repeat right 1rem center;
+    background-size: 1rem;
+    border-radius: var(--radius-small);
+    border: solid 1.5px var(--button-color);
+    margin: 0.2rem;
+    padding-left: var(--gap-extra-large);
+    padding-right: var(--gap-extra-large);
+    padding-top: var(--gap-medium);
+    padding-bottom: var(--gap-medium);
+
+
+}

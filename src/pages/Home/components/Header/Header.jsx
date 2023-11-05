@@ -2,7 +2,7 @@ import './Header.css'
 import logo from '../../../../assets/flexible resume.svg'
 import headerimage from '../../../../assets/man-and-woman-shake-hands.svg'
 import { Link } from "react-router-dom";
-import Signin from "../../../signin/Signin.jsx";
+import Signin from "../../../../assets/loginLogoutAndSignIn/signin/Signin.jsx";
 import Button from "../../../globalcomponents/Buttons/Button.jsx";
 function Header() {
 
@@ -27,7 +27,7 @@ function Header() {
                             text="Getting Started"
                         />
                         <Button
-                            link="/inlog"
+                            link="/login"
                             buttonstyle="secondary-button"
                             text="inloggen"
                         />

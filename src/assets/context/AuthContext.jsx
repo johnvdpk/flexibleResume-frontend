@@ -42,8 +42,8 @@ async function login(token) {
     const userId = userInfo.sub;
 
     try {
-        const response = await axios.get('http://localhost:8000/api/v1/auth/authenticate')
-
+        const response = await axios.get('http://localhost:8080/api/v1/auth/authenticate')
+        console.log(response.data);
 
     } catch (e) {
         console.error(e);

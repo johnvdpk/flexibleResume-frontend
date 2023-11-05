@@ -1,7 +1,6 @@
 import './SignUpForm.css'
 import axios from "axios";
 import {useState} from "react";
-import Button from "../Buttons/Button.jsx";
 
 function SignUpForm() {
 
@@ -11,6 +10,7 @@ function SignUpForm() {
 
     async function HandleSubmit(e) {
         e.preventDefault();
+        console.log(email, password);
 
         try {
             const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
@@ -19,9 +19,10 @@ function SignUpForm() {
                 password:password,
             })
 
-            console.log(response);
+            console.log(response.data);
+
         } catch (e) {
-            console.error("Er is een fout opgetreden bij het inloggen");
+            console.error("Er is een fout opgetreden bij het aanmelden");
         }
 
     }
@@ -50,12 +51,9 @@ function SignUpForm() {
                 className="input-password-icon"
             />
 
-            <button type='submit'>Echt aanmelden</button>
-            <Button
-                type="submit"
-                // link="/jobapplicantprofile"
-                text="Aanmelden"
-            />
+            <button type='submit'>Registeren</button>
+
+
         </form>
     )
 
