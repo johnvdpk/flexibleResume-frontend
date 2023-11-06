@@ -1,8 +1,8 @@
 import './Login.css'
-import logo from '../../flexible resume.svg'
-import LoginImage from '../../loginimage.png'
-import Switch from "../../../pages/globalcomponents/Buttons/Switch.jsx";
-import LoginForm from "../login/LoginForm.jsx";
+import logo from '../../../assets/flexible resume.svg'
+import LoginImage from '../../../assets/loginimage.png'
+import Switch from "../../globalcomponents/Buttons/Switch.jsx";
+import LoginForm from "./LoginForm.jsx";
 function Login() {
 
 

@@ -22,6 +22,27 @@ button.secondary-button {
 
 }
 
+button.nav-button {
+    font-size: 0.8rem;
+    border-radius: var(--radius-small);
+    padding: var(--gap-small)var(--gap-small);
+    color: var(--text-color);
+    font-family: Raleway-semibold;
+    background-color: var(--secondary-color);
+
+}
+
+button.left-menu {
+    border-radius: var(--radius-large);
+    background-color: var(--secondary-color);
+}
+
+button.nav-button:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-invert);
+}
+
+
 button.secondary-button:hover {
     background-color: var(--button-color-hover);
 }

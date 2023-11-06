@@ -1,7 +1,7 @@
 import './Signin.css'
-import logo from '../../flexible resume.svg'
-import signinImage from '../../signinimage.png'
-import Switch from "../../../pages/globalcomponents/Buttons/Switch.jsx";
+import logo from '../../../assets/flexible resume.svg'
+import signinImage from '../../../assets/signinimage.png'
+import Switch from "../../globalcomponents/Buttons/Switch.jsx";
 import SignUpForm from "./SignUpForm.jsx";
 function Signin() {
 

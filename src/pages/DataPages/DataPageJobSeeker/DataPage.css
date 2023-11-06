@@ -5,11 +5,10 @@
 
 .div-data-page-menu {
     flex: 1;
-    background: var(--secondary-color);
+    background: var(--background-color);
     border-radius: var(--radius-medium);
-    margin: 1rem;
     padding: 1rem;
-
+    margin-right: -3em;
 }
 
     .div-profile-foto {
@@ -17,6 +16,10 @@
     }
 
     .div-data-page-menu-child {
+        margin-top: 1em;
+        margin-left: 0em;
+        border-radius: var(--radius-medium);
+        background-color: var(--secondary-color);
 
     }
 
@@ -41,6 +44,9 @@
 .img-profile-foto {
     width: 25%;
 }
+
+
+
 
 
 @media (min-width: 900px) {

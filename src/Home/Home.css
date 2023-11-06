@@ -123,6 +123,12 @@ p {
 
 /*/////////////////       EXTRA    /////////////////*/
 
+.div-body {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
 .div-space {
     padding:var(--gap-small);
 }
