@@ -9,7 +9,7 @@ import NotFound from "./pages/NotFound/NotFound.jsx";
 import Footer from "./pages/Footer/Footer.jsx";
 import DataPage from "./pages/DataPages/DataPageJobSeeker/DataPage.jsx";
 import AuthContextProvider from "./context/AuthContext.jsx";
-import Login from "./pages/loginLogoutAndSignIn/Login/Login.jsx";
+import Login from "./pages/loginLogoutAndSignIn/Login/LoginPage.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 

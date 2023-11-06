@@ -22,3 +22,17 @@
     padding-top: var(--gap-medium);
     padding-bottom: var(--gap-medium);
 }
+
+.global-textarea {
+    flex: 1;
+    font-family: Raleway;
+    color: var(--text-color);
+    border-radius: var(--radius-small);
+    border: solid 1.5px var(--button-color);
+    margin: 0.2rem;
+    padding-left: var(--gap-extra-large);
+    padding-right: var(--gap-extra-large);
+    padding-top: var(--gap-medium);
+    padding-bottom: var(--gap-medium);
+
+}

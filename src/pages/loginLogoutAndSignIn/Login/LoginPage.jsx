@@ -3,10 +3,18 @@ import logo from '../../../assets/flexible resume.svg'
 import LoginImage from '../../../assets/loginimage.png'
 import Switch from "../../globalcomponents/Buttons/Switch.jsx";
 import LoginForm from "./LoginForm.jsx";
-function Login() {
+import {useState} from "react";
+function LoginPage() {
 
 
-    return (
+    const [whichDataPage, setWhichDataPage] = useState("werkzoekende");
+
+    function handleToggle(value) {
+        setWhichDataPage(value);
+    }
+
+
+        return (
         <>
            <div className="login-wrapper">
 
@@ -14,12 +22,13 @@ function Login() {
                    <img src={logo} className="login-logo-image" alt="logo" />
                     <h2 className="titel-login">Inloggen</h2>
                    <Switch
-                        rectangleIndex={1}
-                        text="werkzoekende"
 
+                   option1="werkzoekende"
+                   option2="bedrijf"
+                   onToggle={handleToggle}
                    />
                    <div className="div-space"></div>
-                   <LoginForm />
+                   <LoginForm  whichDataPage={whichDataPage}/>
                    <div className="div-space"></div>
 
                </div>
@@ -33,4 +42,4 @@ function Login() {
     )
 }
 
-export default Login
+export default LoginPage

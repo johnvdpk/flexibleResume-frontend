@@ -1,0 +1,31 @@
+[
+  {
+    "maintitel": "Persoonlijke ervaring"
+
+  },
+
+  {
+    "label": "Bedrijf",
+    "type": "text",
+    "placeholder": "Bedrijf"
+  },
+  {
+
+    "label": "Functie",
+    "type": "text",
+    "placeholder": "Wat is/was je functie?"
+  },
+  {
+
+    "label": "Periode",
+    "type": "text",
+    "placeholder": "Welke periode heb je hier gewerkt?"
+  },
+  {
+
+    "label": "Extra informatie",
+    "placeholder": "Korte beschrijving"
+  }
+
+
+]

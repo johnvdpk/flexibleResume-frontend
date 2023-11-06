@@ -22,9 +22,7 @@ function Form({formConfig}) {
 
                 <Input
                 key={index}
-                field={formData.field}
                 label={formData.label}
-                type={formData.type}
                 placeholder={formData.placeholder}
                 />
                 ))}

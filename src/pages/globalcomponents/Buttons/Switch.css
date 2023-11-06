@@ -1,3 +1,23 @@
+.div-switch {
+    display: inline-block;
+    border-radius: var(--radius-medium);
+    border: 1px solid transparent;
+    background-color: var(--button-color);
+    color:var(--text-color-invert);
+    padding: var(--gap-small)var(--gap-large);
+    margin: var(--gap-small);
+    font-size: 1em;
+    cursor: pointer;
+
+}
+
+.label-switch {
+    padding: 1em;
+}
+
+.input-switch {
+    padding: 1em;
+}
 
 button {
     display: inline-block;
@@ -9,8 +29,6 @@ button {
     margin: var(--gap-small);
     font-size: 1em;
     cursor: pointer;
-    align-items: center;
-
 }
 
 button:hover {

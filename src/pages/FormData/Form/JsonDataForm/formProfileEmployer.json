@@ -1,55 +1,46 @@
 [
   {
-    "maintitel": "Bedrijfsgegegevens:"
+    "maintitel": "Bedrijfsgegegevens"
 
   },
 
   {
-    "field": "Bedrijf",
-    "label": "Bedrijf:",
-    "type": "text",
+    "label": "Bedrijf",
     "placeholder": "Bedrijfsnaam?"
   },
   {
-    "field": "Branche",
-    "label": "Branche:",
-    "type": "text",
+
+    "label": "Branche",
     "placeholder": "Branche?"
   },
   {
-    "field": "Adres",
-    "label": "Adres:",
-    "type": "text",
+
+    "label": "Adres",
     "placeholder": "Wat is het kantooradres?"
   },
   {
-    "field": "Postcode",
-    "label": "Postcode:",
-    "type": "text",
+
+    "label": "Postcode",
     "placeholder": "Wat is de Postcode?"
   },
   {
-    "field": "Vestiging",
-    "label": "Plaats vestiging:",
-    "type": "text",
+
+    "label": "Plaats vestiging",
     "placeholder": "Vestiging van het kantoor"
   },
   {
-    "field": "KVK",
-    "label": "KVK:",
-    "type": "text",
+
+    "label": "KVK",
     "placeholder": "KVK NR"
   },
   {
-    "field": "Inlogcode",
-    "label": "Nieuwe inlogcode?:",
-    "type": "text",
+
+    "label": "Nieuwe inlogcode",
     "placeholder": "Wat is je inlogcode?"
   },
   {
-    "field": "Nogmaals je Inlogcode",
-    "label": "Nogmaals je inlogcode?:",
-    "type": "text",
+
+    "label": "Nogmaals je inlogcode?",
     "placeholder": "Type nog een keer je nieuwe code"
   }
 ]

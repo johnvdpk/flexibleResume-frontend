@@ -1,0 +1,29 @@
+[
+  {
+    "maintitel": "Werkervaring"
+
+  },
+
+  {
+    "label": "Bedrijf",
+    "placeholder": "Bedrijf"
+  },
+  {
+
+    "label": "Functie",
+    "placeholder": "Wat is/was je functie?"
+  },
+  {
+
+    "label": "Periode",
+    "placeholder": "Welke periode heb je hier gewerkt?"
+  },
+  {
+
+    "label": "Extra informatie",
+    "type": "textarea",
+    "placeholder": "Korte beschrijving"
+  }
+
+
+]

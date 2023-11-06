@@ -1,11 +1,12 @@
 import './DataPage.css'
-import Form from "../../FormData/Form/Form.jsx";
+import Form from "../../FormData/Form/Form.jsx"
 import profilefoto from "../../../assets/profilefoto.png"
-import Button from "../../globalcomponents/Buttons/Button.jsx";
 import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJobseeker.json"
-import formConfigEmployer from "../../FormData/Form/JsonDataForm/formProfileEmployer.json"
-import {useState} from "react";
-import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx";
+import formConfigJobInfo from "../../FormData/Form/JsonDataForm/formProfileJobInfo.json"
+import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
+import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
+import {useState} from "react"
+import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 
 
 
@@ -17,9 +18,6 @@ function DataPage() {
 
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
-
-    // const [profile, setProfile] = useState(null);
-    // const [profile2, setProfile2] = useState(null);
 
 
     return (
@@ -42,36 +40,33 @@ function DataPage() {
 
                        <ButtonForm
                            text="Werk Info"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick(formConfigJobInfo)}
                        />
                        <ButtonForm
                            text="Persoonlijke Info"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick(formConfigPersonalInfo)}
                        />
                        <ButtonForm
                            text="Studie Info"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick(formConfigStudyInfo)}
                        />
                        <ButtonForm
                            text="Kies een template"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick()}
                        />
                        <ButtonForm
                            text="Zoek op werkgever"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick()}
                        />
                        <ButtonForm
                            text="Berichten"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick()}
                        />
                        <ButtonForm
                            text="Account verwijderen"
-                           onClick={() => handleProfileClick(formConfigEmployer)}
+                           onClick={() => handleProfileClick()}
                        />
 
-
-                       {/*<Button buttonstyle="left-menu" text="Werkzoekende" onClick={() => setProfile(formConfigJobSeeker)} />*/}
-                       {/*<Button buttonstyle="left-menu" text="Werkzoekende" onClick={() => setProfile2(formConfigJobSeeker)} />*/}
 
                    </div>
 
@@ -85,6 +80,7 @@ function DataPage() {
            </div>
 
            <div className="div-personal-form-data">
+               {activeProfile && <Form formConfig={activeProfile} />}
 
            </div>
 
