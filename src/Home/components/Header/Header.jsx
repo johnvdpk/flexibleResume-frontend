@@ -1,9 +1,7 @@
 import './Header.css'
-import logo from '../../../../assets/flexible resume.svg'
-import headerimage from '../../../../assets/man-and-woman-shake-hands.svg'
-import { Link } from "react-router-dom";
-import Signin from "../../../signin/Signin.jsx";
-import Button from "../../../globalcomponents/Buttons/Button.jsx";
+import logo from '../../../assets/flexible resume.svg'
+import headerimage from '../../../assets/man-and-woman-shake-hands.svg'
+import Button from "../../../pages/globalcomponents/Buttons/Button.jsx";
 function Header() {
 
 
@@ -27,20 +25,12 @@ function Header() {
                             text="Getting Started"
                         />
                         <Button
-                            link="/inlog"
+                            link="/login"
                             buttonstyle="secondary-button"
                             text="inloggen"
                         />
 
 
-
-                        {/*<Link to="/inlog">*/}
-                        {/*<button>Getting started</button>*/}
-                        {/*</Link>*/}
-
-                        {/*<Link to="/inlog">*/}
-                        {/*    <button className="secondary-button">Inloggen</button>*/}
-                        {/*</Link>*/}
 
                     </div>
                 </div>

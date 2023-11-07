@@ -1,19 +1,14 @@
-
-.global-label {
-    flex: 1;
-    margin-bottom: 0.5rem;
-}
-
-.global-label-p {
-
-    margin: 0.4rem;
-
-}
-
-.global-input{
-    flex: 1;
+.inlog-form{
+    display: flex;
+    flex-direction: column;
     font-family: Raleway;
-    color: var(--text-color);
+    color: var(--gray);
+
+}
+
+.input-email-icon {
+    background: url("../icons/usericon.png") no-repeat right 1rem center;
+    background-size: 1rem;
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);
     margin: 0.2rem;
@@ -23,10 +18,10 @@
     padding-bottom: var(--gap-medium);
 }
 
-.global-textarea {
-    flex: 1;
-    font-family: Raleway;
-    color: var(--text-color);
+.input-password-icon {
+
+    background: url("../icons/inlogpassword.png") no-repeat right 1rem center;
+    background-size: 1rem;
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);
     margin: 0.2rem;
@@ -34,5 +29,6 @@
     padding-right: var(--gap-extra-large);
     padding-top: var(--gap-medium);
     padding-bottom: var(--gap-medium);
+
 
 }

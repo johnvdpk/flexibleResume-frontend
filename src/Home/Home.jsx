@@ -8,14 +8,14 @@ function Home() {
 
 
   return (
-    <>
-        <body>
 
+            <div className='div-body'>
             <Header/>
             <MainContent/>
             <FAQ/>
-        </body>
-    </>
+            </div>
+
+
   )
 }
 

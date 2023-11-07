@@ -8,7 +8,15 @@
 .navigationbar {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     width: var(--width-total);
+
+}
+
+.div-nav {
+
+    padding: 0.2rem;
+    margin-right: 2rem;
 
 }
 

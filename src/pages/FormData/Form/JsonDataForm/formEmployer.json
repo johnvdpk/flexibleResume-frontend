@@ -1,0 +1,46 @@
+[
+  {
+    "maintitel": "Bedrijfsgegegevens"
+
+  },
+
+  {
+    "label": "Bedrijf",
+    "placeholder": "Bedrijfsnaam?"
+  },
+  {
+
+    "label": "Branche",
+    "placeholder": "Branche?"
+  },
+  {
+
+    "label": "Adres",
+    "placeholder": "Wat is het kantooradres?"
+  },
+  {
+
+    "label": "Postcode",
+    "placeholder": "Wat is de Postcode?"
+  },
+  {
+
+    "label": "Plaats vestiging",
+    "placeholder": "Vestiging van het kantoor"
+  },
+  {
+
+    "label": "KVK",
+    "placeholder": "KVK NR"
+  },
+  {
+
+    "label": "Nieuwe inlogcode",
+    "placeholder": "Wat is je inlogcode?"
+  },
+  {
+
+    "label": "Nogmaals je inlogcode?",
+    "placeholder": "Type nog een keer je nieuwe code"
+  }
+]

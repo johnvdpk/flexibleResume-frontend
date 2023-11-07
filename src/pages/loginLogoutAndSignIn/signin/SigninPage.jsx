@@ -1,10 +1,9 @@
-import './Signin.css'
-import logo from '../../assets/flexible resume.svg'
-import signinImage from '../../assets/signinimage.png'
-import Button from "../globalcomponents/Buttons/Button.jsx";
-import Switch from "../globalcomponents/Buttons/Switch.jsx";
-import LoginForm from "../globalcomponents/input/LoginForm.jsx";
-function Signin() {
+import './SigninPage.css'
+import logo from '../../../assets/flexible resume.svg'
+import signinImage from '../../../assets/signinimage.png'
+import Switch from "../../globalcomponents/Buttons/Switch.jsx";
+import SignUpForm from "./SignUpForm.jsx";
+function SigninPage() {
 
 
     return (
@@ -20,13 +19,9 @@ function Signin() {
 
                    />
                    <div className="div-space"></div>
-                   <LoginForm />
+                   <SignUpForm />
                    <div className="div-space"></div>
-                   <Button
 
-                       link="/jobapplicantprofile"
-                       text="Login"
-                   />
                </div>
 
                <div className="div-signin-image">
@@ -38,4 +33,4 @@ function Signin() {
     )
 }
 
-export default Signin
+export default SigninPage

@@ -1,0 +1,31 @@
+[
+  {
+    "maintitel": "Studie ervaring"
+
+  },
+
+  {
+    "label": "Opleiding",
+    "type": "text",
+    "placeholder": "Wat was je opleiding?"
+  },
+  {
+
+    "label": "Educatie",
+    "type": "text",
+    "placeholder": "Van welke educatie heb je genoten?"
+  },
+  {
+
+    "label": "Periode",
+    "type": "text",
+    "placeholder": "Welke periode heb je gestudeerd?"
+  },
+  {
+
+    "label": "Extra informatie",
+    "placeholder": "Korte beschrijving"
+  }
+
+
+]

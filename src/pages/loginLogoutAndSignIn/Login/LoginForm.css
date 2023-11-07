@@ -7,7 +7,7 @@
 }
 
 .input-email-icon {
-    background: url("./icons/usericon.png") no-repeat right 1rem center;
+    background: url("../icons/usericon.png") no-repeat right 1rem center;
     background-size: 1rem;
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);
@@ -20,7 +20,7 @@
 
 .input-password-icon {
 
-    background: url("./icons/inlogpassword.png") no-repeat right 1rem center;
+    background: url("../icons/inlogpassword.png") no-repeat right 1rem center;
     background-size: 1rem;
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);

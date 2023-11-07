@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 function Button({link,buttonstyle,text,onClick}) {
 
     return (
-        <Link to={link}><button className={buttonstyle} onClick={onClick}>{text}</button></Link>
+        <Link to={link}><button className={buttonstyle} onClick={onClick} type='button'>{text}</button></Link>
     )
 
 }

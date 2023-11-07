@@ -1,25 +1,31 @@
-import './Switch.css'
-import {Link} from "react-router-dom";
+import './Switch.css';
+// eslint-disable-next-line react/prop-types
+function Switch({ option1, option2, onToggle }) {
+    return (
+        <div className="div-switch">
+            <label className="label-switch">
 
-function Switch({link, rectangleIndex,text}) {
+                <input className="input-switch"
+                    type="radio"
+                    name="switch"
+                    value={option1}
+                    onChange={() => onToggle(option1)}
+                />
+                {option1}
+            </label>
 
+            <label className="label-switch">
 
-
-return (
-
-    <Link to={link}><button>
-
-            <view className={`rectangle ${rectangleIndex === 1 ? 'brandcolor' : ''}`}></view>
-            <view className={`rectangle ${rectangleIndex === 2 ? 'brandcolor' : ''}`}></view>
-        {text}
-
-
-        </button></Link>
-
-
-)
-
-
+                <input className="input-switch"
+                    type="radio"
+                    name="switch"
+                    value={option2}
+                    onChange={() => onToggle(option2)}
+                />
+                {option2}
+            </label>
+        </div>
+    );
 }
 
-export default Switch
+export default Switch;
