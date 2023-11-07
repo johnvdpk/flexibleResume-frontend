@@ -6,6 +6,7 @@ function SignUpForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [addSucces, toggleAddSucces] = useState(false);
 
 
     async function HandleSubmit(e) {
@@ -20,7 +21,7 @@ function SignUpForm() {
             })
 
             console.log(response.data);
-
+            toggleAddSucces(true);
         } catch (e) {
             console.error("Er is een fout opgetreden bij het aanmelden");
         }
@@ -31,6 +32,9 @@ function SignUpForm() {
     return (
 
         <form onSubmit={HandleSubmit} className="inlog-form">
+
+            {addSucces === true && <p>Aanmelden is gelukt</p>}
+
             <input
                 id="email"
                 type="email"

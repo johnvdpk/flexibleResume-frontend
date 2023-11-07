@@ -5,8 +5,10 @@ import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJob
 import formConfigJobInfo from "../../FormData/Form/JsonDataForm/formProfileJobInfo.json"
 import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
+
+import axios from 'axios';
 
 
 
@@ -19,6 +21,22 @@ function DataPageJobSeeker() {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
+
+    useEffect(()=> {
+
+        async function findJobSeeker() {
+            try {
+                const response = await axios.get('http://localhost:8080/werkzoekende/voornaam/Alex');
+                console.log(response.data);
+            } catch (e) {
+                console.error("Alex niet op kunnen halen")
+            }
+
+
+        }
+
+            findJobSeeker();
+    }, []);
 
     return (
 
@@ -80,7 +98,7 @@ function DataPageJobSeeker() {
            </div>
 
            <div className="div-personal-form-data">
-               {activeProfile && <Form formConfig={activeProfile} />}
+
 
            </div>
 
