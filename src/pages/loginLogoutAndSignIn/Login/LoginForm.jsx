@@ -17,9 +17,8 @@ function LoginForm({whichDataPage}) {
         e.preventDefault();
 
 
-
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/authenticate', {
+            const response = await axios.post('http://localhost:8080/auth/authenticate', {
 
                 email:email,
                 password:password,

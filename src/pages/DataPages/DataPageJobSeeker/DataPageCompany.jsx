@@ -4,14 +4,14 @@ import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx";
 import formConfigEmployer from "../../FormData/Form/JsonDataForm/formEmployer.json";
 import formConfigJobInfo from "../../FormData/Form/JsonDataForm/formEmployerJobInfo.json";
 import profilefoto from "../../../assets/profilefoto.png"
-import {useState} from "react"
-
-
+import {useContext, useState} from "react"
+import { AuthContext } from "../../../context/AuthContext.jsx";
 
 
 function DataPageJobSeeker() {
 
     const [activeProfile, setActiveProfile] = useState(null);
+    const {isAuth} = useContext(AuthContext);
 
     const handleProfileClick = (profileConfig) => {
 
@@ -23,6 +23,7 @@ function DataPageJobSeeker() {
 
         <>
 
+            {isAuth ?
             <div className="data-page-wrapper">
 
                 <div className="div-data-page-menu">
@@ -75,7 +76,9 @@ function DataPageJobSeeker() {
 
 
             </div>
-
+            :
+                <p className="p-no-inlog"> Je bent niet inlogt</p>
+            }
         </>
     )
 }

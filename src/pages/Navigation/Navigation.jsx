@@ -9,7 +9,9 @@ import {useContext} from "react";
 
 function Navigation() {
 
-const {isAuth} = useContext(AuthContext);
+
+
+const {isAuth, logout} = useContext(AuthContext);
 
     return (
         <>
@@ -25,6 +27,8 @@ const {isAuth} = useContext(AuthContext);
                                 buttonstyle="nav-button"
                                 link="/"
                                 text="Logout"
+                                onClick={logout}
+
 
 
                             />

@@ -1,23 +1,27 @@
 import './SignUpForm.css'
 import axios from "axios";
 import {useState} from "react";
+import SwitchSignin from "../../globalcomponents/Buttons/SwitchSignin.jsx";
+
 
 function SignUpForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [addSucces, toggleAddSucces] = useState(false);
+    const [role, setRole] = useState('USER')
 
 
     async function HandleSubmit(e) {
         e.preventDefault();
-        console.log(email, password);
+        console.log(email, password, role);
 
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/register', {
+            const response = await axios.post('http://localhost:8080/auth/register', {
 
                 email:email,
                 password:password,
+                role:role,
             })
 
             console.log(response.data);
@@ -34,6 +38,16 @@ function SignUpForm() {
         <form onSubmit={HandleSubmit} className="inlog-form">
 
             {addSucces === true && <p>Aanmelden is gelukt</p>}
+
+            <SwitchSignin
+
+            option1="werkzoekende"
+            option2="bedrijf"
+            onToggle={setRole}
+
+
+            />
+
 
             <input
                 id="email"

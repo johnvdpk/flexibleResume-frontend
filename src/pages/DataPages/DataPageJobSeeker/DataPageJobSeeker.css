@@ -45,7 +45,11 @@
     width: 25%;
 }
 
-
+.p-no-inlog {
+    font-family: Raleway-semibold;
+    align-items: center;
+    padding: 10em;
+}
 
 
 

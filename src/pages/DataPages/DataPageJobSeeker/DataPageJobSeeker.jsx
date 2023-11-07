@@ -5,8 +5,9 @@ import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJob
 import formConfigJobInfo from "../../FormData/Form/JsonDataForm/formProfileJobInfo.json"
 import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
-import {useEffect, useState} from "react"
+import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
+import { AuthContext} from "../../../context/AuthContext.jsx";
 
 import axios from 'axios';
 
@@ -15,6 +16,7 @@ import axios from 'axios';
 function DataPageJobSeeker() {
 
     const [activeProfile, setActiveProfile] = useState(null);
+    const {isAuth} = useContext(AuthContext);
 
     const handleProfileClick = (profileConfig) => {
 
@@ -41,8 +43,11 @@ function DataPageJobSeeker() {
     return (
 
         <>
+            {isAuth ?
 
        <div className="data-page-wrapper">
+
+
 
            <div className="div-data-page-menu">
                 <div className="div-profile-foto">
@@ -106,6 +111,10 @@ function DataPageJobSeeker() {
 
        </div>
 
+            :
+
+               <p className="p-no-inlog"> Je bent niet inlogt</p>
+           }
         </>
     )
 }

@@ -94,14 +94,17 @@
 
 h1 {
     font-size: 3rem;
+    margin: 0.5em 0em 0.5em 0em;
 }
 
 h2 {
     font-size: 2.5rem;
+    margin: 0.5em 0em 0.5em 0em;
 }
 
 h3 {
     font-size: 2rem;
+    margin: 0.2em 0em 0.2em 0em;
 }
 
 h4 {
