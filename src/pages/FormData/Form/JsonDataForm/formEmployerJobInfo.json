@@ -1,0 +1,27 @@
+[
+  {
+    "maintitel": "Vacature informatie"
+
+  },
+
+  {
+    "label": "Branche",
+    "placeholder": "In welke branche?"
+  },
+  {
+
+    "label": "Wat wij bieden",
+    "placeholder": "Wat bieden wij aan de sollicitant?"
+  },
+  {
+
+    "label": "Wat verwachten wij van de sollicitant",
+    "placeholder": "Onze verwachtingen"
+  },
+  {
+
+    "label": "Aanvullende informatie",
+    "placeholder": "Auto van de zaak? Salaris indicatie?"
+  }
+
+]

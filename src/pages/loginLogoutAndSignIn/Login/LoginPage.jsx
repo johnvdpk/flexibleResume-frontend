@@ -1,4 +1,4 @@
-import './Login.css'
+import './LoginPage.css'
 import logo from '../../../assets/flexible resume.svg'
 import LoginImage from '../../../assets/loginimage.png'
 import Switch from "../../globalcomponents/Buttons/Switch.jsx";
@@ -23,8 +23,8 @@ function LoginPage() {
                     <h2 className="titel-login">Inloggen</h2>
                    <Switch
 
-                   option1="werkzoekende"
-                   option2="bedrijf"
+                   option1="Werkzoekende"
+                   option2="Bedrijf"
                    onToggle={handleToggle}
                    />
                    <div className="div-space"></div>

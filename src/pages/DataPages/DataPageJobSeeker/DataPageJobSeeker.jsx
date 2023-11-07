@@ -1,4 +1,4 @@
-import './DataPage.css'
+import './DataPageJobSeeker.css'
 import Form from "../../FormData/Form/Form.jsx"
 import profilefoto from "../../../assets/profilefoto.png"
 import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJobseeker.json"
@@ -10,7 +10,7 @@ import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 
 
 
-function DataPage() {
+function DataPageJobSeeker() {
 
     const [activeProfile, setActiveProfile] = useState(null);
 
@@ -92,4 +92,4 @@ function DataPage() {
     )
 }
 
-export default DataPage
+export default DataPageJobSeeker

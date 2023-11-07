@@ -9,13 +9,12 @@ function LoginForm({whichDataPage}) {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [error, toggleError] = useState(false);
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
 
     async function HandleSubmit(e) {
         e.preventDefault();
-        toggleError(false);
+
 
 
         try {
@@ -27,15 +26,16 @@ function LoginForm({whichDataPage}) {
             })
 
             console.log(response.data);
+            console.log("login bij loginform gelukt")
             login(response.data.token);
             navigate(`/${whichDataPage}`);
 
         } catch (e) {
-            console.error(e);
-            toggleError(true);
+            console.error("Loginform inlog niet gelukt");
+
         }
 
-        navigate(`/${whichDataPage}`); // gaat naar het try blok als de inlog is gelukt.
+
     }
 
 

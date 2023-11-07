@@ -1,9 +1,9 @@
-import './Signin.css'
+import './SigninPage.css'
 import logo from '../../../assets/flexible resume.svg'
 import signinImage from '../../../assets/signinimage.png'
 import Switch from "../../globalcomponents/Buttons/Switch.jsx";
 import SignUpForm from "./SignUpForm.jsx";
-function Signin() {
+function SigninPage() {
 
 
     return (
@@ -33,4 +33,4 @@ function Signin() {
     )
 }
 
-export default Signin
+export default SigninPage

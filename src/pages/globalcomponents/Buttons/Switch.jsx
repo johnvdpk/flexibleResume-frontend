@@ -4,23 +4,25 @@ function Switch({ option1, option2, onToggle }) {
     return (
         <div className="div-switch">
             <label className="label-switch">
-                {option1}
+
                 <input className="input-switch"
                     type="radio"
                     name="switch"
                     value={option1}
                     onChange={() => onToggle(option1)}
                 />
+                {option1}
             </label>
 
-            <label>
-                {option2}
+            <label className="label-switch">
+
                 <input className="input-switch"
                     type="radio"
                     name="switch"
                     value={option2}
                     onChange={() => onToggle(option2)}
                 />
+                {option2}
             </label>
         </div>
     );

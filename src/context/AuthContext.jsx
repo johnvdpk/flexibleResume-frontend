@@ -39,12 +39,16 @@ async function login(token) {
     localStorage.setItem('token',token);
 
     const userInfo = jwtDecode(token);
-    const userId = userInfo.sub;
-    console.log(userInfo.sub);
+    const userEmail = userInfo.sub;
+    console.log(userEmail);
 
     try {
-        const response = await axios.get(`http://localhost:8080/api/v1/auth/authenticate`, {
+        const response = await axios.get(`http://localhost:8080/api/v1/auth/authenticate/${userEmail}`, {
 
+            headers: {
+                Authorization: `Bearer ${token}`,
+
+            }
         })
         console.log(response.data);
 
@@ -54,8 +58,7 @@ async function login(token) {
         toggleIsAuth({
             isAuthenticated: true,
             user: {
-                email: response.data.email,
-                id: response.data.id,
+                email: userEmail,
             },
             status: 'done',
         });
@@ -63,7 +66,7 @@ async function login(token) {
         console.log("De gebruiker is ingelogd")
 
     } catch (e) {
-        console.error("De gebruiker kan niet inloggen");
+        console.error("De gebruiker kan niet inloggen AuthContext");
         toggleIsAuth({
             isAuthenticated: false,
             user: null,
