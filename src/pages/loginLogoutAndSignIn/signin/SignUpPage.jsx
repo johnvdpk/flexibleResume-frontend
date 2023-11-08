@@ -1,8 +1,8 @@
-import './SigninPage.css'
+import './SignUpPage.css'
 import logo from '../../../assets/flexible resume.svg'
 import signinImage from '../../../assets/signinimage.png'
 import SignUpForm from "./SignUpForm.jsx";
-function SigninPage() {
+function SignUpPage() {
 
 
     return (
@@ -28,4 +28,4 @@ function SigninPage() {
     )
 }
 
-export default SigninPage
+export default SignUpPage

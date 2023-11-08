@@ -19,62 +19,55 @@ function DataPageJobSeeker() {
     const [jobSeekerData, setJobSeekerData] = useState(null);
     const [addSucces, toggleAddSucces] = useState(false);
 
-    const [PersonalFormData, setPersonalFormData] = useState({
+
+    // Persoonlijke gegevens formulier
+    const [personalFormData, setPersonalFormData] = useState({
         firstName: '',
         surName: '',
+        dateOfBirth: '',
+        email: '',
+        phoneNumber: '',
+        homeTown: '',
+        zipCode: '',
+        homeAddress: '',
+        houseNumber: '',
+
     });
+
+
+    function handleInputChange(e) {
+        const { name, value } = e.target;
+        setPersonalFormData(prevFormData => ({
+            ...prevFormData,
+            [name]: value,
+        }));
+    }
 
 
     const {isAuth} = useContext(AuthContext);
 
     const handleProfileClick = (profileConfig) => {
-
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
-    async function PersonalForm() {
-        // e.preventDefault();
+    const jobSeekerId = 1;
+    async function PersonalForm(e) {
+        e.preventDefault();
 
         try {
-            const response = await axios.post('http://localhost:8080/werkzoekende', {
-                firstName: "Hoi",
-                surName: "De boer",
-                dateOfBirth: "1996-02-01",
-                email: "alexanders@email.com",
-                phoneNumber: "0654789545",
-                zipCode: "3443ET",
-                homeAddress: "kerkstraat",
-                houseNumber: "321a"
-            });
+            const response = await axios.put(`http://localhost:8080/werkzoekende/${jobSeekerId}`, personalFormData)
 
-            toggleAddSucces(true); // Deze zou je moeten aanroepen nadat je zeker weet dat de aanvraag succesvol was.
+            toggleAddSucces(true);
             console.log(response.data);
 
         } catch (e) {
             console.error("Niet lekker bezig met info sturen naar de database", e);
             toggleAddSucces(false); // Stel deze in op false als de aanvraag mislukt.
+
         }
+
     }
 
-        async function findJobSeeker() {
-            try {
-                const response = await axios.get('http://localhost:8080/werkzoekende/voornaam/Alex');
-                setJobSeekerData(response.data);
-                console.log(response.data);
-                console.log("Info Alex is gelukt");
-            } catch (e) {
-                console.error("Alex niet op kunnen halen")
-            }
-
-
-        }
-
-
-
-    useEffect(() => {
-        findJobSeeker();
-        PersonalForm();
-    }, []);
 
 
     return (
@@ -91,13 +84,14 @@ function DataPageJobSeeker() {
                     <img src={profilefoto} className="img-profile-foto" alt="profile foto" />
                 </div>
 
+                    {/*buttons*/}
                    <div className="div-data-page-menu-child">
+
 
                        <ButtonForm
                            text="Profiel gegevens"
                            onClick={() => handleProfileClick(formConfigJobSeeker)}
                        />
-
                        <ButtonForm
                            text="Werk Info"
                            onClick={() => handleProfileClick(formConfigJobInfo)}
@@ -131,35 +125,98 @@ function DataPageJobSeeker() {
                    </div>
 
 
-
            </div>
 
            <div className="div-personal-form">
-               {activeProfile && <Form formConfig={activeProfile} />}
-
-           </div>
-
-           <div className="div-personal-form-data">
 
                <form onSubmit={PersonalForm}>
-                   {addSucces === true && <p>gelukt lekker flikkertje van mij</p>}
+                   {addSucces === true && <p>die gay info is ontvangen</p>}
+                   <label> Voornaam: </label>
                    <input
+                       name="firstName"
                        type="text"
-                       value={PersonalFormData.firstName}
-                       onChange={(e)=>setPersonalFormData(e.target.value)}
+                       value={personalFormData.firstName}
+                       onChange={handleInputChange}
+                   />
+                   <label> Achternaam: </label>
+                   <input
+                       name="surName"
+                       type="text"
+                       value={personalFormData.surName}
+                       onChange={handleInputChange}
 
                    />
-
+                   <label> Geboortedatum: </label>
                    <input
+                       name="dateOfBirth"
                        type="text"
-                       value={PersonalFormData.surName}
-                       onChange={(e)=>setPersonalFormData(e.target.value)}
+                       value={personalFormData.dateOfBirth}
+                       onChange={handleInputChange}
+
+                   />
+                   <label> email: </label>
+                   <input
+                       name="email"
+                       type="text"
+                       value={personalFormData.email}
+                       onChange={handleInputChange}
+
+                   />
+                   <label> Telefoon nummer: </label>
+                   <input
+                       name="phoneNumber"
+                       type="text"
+                       value={personalFormData.phoneNumber}
+                       onChange={handleInputChange}
+
+                   />
+                   <label> Geboorteplaats:</label>
+                   <input
+                       name="homeTown"
+                       type="text"
+                       value={personalFormData.homeTown}
+                       onChange={handleInputChange}
+
+                   />
+                   <label>Postcode:</label>
+                   <input
+                       name="zipCode"
+                       type="text"
+                       value={personalFormData.zipCode}
+                       onChange={handleInputChange}
+                   />
+                    <label>Adres:</label>
+                   <input
+                       name="homeAddress"
+                       type="text"
+                       value={personalFormData.homeAddress}
+                       onChange={handleInputChange}
+
+
+                   />
+                   <label> Huisnummer: </label>
+                   <input
+                       name="houseNumber"
+                       type="text"
+                       value={personalFormData.houseNumber}
+                       onChange={handleInputChange}
 
                    />
 
                    <button type='submit'>verstuur</button>
 
                </form>
+
+
+
+               {activeProfile && <Form formConfig={activeProfile} />}
+
+
+
+           </div>
+
+           <div className="div-personal-form-data">
+
 
 
                {jobSeekerData && (
