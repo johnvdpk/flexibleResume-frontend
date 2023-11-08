@@ -16,6 +16,15 @@ import axios from 'axios';
 function DataPageJobSeeker() {
 
     const [activeProfile, setActiveProfile] = useState(null);
+    const [jobSeekerData, setJobSeekerData] = useState(null);
+    const [addSucces, toggleAddSucces] = useState(false);
+
+    const [PersonalFormData, setPersonalFormData] = useState({
+        firstName: '',
+        surName: '',
+    });
+
+
     const {isAuth} = useContext(AuthContext);
 
     const handleProfileClick = (profileConfig) => {
@@ -23,13 +32,36 @@ function DataPageJobSeeker() {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
+    async function PersonalForm() {
+        // e.preventDefault();
 
-    useEffect(()=> {
+        try {
+            const response = await axios.post('http://localhost:8080/werkzoekende', {
+                firstName: "Hoi",
+                surName: "De boer",
+                dateOfBirth: "1996-02-01",
+                email: "alexanders@email.com",
+                phoneNumber: "0654789545",
+                zipCode: "3443ET",
+                homeAddress: "kerkstraat",
+                houseNumber: "321a"
+            });
+
+            toggleAddSucces(true); // Deze zou je moeten aanroepen nadat je zeker weet dat de aanvraag succesvol was.
+            console.log(response.data);
+
+        } catch (e) {
+            console.error("Niet lekker bezig met info sturen naar de database", e);
+            toggleAddSucces(false); // Stel deze in op false als de aanvraag mislukt.
+        }
+    }
 
         async function findJobSeeker() {
             try {
                 const response = await axios.get('http://localhost:8080/werkzoekende/voornaam/Alex');
+                setJobSeekerData(response.data);
                 console.log(response.data);
+                console.log("Info Alex is gelukt");
             } catch (e) {
                 console.error("Alex niet op kunnen halen")
             }
@@ -37,8 +69,13 @@ function DataPageJobSeeker() {
 
         }
 
-            findJobSeeker();
+
+
+    useEffect(() => {
+        findJobSeeker();
+        PersonalForm();
     }, []);
+
 
     return (
 
@@ -104,6 +141,34 @@ function DataPageJobSeeker() {
 
            <div className="div-personal-form-data">
 
+               <form onSubmit={PersonalForm}>
+                   {addSucces === true && <p>gelukt lekker flikkertje van mij</p>}
+                   <input
+                       type="text"
+                       value={PersonalFormData.firstName}
+                       onChange={(e)=>setPersonalFormData(e.target.value)}
+
+                   />
+
+                   <input
+                       type="text"
+                       value={PersonalFormData.surName}
+                       onChange={(e)=>setPersonalFormData(e.target.value)}
+
+                   />
+
+                   <button type='submit'>verstuur</button>
+
+               </form>
+
+
+               {jobSeekerData && (
+                   <>
+                       <p>Naam: {jobSeekerData.firstName} {jobSeekerData.surName}</p>
+                       <p>Email: {jobSeekerData.email}</p>
+
+                   </>
+               )}
 
            </div>
 
