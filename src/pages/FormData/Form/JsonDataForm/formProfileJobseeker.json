@@ -1,48 +1,42 @@
 [
   {
     "maintitel": "Persoonlijke gegevens"
-
   },
-
   {
-    "name": "firstName",
-    "dataForm": "firstName",
-    "type": "text",
     "label": "Voornaam",
+    "name": "firstName",
+    "type": "text",
     "placeholder": "Wat is je voornaam?"
   },
   {
-
+    "name": "surName",
+    "type": "text",
     "label": "Achternaam",
     "placeholder": "Wat is je achternaam?"
   },
   {
-
+    "name": "address",
+    "type": "text",
     "label": "Adres",
     "placeholder": "Wat is je adres?"
   },
   {
-
+    "name": "zipCode",
+    "type": "text",
     "label": "Postcode",
     "placeholder": "Wat is je Postcode?"
   },
   {
-
+    "name": "homeTown",
+    "type": "text",
     "label": "Woonplaats",
     "placeholder": "Wat is je Woonplaats?"
   },
   {
-
-    "label": "Geboortedatum",
-    "placeholder": "Wat is je Geboortedatum?"
-  },
-  {
+    "name": "password",
+    "type": "password",
     "label": "Nieuwe inlogcode",
     "placeholder": "Wat is je inlogcode?"
-  },
-  {
-
-    "label": "Nogmaals je inlogcode",
-    "placeholder": "Type nog een keer je nieuwe code"
   }
+
 ]

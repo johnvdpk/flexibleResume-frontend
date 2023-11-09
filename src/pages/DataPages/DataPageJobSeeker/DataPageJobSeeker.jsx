@@ -150,79 +150,89 @@ function DataPageJobSeeker() {
 
            <div className="div-personal-form">
 
+
+               {activeProfile && (
+                   <Form
+                       formConfig={activeProfile}
+                       jobSeekerData={jobSeekerData}
+                       personalFormData={personalFormData}
+                       handleInputChange={handleInputChange}
+                   />
+               )}
+
                <form onSubmit={PersonalForm}>
                    {addSucces === true && <p>die gay info is ontvangen</p>}
-                   <label> Voornaam: </label>
-                   <input
-                       name="firstName"
-                       type="text"
-                       value={personalFormData.firstName}
-                       onChange={handleInputChange}
-                   />
-                   <label> Achternaam: </label>
-                   <input
-                       name="surName"
-                       type="text"
-                       value={personalFormData.surName}
-                       onChange={handleInputChange}
+                   {/*<label> Voornaam: </label>*/}
+                   {/*<input*/}
+                   {/*    name="firstName"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.firstName}*/}
+                   {/*    onChange={handleInputChange}*/}
+                   {/*/>*/}
+                   {/*<label> Achternaam: </label>*/}
+                   {/*<input*/}
+                   {/*    name="surName"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.surName}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
-                   <label> Geboortedatum: </label>
-                   <input
-                       name="dateOfBirth"
-                       type="text"
-                       value={personalFormData.dateOfBirth}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label> Geboortedatum: </label>*/}
+                   {/*<input*/}
+                   {/*    name="dateOfBirth"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.dateOfBirth}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
-                   <label> email: </label>
-                   <input
-                       name="email"
-                       type="text"
-                       value={personalFormData.email}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label> email: </label>*/}
+                   {/*<input*/}
+                   {/*    name="email"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.email}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
-                   <label> Telefoon nummer: </label>
-                   <input
-                       name="phoneNumber"
-                       type="text"
-                       value={personalFormData.phoneNumber}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label> Telefoon nummer: </label>*/}
+                   {/*<input*/}
+                   {/*    name="phoneNumber"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.phoneNumber}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
-                   <label> Geboorteplaats:</label>
-                   <input
-                       name="homeTown"
-                       type="text"
-                       value={personalFormData.homeTown}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label> Geboorteplaats:</label>*/}
+                   {/*<input*/}
+                   {/*    name="homeTown"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.homeTown}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
-                   <label>Postcode:</label>
-                   <input
-                       name="zipCode"
-                       type="text"
-                       value={personalFormData.zipCode}
-                       onChange={handleInputChange}
-                   />
-                    <label>Adres:</label>
-                   <input
-                       name="homeAddress"
-                       type="text"
-                       value={personalFormData.homeAddress}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label>Postcode:</label>*/}
+                   {/*<input*/}
+                   {/*    name="zipCode"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.zipCode}*/}
+                   {/*    onChange={handleInputChange}*/}
+                   {/*/>*/}
+                   {/* <label>Adres:</label>*/}
+                   {/*<input*/}
+                   {/*    name="homeAddress"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.homeAddress}*/}
+                   {/*    onChange={handleInputChange}*/}
 
 
-                   />
-                   <label> Huisnummer: </label>
-                   <input
-                       name="houseNumber"
-                       type="text"
-                       value={personalFormData.houseNumber}
-                       onChange={handleInputChange}
+                   {/*/>*/}
+                   {/*<label> Huisnummer: </label>*/}
+                   {/*<input*/}
+                   {/*    name="houseNumber"*/}
+                   {/*    type="text"*/}
+                   {/*    value={personalFormData.houseNumber}*/}
+                   {/*    onChange={handleInputChange}*/}
 
-                   />
+                   {/*/>*/}
 
                    <button type='submit'>verstuur</button>
 
@@ -230,7 +240,7 @@ function DataPageJobSeeker() {
 
 
 
-               {activeProfile && <Form formConfig={activeProfile} />}
+
 
 
 
@@ -242,15 +252,16 @@ function DataPageJobSeeker() {
                 <div className='div-jobseekerdata'>
                    {jobSeekerData && (
                        <table className='table-data'>
+                           <thead>
                            <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
                            <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
-                           <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirtd}</td></tr>
+                           <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
                            <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
                            <tr><td>Geboorteplaats:</td><td>{jobSeekerData.homeTown}</td></tr>
                            <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
                            <tr><td>Adres:</td><td>{jobSeekerData.address}</td></tr>
                            <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
-
+                           </thead>
                        </table>
                    )}
 
