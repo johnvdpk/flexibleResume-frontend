@@ -1,5 +1,5 @@
 import './Form.css'
-import formData from './JsonDataForm/formProfileJobseeker.json'
+import formData from './JsonDataForm/formProfileJobseeker.json';
 import Input from "./Input/Input.jsx";
 import Button from "../../globalcomponents/Buttons/Button.jsx";
 import React from "react";
@@ -14,9 +14,10 @@ function Form({formConfig}) {
 
     return (
 
-        <form className="global-form-style">
+        <form className="global-form-style" onSubmit={Form}>
 
             <h3 className='h-maintitel'>{mainTitle}</h3>
+
 
             {inputFields.map((formData, index) => (
 

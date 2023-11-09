@@ -32,20 +32,22 @@ function SignUpForm() {
             console.log('aanmelden user is gelukt');
 
             console.log(response.data.sub);
-            try {
-                const jobSeekerResponse = await axios.post('http://localhost:8080/werkzoekende', {
-                    firstName: firstName,
-                })
-            console.log(jobSeekerResponse.data);
 
-            } catch (error) {
-                console.error("Niet gelukt een jobseeker aan te maken", error);
-                toggleAddSucces(false);
-            }
         } catch (error) {
             console.error("Er is een fout opgetreden bij het aanmelden", error);
             toggleAddSucces(false);
         }
+
+        // try {
+        //     const jobSeekerResponse = await axios.post('http://localhost:8080/werkzoekende', {
+        //         firstName: firstName,
+        //     })
+        //     console.log(jobSeekerResponse.data);
+        //
+        // } catch (error) {
+        //     console.error("Niet gelukt een jobseeker aan te maken", error);
+        //     toggleAddSucces(false);
+        // }
     }
 
 
@@ -87,15 +89,15 @@ function SignUpForm() {
 
             />
 
-            <input
-                id="firstName"
-                value={firstName}
-                onChange={(e) => setFirstName(e.target.value)}
-                required
-                type="text"
-                placeholder="Mogen wij jouw voornaam?"
-                className="input-password-icon"
-            />
+            {/*<input*/}
+            {/*    id="firstName"*/}
+            {/*    value={firstName}*/}
+            {/*    onChange={(e) => setFirstName(e.target.value)}*/}
+            {/*    required*/}
+            {/*    type="text"*/}
+            {/*    placeholder="Mogen wij jouw voornaam?"*/}
+            {/*    className="input-password-icon"*/}
+            {/*/>*/}
 
             <input
                 id="email"

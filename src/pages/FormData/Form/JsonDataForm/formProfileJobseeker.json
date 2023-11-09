@@ -5,6 +5,9 @@
   },
 
   {
+    "name": "firstName",
+    "dataForm": "firstName",
+    "type": "text",
     "label": "Voornaam",
     "placeholder": "Wat is je voornaam?"
   },

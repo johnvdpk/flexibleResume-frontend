@@ -8,8 +8,8 @@ import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStu
 import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
-
 import axios from 'axios';
+
 
 
 
@@ -50,15 +50,20 @@ function DataPageJobSeeker() {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
-    const jobSeekerId = 1;
+    const jwtToken = localStorage.getItem('token');
+    const payload = JSON.parse(atob(jwtToken.split('.')[1]));
+    const jobSeekerEmail = payload.sub;
+
+
     async function PersonalForm(e) {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/werkzoekende/${jobSeekerId}`, personalFormData)
+            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, personalFormData)
 
             toggleAddSucces(true);
-            console.log(response.data);
+            setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+            getPersonalForm(response.data); // alles ophalen om te zorgen dat alles up to date is
 
         } catch (e) {
             console.error("Niet lekker bezig met info sturen naar de database", e);
@@ -68,6 +73,22 @@ function DataPageJobSeeker() {
 
     }
 
+    async function getPersonalForm() {
+
+
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
+            setJobSeekerData(response.data);
+            console.log("hoi ik heb data");
+        } catch (e) {
+            console.error("krijg geen info uit de database")
+        }
+
+    }
+
+    useEffect(()=> {
+        getPersonalForm();
+    },[]);
 
 
     return (
@@ -218,15 +239,22 @@ function DataPageJobSeeker() {
            <div className="div-personal-form-data">
 
 
+                <div className='div-jobseekerdata'>
+                   {jobSeekerData && (
+                       <table className='table-data'>
+                           <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
+                           <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
+                           <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirtd}</td></tr>
+                           <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
+                           <tr><td>Geboorteplaats:</td><td>{jobSeekerData.homeTown}</td></tr>
+                           <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
+                           <tr><td>Adres:</td><td>{jobSeekerData.address}</td></tr>
+                           <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
 
-               {jobSeekerData && (
-                   <>
-                       <p>Naam: {jobSeekerData.firstName} {jobSeekerData.surName}</p>
-                       <p>Email: {jobSeekerData.email}</p>
+                       </table>
+                   )}
 
-                   </>
-               )}
-
+                </div>
            </div>
 
 

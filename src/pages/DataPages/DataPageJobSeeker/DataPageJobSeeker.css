@@ -40,6 +40,23 @@
     border-radius: var(--radius-medium);
 }
 
+.div-jobseekerdata {
+
+}
+
+.table-data {
+    margin: 2em;
+    width: 80%;
+
+}
+
+.table-data tr {
+}
+.table-date td {
+    text-align: left;
+    margin-right: 10em;
+    border: 2px red solid;
+}
 
 .img-profile-foto {
     width: 25%;
@@ -50,6 +67,8 @@
     align-items: center;
     padding: 10em;
 }
+
+
 
 
 
