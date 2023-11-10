@@ -6,7 +6,7 @@ import React from "react";
 
 
 // eslint-disable-next-line react/prop-types
-function Form({ formConfig, handleInputChange, PersonalForm, personalFormData }) {
+function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
 
     const mainTitle = formConfig[0].maintitel;
     const inputFields = formConfig.slice(1);
@@ -14,12 +14,12 @@ function Form({ formConfig, handleInputChange, PersonalForm, personalFormData })
 
     return (
 
-        <form className="global-form-style" onSubmit={PersonalForm}>
+        <form className="global-form-style" onSubmit={formOnSubmit}>
 
             <h3 className='h-maintitel'>{mainTitle}:</h3>
             {inputFields.map((inputConfig) => {
 
-                const value = personalFormData[inputConfig.name];
+                const value = FormData[inputConfig.name];
 
                 return (
 
@@ -34,7 +34,7 @@ function Form({ formConfig, handleInputChange, PersonalForm, personalFormData })
                     />
                 );
             })}
-            {/*<button type="submit">verzenden</button>*/}
+           <button type="submit">verzenden</button>
         </form>
 
 

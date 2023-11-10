@@ -6,7 +6,7 @@ function Input({ label, name, type, value, placeholder, onChange }) {
     return (
         <>
         <label className="global-label">
-            {label}:
+            <p className='global-label-p'> {label}: </p>
         </label>
             <input
                 className="global-input"

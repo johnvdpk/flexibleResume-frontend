@@ -15,36 +15,58 @@ import axios from 'axios';
 
 function DataPageJobSeeker() {
 
-    const [activeProfile, setActiveProfile] = useState(null);
-    const [jobSeekerData, setJobSeekerData] = useState(null);
-    const [addSucces, toggleAddSucces] = useState(false);
+    //useContext
+        const {isAuth} = useContext(AuthContext);
 
 
-    // Persoonlijke gegevens formulier
-    const [personalFormData, setPersonalFormData] = useState({
-        firstName: '',
-        surName: '',
-        dateOfBirth: '',
-        email: '',
-        phoneNumber: '',
-        homeTown: '',
-        zipCode: '',
-        homeAddress: '',
-        houseNumber: '',
+    //useState
+        const [activeProfile, setActiveProfile] = useState(null);
+        const [jobSeekerData, setJobSeekerData] = useState(null);
+        const [jobInfoData, setJobInfoData] = useState(null);
 
+        // Profiel gegegevens
+        const [profileFormData, setProfileFormData] = useState({
+            firstName: '',
+            surName: '',
+            dateOfBirth: '',
+            email: '',
+            phoneNumber: '',
+            residence: '',
+            zipCode: '',
+            homeAddress: '',
+            houseNumber: '',
+
+        });
+
+    // Werk info
+    const [jobInfoFormData, setJobInfoFormData] = useState({
+
+        company:'',
+        jobTitle:'',
+        periodOfEmployment:'',
+        jobInfo:'',
     });
 
 
-    function handleInputChange(e) {
+
+        function handleInputChangeProfileFormData(e) {
+            const { name, value } = e.target;
+            setProfileFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
+
+    function handleInputChangeJobInfoFormData(e) {
         const { name, value } = e.target;
-        setPersonalFormData(prevFormData => ({
+        setProfileFormData(prevFormData => ({
             ...prevFormData,
             [name]: value,
         }));
     }
 
 
-    const {isAuth} = useContext(AuthContext);
+
 
     const handleProfileClick = (profileConfig) => {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
@@ -55,39 +77,44 @@ function DataPageJobSeeker() {
     const jobSeekerEmail = payload.sub;
 
 
-    async function PersonalForm(e) {
+    async function ProfileForm(e) {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, personalFormData)
+            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
 
-            toggleAddSucces(true);
             setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            getPersonalForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            console.log("put")
+            console.log(response.data)
 
         } catch (e) {
             console.error("Niet lekker bezig met info sturen naar de database", e);
-            toggleAddSucces(false); // Stel deze in op false als de aanvraag mislukt.
+
 
         }
 
     }
 
-    async function getPersonalForm() {
-
+    // Data vanuit jobseeker entity gefilterd op email
+    async function getProfileForm() {
 
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
             setJobSeekerData(response.data);
-            console.log("hoi ik heb data");
+            console.log("get")
+            console.log(response.data)
+
         } catch (e) {
             console.error("krijg geen info uit de database")
         }
 
     }
 
+
+
     useEffect(()=> {
-        getPersonalForm();
+        getProfileForm();
     },[]);
 
 
@@ -155,91 +182,11 @@ function DataPageJobSeeker() {
                    <Form
                        formConfig={activeProfile}
                        jobSeekerData={jobSeekerData}
-                       personalFormData={personalFormData}
-                       handleInputChange={handleInputChange}
+                       FormData={profileFormData}
+                       handleInputChange={handleInputChangeProfileFormData}
+                       formOnSubmit={ProfileForm}
                    />
                )}
-
-               <form onSubmit={PersonalForm}>
-                   {addSucces === true && <p>die gay info is ontvangen</p>}
-                   {/*<label> Voornaam: </label>*/}
-                   {/*<input*/}
-                   {/*    name="firstName"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.firstName}*/}
-                   {/*    onChange={handleInputChange}*/}
-                   {/*/>*/}
-                   {/*<label> Achternaam: </label>*/}
-                   {/*<input*/}
-                   {/*    name="surName"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.surName}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-                   {/*<label> Geboortedatum: </label>*/}
-                   {/*<input*/}
-                   {/*    name="dateOfBirth"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.dateOfBirth}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-                   {/*<label> email: </label>*/}
-                   {/*<input*/}
-                   {/*    name="email"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.email}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-                   {/*<label> Telefoon nummer: </label>*/}
-                   {/*<input*/}
-                   {/*    name="phoneNumber"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.phoneNumber}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-                   {/*<label> Geboorteplaats:</label>*/}
-                   {/*<input*/}
-                   {/*    name="homeTown"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.homeTown}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-                   {/*<label>Postcode:</label>*/}
-                   {/*<input*/}
-                   {/*    name="zipCode"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.zipCode}*/}
-                   {/*    onChange={handleInputChange}*/}
-                   {/*/>*/}
-                   {/* <label>Adres:</label>*/}
-                   {/*<input*/}
-                   {/*    name="homeAddress"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.homeAddress}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-
-                   {/*/>*/}
-                   {/*<label> Huisnummer: </label>*/}
-                   {/*<input*/}
-                   {/*    name="houseNumber"*/}
-                   {/*    type="text"*/}
-                   {/*    value={personalFormData.houseNumber}*/}
-                   {/*    onChange={handleInputChange}*/}
-
-                   {/*/>*/}
-
-                   <button type='submit'>verstuur</button>
-
-               </form>
-
-
-
 
 
 
@@ -257,9 +204,9 @@ function DataPageJobSeeker() {
                            <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
                            <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
                            <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
-                           <tr><td>Geboorteplaats:</td><td>{jobSeekerData.homeTown}</td></tr>
+                           <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
                            <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
-                           <tr><td>Adres:</td><td>{jobSeekerData.address}</td></tr>
+                           <tr><td>Adres:</td><td>{jobSeekerData.homeAddress}</td></tr>
                            <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
                            </thead>
                        </table>

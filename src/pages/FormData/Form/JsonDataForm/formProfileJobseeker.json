@@ -9,34 +9,47 @@
     "placeholder": "Wat is je voornaam?"
   },
   {
+    "label": "Achternaam",
     "name": "surName",
     "type": "text",
-    "label": "Achternaam",
     "placeholder": "Wat is je achternaam?"
   },
   {
-    "name": "address",
+    "label": "Geboortedatum",
+    "name": "dateOfBirth",
+    "type": "date",
+    "placeholder": ""
+  },
+  {
+    "label": "Telefoonnummer",
+    "name": "phoneNumber",
     "type": "text",
+    "placeholder": "Wat is je telefoonnummer?"
+  },
+  {
+    "label": "Woonplaats",
+    "name": "residence",
+    "type": "text",
+    "placeholder": "Wat is je telefoonnummer?"
+  },
+  {
     "label": "Adres",
+    "name": "homeAddress",
+    "type": "text",
     "placeholder": "Wat is je adres?"
   },
   {
+    "label": "Huisnummer",
+    "name": "houseNumber",
+    "type": "text",
+    "placeholder": "Wat is je huissnummer?"
+  },
+  {
+    "label": "Postcode",
     "name": "zipCode",
     "type": "text",
-    "label": "Postcode",
     "placeholder": "Wat is je Postcode?"
-  },
-  {
-    "name": "homeTown",
-    "type": "text",
-    "label": "Woonplaats",
-    "placeholder": "Wat is je Woonplaats?"
-  },
-  {
-    "name": "password",
-    "type": "password",
-    "label": "Nieuwe inlogcode",
-    "placeholder": "Wat is je inlogcode?"
   }
+
 
 ]

@@ -6,21 +6,25 @@
 
   {
     "label": "Bedrijf",
+    "name": "company",
+    "type": "text",
     "placeholder": "Bedrijf"
   },
   {
-
     "label": "Functie",
+    "name": "jobTitle",
+    "type": "text",
     "placeholder": "Wat is/was je functie?"
   },
   {
-
     "label": "Periode",
+    "name": "periodOfEmployment",
+    "type": "text",
     "placeholder": "Welke periode heb je hier gewerkt?"
   },
   {
-
     "label": "Extra informatie",
+    "name": "jobInfo",
     "type": "textarea",
     "placeholder": "Korte beschrijving"
   }
