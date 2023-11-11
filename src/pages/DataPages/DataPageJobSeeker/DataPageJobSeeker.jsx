@@ -69,7 +69,7 @@ function DataPageJobSeeker() {
         })
 
 
-
+        // Persoonlijke gegevens form
         function handleInputChangeProfileFormData(e) {
             const { name, value } = e.target;
             setProfileFormData(prevFormData => ({
@@ -78,6 +78,7 @@ function DataPageJobSeeker() {
             }));
         }
 
+        // Werk informatie form
         function handleInputChangeWorkInfoFormData(e) {
             const { name, value } = e.target;
             setWorkInfoFormData(prevFormData => ({
@@ -86,6 +87,7 @@ function DataPageJobSeeker() {
             }));
         }
 
+        // Studie informatie form
         function handleInputChangeStudyInfoFormData(e) {
             const { name, value } = e.target;
             setStudyInfoFormData(prevFormData => ({
@@ -94,6 +96,7 @@ function DataPageJobSeeker() {
             }));
         }
 
+        // Persoonlijke informatie (hobbys) form
         function handleInputChangePersonalInfoFormData(e) {
             const { name, value } = e.target;
             setPersonalInfoFormData(prevFormData => ({
@@ -103,9 +106,11 @@ function DataPageJobSeeker() {
         }
 
 
+        // wissel tussen de verschillende formulieren
     const toggleForm = (profileConfig) => {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
+
 
     const jwtToken = localStorage.getItem('token');
     const payload = JSON.parse(atob(jwtToken.split('.')[1]));
@@ -114,72 +119,136 @@ function DataPageJobSeeker() {
 
 
 
-    // axios voor profiel gegevens
+    // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
 
-        async function ProfileForm(e) {
-            e.preventDefault();
+    async function putProfileForm(e) {
+        e.preventDefault();
 
-            try {
-                const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
+        try {
+            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
 
-                setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-                getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
-                console.log("put")
-                console.log(response.data)
+            setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+            getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            console.log("put")
+            console.log(response.data)
 
-            } catch (e) {
-                console.error("Niet lekker bezig met info sturen naar de database", e);
+        } catch (e) {
+            console.error("Niet lekker bezig met info sturen naar de database", e);
 
-
-            }
 
         }
 
-        // Data vanuit jobseeker entity gefilterd op email
-        async function getProfileForm() {
+    }
 
-            try {
-                const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
-                setJobSeekerData(response.data);
-                console.log("get")
-                console.log(response.data)
+    // aanmaken van werk informatie
+    async function createWorkInfoForm(e) {
+        e.preventDefault();
 
-            } catch (e) {
-                console.error("krijg geen info uit de database")
-            }
-
+        try {
+            const response = await axios.post(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`, workInfoFormData)
+            setWorkInfoFormData(response.data)
+            getWorkInfoForm(response.data)
+            console.log("post work")
+            console.log(response.data)
+        } catch (e) {
+            console.log("create work info niet gelukt")
         }
+    }
 
-    // Axios voor werkinfo
+    // aanmaken van persoonlijke informatie
+    async function createPersonalInfoForm(e) {
+        e.preventDefault();
 
+        try {
+            const response = await axios.post(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`, personalInfoFormData)
+            setPersonalInfoFormData(response.data)
+            getPersonalInfoForm(response.data)
+            console.log("post personal")
+            console.log(response.data)
+        } catch (e) {
+            console.log("create personal info niet gelukt")
+        }
+    }
 
+    // aanmaken van studie informatie
+    async function createStudyInfoForm(e) {
+        e.preventDefault();
 
-    async function getWorkInfoForm() {
-
-
-            try{
-                const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
-                setWorkInfoData(response.data);
-                console.log("get werkinfo werkt")
-
-
-
-            } catch(e) {
-                console.error('Krijg niks uit werkinfo')
-
-            }
+        try {
+            const response = await axios.post(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`, studyInfoFormData)
+            setStudyInfoFormData(response.data)
+            getStudyInfoForm(response.data)
+            console.log("post study")
+            console.log(response.data)
+        } catch (e) {
+            console.log("create study info niet gelukt")
+        }
     }
 
 
+
+
+    // Data vanuit jobseeker entity gefilterd op email
+    async function getProfileForm() {
+
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
+            setJobSeekerData(response.data);
+            console.log("get")
+            console.log(response.data)
+
+        } catch (e) {
+            console.error("krijg geen info uit de database")
+        }
+
+    }
+
+    // Axios voor werk info
+
+    async function getWorkInfoForm() {
+        try{
+            const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
+            setWorkInfoData(response.data);
+            console.log("get werkinfo werkt")
+            console.log(response.data)
+        } catch(e) {
+            console.error('Krijg niks uit werkinfo')
+        }
+    }
+    // Axios voor studie info
+    async function getStudyInfoForm() {
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`)
+            setStudyInfoData(response.data);
+            console.log("get studyinfo werkt")
+            console.log(response.data)
+        }catch (e) {
+            console.error("Krijg niks uit de studieinfo")
+        }
+    }
+    // Axios voor persoonlijke info
+    async function getPersonalInfoForm() {
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`)
+            setPersonalInfoData(response.data);
+            console.log("get hobbyinfo werkt")
+            console.log(response.data)
+        }catch (e) {
+            console.error("Krijg niks uit de hobbyinfo")
+        }
+    }
+
+
+
     useEffect(()=> {
-        getProfileForm();
 
         const cvId = localStorage.getItem('cvId');
-        if (cvId) {
-            getWorkInfoForm(cvId);
-        } else {
-            console.log('cvId is niet gevonden in localStorage');
-        }
+        getProfileForm(cvId);
+        getWorkInfoForm(cvId);
+        getStudyInfoForm(cvId);
+        getPersonalInfoForm(cvId);
+
+
 
     },[]);
 
@@ -249,7 +318,7 @@ function DataPageJobSeeker() {
                        jobSeekerData={jobSeekerData}
                        FormData={profileFormData}
                        handleInputChange={handleInputChangeProfileFormData}
-                       formOnSubmit={ProfileForm}
+                       formOnSubmit={putProfileForm}
                    />
                )}
 
@@ -259,7 +328,7 @@ function DataPageJobSeeker() {
                    jobSeekerData={workInfoData}
                    FormData={workInfoFormData}
                    handleInputChange={handleInputChangeWorkInfoFormData}
-                   formOnSubmit={ProfileForm}
+                   formOnSubmit={createWorkInfoForm}
                />
 
                )}
@@ -270,7 +339,7 @@ function DataPageJobSeeker() {
                        jobSeekerData={personalInfoData}
                        FormData={personalInfoFormData}
                        handleInputChange={handleInputChangePersonalInfoFormData}
-                       formOnSubmit={ProfileForm}
+                       formOnSubmit={createPersonalInfoForm}
                    />
 
                )}
@@ -281,7 +350,7 @@ function DataPageJobSeeker() {
                        jobSeekerData={studyInfoData}
                        FormData={studyInfoFormData}
                        handleInputChange={handleInputChangeStudyInfoFormData}
-                       formOnSubmit={ProfileForm}
+                       formOnSubmit={createStudyInfoForm}
                    />
 
                )}
