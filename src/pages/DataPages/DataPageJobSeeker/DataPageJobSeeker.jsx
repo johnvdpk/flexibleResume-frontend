@@ -2,15 +2,13 @@ import './DataPageJobSeeker.css'
 import Form from "../../FormData/Form/Form.jsx"
 import profilefoto from "../../../assets/profilefoto.png"
 import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJobseeker.json"
-import formConfigJobInfo from "../../FormData/Form/JsonDataForm/formProfileJobInfo.json"
+import formConfigWorkInfo from "../../FormData/Form/JsonDataForm/formProfileWorkInfo.json"
 import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
 import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import axios from 'axios';
-
-
 
 
 function DataPageJobSeeker() {
@@ -22,7 +20,9 @@ function DataPageJobSeeker() {
     //useState
         const [activeProfile, setActiveProfile] = useState(null);
         const [jobSeekerData, setJobSeekerData] = useState(null);
-        const [jobInfoData, setJobInfoData] = useState(null);
+        const [workInfoData, setWorkInfoData] = useState(null);
+        const [studyInfoData, setStudyInfoData] = useState(null);
+        const [personalInfoData, setPersonalInfoData] = useState(null);
 
         // Profiel gegegevens
         const [profileFormData, setProfileFormData] = useState({
@@ -38,14 +38,35 @@ function DataPageJobSeeker() {
 
         });
 
-    // Werk info
-    const [jobInfoFormData, setJobInfoFormData] = useState({
+        // Werk info
+        const [workInfoFormData, setWorkInfoFormData] = useState({
 
-        company:'',
-        jobTitle:'',
-        periodOfEmployment:'',
-        jobInfo:'',
-    });
+            company:'',
+            jobTitle:'',
+            periodOfEmployment:'',
+            jobInfo:'',
+        });
+
+
+        // Studie info
+        const [studyInfoFormData, setStudyInfoFormData] = useState( {
+
+            educationalInstitute: '',
+            education: '',
+            periodOfStudy: '',
+            studyInfo: '',
+
+        })
+
+        // Hobby info
+
+        const [personalInfoFormData, setPersonalInfoFormData] = useState( {
+
+            hobby: '',
+            periodOfHobby: '',
+            hobbyInfo: '',
+
+        })
 
 
 
@@ -57,64 +78,109 @@ function DataPageJobSeeker() {
             }));
         }
 
-    function handleInputChangeJobInfoFormData(e) {
-        const { name, value } = e.target;
-        setProfileFormData(prevFormData => ({
-            ...prevFormData,
-            [name]: value,
-        }));
-    }
+        function handleInputChangeWorkInfoFormData(e) {
+            const { name, value } = e.target;
+            setWorkInfoFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
+
+        function handleInputChangeStudyInfoFormData(e) {
+            const { name, value } = e.target;
+            setStudyInfoFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
+
+        function handleInputChangePersonalInfoFormData(e) {
+            const { name, value } = e.target;
+            setPersonalInfoFormData(prevFormData => ({
+                ...prevFormData,
+                [name]: value,
+            }));
+        }
 
 
-
-
-    const handleProfileClick = (profileConfig) => {
+    const toggleForm = (profileConfig) => {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
     const jwtToken = localStorage.getItem('token');
     const payload = JSON.parse(atob(jwtToken.split('.')[1]));
     const jobSeekerEmail = payload.sub;
+    const cvId = localStorage.getItem('cvId')
 
 
-    async function ProfileForm(e) {
-        e.preventDefault();
 
-        try {
-            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
+    // axios voor profiel gegevens
 
-            setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
-            console.log("put")
-            console.log(response.data)
+        async function ProfileForm(e) {
+            e.preventDefault();
 
-        } catch (e) {
-            console.error("Niet lekker bezig met info sturen naar de database", e);
+            try {
+                const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
 
+                setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+                getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+                console.log("put")
+                console.log(response.data)
+
+            } catch (e) {
+                console.error("Niet lekker bezig met info sturen naar de database", e);
+
+
+            }
 
         }
 
-    }
+        // Data vanuit jobseeker entity gefilterd op email
+        async function getProfileForm() {
 
-    // Data vanuit jobseeker entity gefilterd op email
-    async function getProfileForm() {
+            try {
+                const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
+                setJobSeekerData(response.data);
+                console.log("get")
+                console.log(response.data)
 
-        try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
-            setJobSeekerData(response.data);
-            console.log("get")
-            console.log(response.data)
+            } catch (e) {
+                console.error("krijg geen info uit de database")
+            }
 
-        } catch (e) {
-            console.error("krijg geen info uit de database")
         }
 
-    }
+    // Axios voor werkinfo
 
+
+
+    async function getWorkInfoForm() {
+
+
+            try{
+                const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
+                setWorkInfoData(response.data);
+                console.log("get werkinfo werkt")
+
+
+
+            } catch(e) {
+                console.error('Krijg niks uit werkinfo')
+
+            }
+    }
 
 
     useEffect(()=> {
         getProfileForm();
+
+        const cvId = localStorage.getItem('cvId');
+        if (cvId) {
+            getWorkInfoForm(cvId);
+        } else {
+            console.log('cvId is niet gevonden in localStorage');
+        }
+
     },[]);
 
 
@@ -124,7 +190,6 @@ function DataPageJobSeeker() {
             {isAuth ?
 
        <div className="data-page-wrapper">
-
 
 
            <div className="div-data-page-menu">
@@ -138,35 +203,35 @@ function DataPageJobSeeker() {
 
                        <ButtonForm
                            text="Profiel gegevens"
-                           onClick={() => handleProfileClick(formConfigJobSeeker)}
+                           onClick={() => toggleForm(formConfigJobSeeker)}
                        />
                        <ButtonForm
                            text="Werk Info"
-                           onClick={() => handleProfileClick(formConfigJobInfo)}
+                           onClick={() => toggleForm(formConfigWorkInfo)}
                        />
                        <ButtonForm
                            text="Persoonlijke Info"
-                           onClick={() => handleProfileClick(formConfigPersonalInfo)}
+                           onClick={() => toggleForm(formConfigPersonalInfo)}
                        />
                        <ButtonForm
                            text="Studie Info"
-                           onClick={() => handleProfileClick(formConfigStudyInfo)}
+                           onClick={() => toggleForm(formConfigStudyInfo)}
                        />
                        <ButtonForm
                            text="Kies een template"
-                           onClick={() => handleProfileClick()}
+
                        />
                        <ButtonForm
                            text="Zoek op werkgever"
-                           onClick={() => handleProfileClick()}
+
                        />
                        <ButtonForm
                            text="Berichten"
-                           onClick={() => handleProfileClick()}
+
                        />
                        <ButtonForm
                            text="Account verwijderen"
-                           onClick={() => handleProfileClick()}
+
                        />
 
 
@@ -178,7 +243,7 @@ function DataPageJobSeeker() {
            <div className="div-personal-form">
 
 
-               {activeProfile && (
+               {activeProfile === formConfigJobSeeker && (
                    <Form
                        formConfig={activeProfile}
                        jobSeekerData={jobSeekerData}
@@ -187,6 +252,43 @@ function DataPageJobSeeker() {
                        formOnSubmit={ProfileForm}
                    />
                )}
+
+               {activeProfile === formConfigWorkInfo && (
+               <Form
+                   formConfig={activeProfile}
+                   jobSeekerData={workInfoData}
+                   FormData={workInfoFormData}
+                   handleInputChange={handleInputChangeWorkInfoFormData}
+                   formOnSubmit={ProfileForm}
+               />
+
+               )}
+
+               {activeProfile === formConfigPersonalInfo && (
+                   <Form
+                       formConfig={activeProfile}
+                       jobSeekerData={personalInfoData}
+                       FormData={personalInfoFormData}
+                       handleInputChange={handleInputChangePersonalInfoFormData}
+                       formOnSubmit={ProfileForm}
+                   />
+
+               )}
+
+               {activeProfile === formConfigStudyInfo && (
+                   <Form
+                       formConfig={activeProfile}
+                       jobSeekerData={studyInfoData}
+                       FormData={studyInfoFormData}
+                       handleInputChange={handleInputChangeStudyInfoFormData}
+                       formOnSubmit={ProfileForm}
+                   />
+
+               )}
+
+
+
+
 
 
 
@@ -211,6 +313,8 @@ function DataPageJobSeeker() {
                            </thead>
                        </table>
                    )}
+
+
 
                 </div>
            </div>

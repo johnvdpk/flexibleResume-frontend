@@ -27,6 +27,8 @@ function SignUpForm() {
                 password: password,
                 role: role,
             });
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('cvId', response.data.cvId);
             console.log(response.data);
             toggleAddSucces(true);
             console.log('aanmelden user is gelukt');
@@ -38,40 +40,8 @@ function SignUpForm() {
             toggleAddSucces(false);
         }
 
-        // try {
-        //     const jobSeekerResponse = await axios.post('http://localhost:8080/werkzoekende', {
-        //         firstName: firstName,
-        //     })
-        //     console.log(jobSeekerResponse.data);
-        //
-        // } catch (error) {
-        //     console.error("Niet gelukt een jobseeker aan te maken", error);
-        //     toggleAddSucces(false);
-        // }
+
     }
-
-
-    // async function addJobSeeker(e) {
-    //     e.preventDefault();
-    //
-    //     try {
-    //         const response = await axios.post('http://localhost:8080/werkzoekende', {
-    //
-    //                 firstName:firstName,
-    //
-    //             }, {
-    //                 params: {userId}
-    //             }
-    //
-    //         )
-    //         console.log(response.data);
-    //
-    //
-    //     } catch (e) {
-    //         console.error("niet gelukt een (jobseeker) aan te maken");
-    //     }
-    //
-    // }
 
 
     return (
@@ -88,16 +58,6 @@ function SignUpForm() {
 
 
             />
-
-            {/*<input*/}
-            {/*    id="firstName"*/}
-            {/*    value={firstName}*/}
-            {/*    onChange={(e) => setFirstName(e.target.value)}*/}
-            {/*    required*/}
-            {/*    type="text"*/}
-            {/*    placeholder="Mogen wij jouw voornaam?"*/}
-            {/*    className="input-password-icon"*/}
-            {/*/>*/}
 
             <input
                 id="email"
@@ -127,19 +87,6 @@ function SignUpForm() {
 
         </form>
 
-        {/*<form onSubmit={addJobSeeker}>*/}
-        {/*<input*/}
-        {/*    id="firstName"*/}
-        {/*    value={firstName}*/}
-        {/*    onChange={(e) => setFirstName(e.target.value)}*/}
-        {/*    required*/}
-        {/*    type="text"*/}
-        {/*    placeholder="Hoe heet je"*/}
-        {/*    className="input-password-icon"*/}
-        {/*/>*/}
-        {/*    <button type='submit'>test</button>*/}
-
-        {/*</form>*/}
 
     </>
     )

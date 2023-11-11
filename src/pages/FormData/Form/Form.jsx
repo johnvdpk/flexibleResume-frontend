@@ -1,7 +1,5 @@
 import './Form.css'
-import formData from './JsonDataForm/formProfileJobseeker.json';
 import Input from "./Input/Input.jsx";
-import Button from "../../globalcomponents/Buttons/Button.jsx";
 import React from "react";
 
 
@@ -21,7 +19,7 @@ function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
 
                 const value = FormData[inputConfig.name];
 
-                return (
+                 return (
 
                     <Input
                         key={inputConfig.name}

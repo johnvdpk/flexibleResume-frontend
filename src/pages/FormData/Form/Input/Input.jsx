@@ -1,5 +1,4 @@
 import './Input.css'
-import {useState} from "react";
 
 // eslint-disable-next-line react/prop-types
 function Input({ label, name, type, value, placeholder, onChange }) {

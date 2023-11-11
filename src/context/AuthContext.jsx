@@ -40,7 +40,7 @@ async function login(token) {
 
     const userInfo = jwtDecode(token);
     const userEmail = userInfo.sub;
-    console.log(userEmail);
+
 
     try {
 
