@@ -44,9 +44,28 @@
 
 }
 
+.div-cvdata-child {
+    flex: 1;
+    background: var(--background-color);
+    border: solid 1.5px var(--button-color);
+    border-radius: var(--radius-small);
+    margin: 1em;
+    padding: 1em;
+
+}
+
 .div-cvid-info-data-wrapper {
     display: flex;
     flex-direction: column;
+}
+
+.h-infotitel {
+
+    font-family: Raleway-semibold;
+    font-size: 1.2em;
+    margin-left: 1em;
+    padding: 1em;
+
 }
 
     .div-cvid-info-data {
@@ -144,6 +163,10 @@
 
         margin: 2em;
 
+    }
+
+    .div-cvdata-child {
+        margin: 2em;
     }
 
 }

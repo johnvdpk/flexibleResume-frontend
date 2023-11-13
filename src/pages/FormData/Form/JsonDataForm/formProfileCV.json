@@ -1,0 +1,13 @@
+[
+  {
+    "maintitel": "Introductie tekst"
+  },
+  {
+    "label": "jij in een een paar woorden",
+    "name": "aboutMe",
+    "type": "text",
+    "inputType" : "textarea",
+    "placeholder": "Intro text, niet meer dan 500 leestekens"
+  }
+
+]

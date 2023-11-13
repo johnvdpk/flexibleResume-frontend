@@ -5,12 +5,14 @@ import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJob
 import formConfigWorkInfo from "../../FormData/Form/JsonDataForm/formProfileWorkInfo.json"
 import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
+import formConfigCV from "../../FormData/Form/JsonDataForm/formProfileCV.json"
 import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import axios from 'axios';
 import Button from "../../globalcomponents/Buttons/Button.jsx";
 import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
+import Template from "./Templates/Template.jsx";
 
 
 function DataPageJobSeeker() {
@@ -21,11 +23,21 @@ function DataPageJobSeeker() {
 
     //useState
         const [activeProfile, setActiveProfile] = useState(null);
+        const [switchButton, setSwitchButton] = useState(null);
         const [jobSeekerData, setJobSeekerData] = useState(null);
+        const [cvData, setCVData] = useState(null);
         const [workInfoData, setWorkInfoData] = useState(null);
         const [studyInfoData, setStudyInfoData] = useState(null);
         const [personalInfoData, setPersonalInfoData] = useState(null);
 
+        const buttonConfig = {
+            inSide: 'template',
+        }
+
+
+        const [cvFormData, setCVFormData] = useState( {
+            aboutMe: '',
+        })
         // Profiel gegegevens
         const [profileFormData, setProfileFormData] = useState({
             firstName: '',
@@ -75,6 +87,15 @@ function DataPageJobSeeker() {
 
         })
 
+    // CV gegevens. Nu alleen een About me, maar dit is zo gemaakt om het makkelijker uit te breiden.
+    function handleInputChangeCVFormData(e) {
+        const { name, value } = e.target;
+        setCVFormData(prevCVData => ({
+            ...prevCVData,
+            [name]: value,
+        }));
+    }
+
 
         // Persoonlijke gegevens form
         function handleInputChangeProfileFormData(e) {
@@ -118,6 +139,11 @@ function DataPageJobSeeker() {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
 
+    const toggleButton = (buttonConfig)=> {
+            setSwitchButton(current => current === buttonConfig ? null : buttonConfig);
+
+    }
+
 
     const jwtToken = localStorage.getItem('token');
     const payload = JSON.parse(atob(jwtToken.split('.')[1]));
@@ -146,6 +172,27 @@ function DataPageJobSeeker() {
         }
 
     }
+
+    async function putCVForm(e) {
+        e.preventDefault();
+
+        try {
+            const response = await axios.put(`http://localhost:8080/werkzoekende/cv/cv/${cvId}`, cvFormData)
+
+            setCVData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+            await getCVForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            console.log("put")
+            console.log(response.data)
+
+        } catch (e) {
+            console.error("Niet lekker bezig met info sturen naar de database", e);
+
+
+        }
+
+    }
+
+
 
     // aanmaken van werk informatie
     async function createWorkInfoForm(e) {
@@ -209,6 +256,21 @@ function DataPageJobSeeker() {
         }
 
     }
+
+    async function getCVForm() {
+
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/cv/${cvId}`)
+            setCVData(response.data);
+            console.log("get")
+            console.log(response.data)
+
+        } catch (e) {
+            console.error("krijg geen info uit de database")
+        }
+
+    }
+
 
     // Axios voor werk info
 
@@ -314,6 +376,7 @@ function DataPageJobSeeker() {
 
         if(cvId) {
             getProfileForm(cvId);
+            getCVForm(cvId);
             getWorkInfoForm(cvId);
             getStudyInfoForm(cvId);
             getPersonalInfoForm(cvId);
@@ -348,6 +411,10 @@ function DataPageJobSeeker() {
                            onClick={() => toggleForm(formConfigJobSeeker)}
                        />
                        <ButtonForm
+                           text="Introductie tekst"
+                           onClick={() => toggleForm(formConfigCV)}
+                       />
+                       <ButtonForm
                            text="Werkgegevens"
                            onClick={() => toggleForm(formConfigWorkInfo)}
                        />
@@ -364,6 +431,7 @@ function DataPageJobSeeker() {
 
                        <ButtonForm
                            text="Kies een template"
+                           onClick={()=> toggleButton(buttonConfig.inSide)}
 
                        />
                        <ButtonForm
@@ -396,6 +464,21 @@ function DataPageJobSeeker() {
                        handleInputChange={handleInputChangeProfileFormData}
                        formOnSubmit={putProfileForm}
                    />
+
+               )}
+
+               {activeProfile === formConfigCV && (
+
+               <Form
+                   formConfig={activeProfile}
+                   jobSeekerData={cvData}
+                   FormData={cvFormData}
+                   handleInputChange={handleInputChangeCVFormData}
+                   formOnSubmit={putCVForm}
+
+
+               />
+
                )}
 
                {activeProfile === formConfigWorkInfo && (
@@ -432,7 +515,17 @@ function DataPageJobSeeker() {
 
                )}
 
+               {switchButton === buttonConfig.inSide && (
+                <div className='div-template'>
 
+                    <Template
+
+
+                    />
+
+                </div>
+
+               )}
 
 
 
@@ -443,11 +536,10 @@ function DataPageJobSeeker() {
            </div>
 
            <div className="div-personal-form-data">
-
+               <h3 className='h-infotitel'>Profielgegevens</h3>
 
                 <div className='div-jobseekerdata'>
                    {jobSeekerData && (
-
                        <table className='table-persoonlijkegegevenstabel'>
 
                                <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
@@ -464,12 +556,22 @@ function DataPageJobSeeker() {
 
                 </div>
 
+               <div className='div-cvdata'>
+
+                   {cvData && (
+                       <div className='div-cvdata-child'>
+                           <p>{cvData.aboutMe}</p>
+                       </div>
+
+                   )}
+               </div>
 
                {/*Dit kan nog een component worden*/}
                 <div className='div-workinfodata' >
 
                     {workInfoData && Array.isArray(workInfoData) && (
                         <div className='div-cvid-info-data-wrapper'>
+                            <h3 className='h-infotitel'>Werkgegevens</h3>
                             {workInfoData.map((item, index) => (
                             <div className='div-cvid-info-data' key={index}>
                                 <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteWorkInfo(item.id)}/></div>
@@ -485,15 +587,15 @@ function DataPageJobSeeker() {
                         </div>
                     )}
 
-
                 </div>
-
                <div className='div-studyinfodata' >
 
                    {studyInfoData && Array.isArray(studyInfoData) && (
                        <div className='div-cvid-info-data-wrapper'>
+                           <h3 className='h-infotitel'>Studiegegevens</h3>
                            {studyInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
+
                                    <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteStudyInfo(item.id)}/></div>
                                    <div className= 'div-cvid-info-data-child'>
                                        <div className='div-cvid-info-data-main'>
@@ -506,14 +608,13 @@ function DataPageJobSeeker() {
                            ))}
                        </div>
                    )}
-
-
                </div>
 
                <div className='div-personalinfodata' >
 
                    {personalInfoData && Array.isArray(personalInfoData) && (
                        <div className='div-cvid-info-data-wrapper'>
+                           <h3 className='h-infotitel'>Persoonlijke gegevens</h3>
                            {personalInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
                                    <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deletePersonalInfo(item.id)}/></div>
@@ -528,12 +629,7 @@ function DataPageJobSeeker() {
                        </div>
                    )}
 
-
                </div>
-
-
-
-
            </div>
 
 
