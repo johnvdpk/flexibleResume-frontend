@@ -32,6 +32,7 @@ function LoginForm({whichDataPage}) {
 
         } catch (e) {
             console.error("Loginform inlog niet gelukt");
+            toggleAddSucces(false);
 
         }
 
@@ -43,6 +44,7 @@ function LoginForm({whichDataPage}) {
 
         <form onSubmit={HandleSubmit} className="inlog-form">
             {addSucces === true && <p>inloggen is gelukt</p>}
+            {addSucces === false && <p>Misschien een verkeerd wachtwoord?</p>}
             <input
                 id="email-field"
                 type="email"

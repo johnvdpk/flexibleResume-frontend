@@ -29,11 +29,9 @@ function SignUpForm() {
             });
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('cvId', response.data.cvId);
-            console.log(response.data);
+            console.log(response.data)
             toggleAddSucces(true);
-            console.log('aanmelden user is gelukt');
 
-            console.log(response.data.sub);
 
         } catch (error) {
             console.error("Er is een fout opgetreden bij het aanmelden", error);
@@ -48,7 +46,8 @@ function SignUpForm() {
         <>
         <form onSubmit={HandleSubmit} className="inlog-form">
 
-            {addSucces === true && <p>Aanmelden is gelukt</p>}
+            {addSucces === true && <p className='p-addSucces'>Aanmelden is gelukt</p>}
+            {addSucces === false && <p className='p-addSucces'>Het kan zijn dat hetzelfde email al bestaat</p>}
 
             <SwitchSignin
 

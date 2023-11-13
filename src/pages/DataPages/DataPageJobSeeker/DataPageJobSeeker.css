@@ -163,6 +163,10 @@
     padding: 10em;
 }
 
+.delete-acount-wrapper {
+    margin: 10em;
+}
+
 @media (min-width: 550px) {
 
 

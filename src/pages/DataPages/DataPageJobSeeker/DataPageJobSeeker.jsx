@@ -9,6 +9,7 @@ import formConfigCV from "../../FormData/Form/JsonDataForm/formProfileCV.json"
 import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
+import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Button from "../../globalcomponents/Buttons/Button.jsx";
 import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
@@ -20,20 +21,24 @@ import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 function DataPageJobSeeker() {
 
     //useContext
-        const {isAuth} = useContext(AuthContext);
+        const {isAuth, logout} = useContext(AuthContext);
 
 
     //useState
         const [activeProfile, setActiveProfile] = useState(null);
         const [switchButton, setSwitchButton] = useState(null);
+        const navigate = useNavigate();
+
         const [jobSeekerData, setJobSeekerData] = useState(null);
         const [cvData, setCVData] = useState(null);
         const [workInfoData, setWorkInfoData] = useState(null);
         const [studyInfoData, setStudyInfoData] = useState(null);
         const [personalInfoData, setPersonalInfoData] = useState(null);
 
+
         const buttonConfig = {
             inSide: 'template',
+            deleteAcount: 'deleteAcount',
         }
 
 
@@ -365,6 +370,23 @@ function DataPageJobSeeker() {
         }
     }
 
+    async function deleteAccount() {
+        const jwtToken = localStorage.getItem('token');
+        const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+
+        if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+            try {
+                await axios.delete(`http://localhost:8080/auth/user/${email}`);
+                // Logica om gebruiker uit te loggen en de UI bij te werken
+                console.log("Account succesvol verwijderd");
+                logout();
+                navigate("/");
+            } catch (error) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
+                // Toon foutmelding
+            }
+        }
+    }
 
 
 
@@ -441,11 +463,8 @@ function DataPageJobSeeker() {
 
                        />
                        <ButtonForm
-                           text="Berichten"
-
-                       />
-                       <ButtonForm
                            text="Account verwijderen"
+                           onClick={()=>toggleButton(buttonConfig.deleteAcount)}
 
                        />
 
@@ -547,6 +566,15 @@ function DataPageJobSeeker() {
                 </div>
 
                )}
+
+
+
+               {switchButton === buttonConfig.deleteAcount && (
+                   <div className='delete-acount-wrapper'>
+                       <Button text='Acount verwijderen' onClick={deleteAccount}/>
+                   </div>
+
+                   )}
 
 
 
