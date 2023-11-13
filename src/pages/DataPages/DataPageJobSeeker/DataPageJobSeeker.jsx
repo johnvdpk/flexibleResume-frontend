@@ -516,11 +516,14 @@ function DataPageJobSeeker() {
                )}
 
                {switchButton === buttonConfig.inSide && (
-                <div className='div-template'>
+                <div className='div-template-wrapper'>
 
                     <Template
-
-
+                        profileData={jobSeekerData}
+                        aboutMe={cvData.aboutMe}
+                        workData={workInfoData}
+                        studyData={studyInfoData}
+                        personalData={personalInfoData}
                     />
 
                 </div>

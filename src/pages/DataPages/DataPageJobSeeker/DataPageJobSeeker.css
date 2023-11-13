@@ -40,6 +40,10 @@
     border-radius: var(--radius-medium);
 }
 
+.div-template-wrapper {
+
+}
+
 .div-jobseekerdata {
 
 }
@@ -129,6 +133,9 @@
                 .p-cvid-info-data-info {
                     font-size: 0.7em;
                 }
+
+
+
 
 
 .table-persoonlijkegegevenstabel {
