@@ -52,6 +52,7 @@
 
     /*/////////////////       SPACING      /////////////////*/
 
+    --gap-extra-small: 0.2em;
     --gap-small: 0.5em;
     --gap-medium: 1em;
     --gap-large: 1.5em;
@@ -94,14 +95,17 @@
 
 h1 {
     font-size: 3rem;
+    margin: 0.5em 0em 0.5em 0em;
 }
 
 h2 {
     font-size: 2.5rem;
+    margin: 0.5em 0em 0.5em 0em;
 }
 
 h3 {
     font-size: 2rem;
+    margin: 0.2em 0em 0.2em 0em;
 }
 
 h4 {
@@ -128,6 +132,7 @@ p {
     display: flex;
     align-items: center;
     flex-direction: column;
+    min-height: 100vw;
 }
 
 .div-space {

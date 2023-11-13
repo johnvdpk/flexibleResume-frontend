@@ -1,28 +1,21 @@
 import './Input.css'
-import {useState} from "react";
 
 // eslint-disable-next-line react/prop-types
-function Input({label,type,placeholder}) {
-
-// textarea en input verschil moet nog gemaakt worden. Wellicht met een useContext
-
+function Input({ label, name, type, value, placeholder, onChange }) {
     return (
-
-        <label className="global-label" htmlFor={`field${label}`}>
-            <p className="global-label-p">{label}:</p>
-
-
-
-                <input
-                    className="global-input"
-                    type={type}
-                    name={`field${label}`}
-                    placeholder={placeholder}
-                />
-
-
-
+        <>
+        <label className="global-label">
+            <p className='global-label-p'> {label}: </p>
         </label>
+            <input
+                className="global-input"
+                name={name}
+                type={type}
+                value={value}
+                placeholder={placeholder}
+                onChange={onChange}
+            />
+        </>
     );
 }
 

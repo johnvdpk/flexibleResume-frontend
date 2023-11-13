@@ -11,20 +11,20 @@ function LoginForm({whichDataPage}) {
     const [password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
+    const [addSucces, toggleAddSucces] = useState(false);
 
     async function HandleSubmit(e) {
         e.preventDefault();
 
 
-
         try {
-            const response = await axios.post('http://localhost:8080/api/v1/auth/authenticate', {
+            const response = await axios.post('http://localhost:8080/auth/authenticate', {
 
                 email:email,
                 password:password,
 
             })
-
+            toggleAddSucces(true);
             console.log(response.data);
             console.log("login bij loginform gelukt")
             login(response.data.token);
@@ -42,6 +42,7 @@ function LoginForm({whichDataPage}) {
     return (
 
         <form onSubmit={HandleSubmit} className="inlog-form">
+            {addSucces === true && <p>inloggen is gelukt</p>}
             <input
                 id="email-field"
                 type="email"

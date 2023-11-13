@@ -1,45 +1,55 @@
 [
   {
     "maintitel": "Persoonlijke gegevens"
-
   },
-
   {
     "label": "Voornaam",
+    "name": "firstName",
+    "type": "text",
     "placeholder": "Wat is je voornaam?"
   },
   {
-
     "label": "Achternaam",
+    "name": "surName",
+    "type": "text",
     "placeholder": "Wat is je achternaam?"
   },
   {
-
+    "label": "Geboortedatum",
+    "name": "dateOfBirth",
+    "type": "date",
+    "placeholder": ""
+  },
+  {
+    "label": "Telefoonnummer",
+    "name": "phoneNumber",
+    "type": "text",
+    "placeholder": "Wat is je telefoonnummer?"
+  },
+  {
+    "label": "Woonplaats",
+    "name": "residence",
+    "type": "text",
+    "placeholder": "Wat is je woonplaats?"
+  },
+  {
     "label": "Adres",
+    "name": "homeAddress",
+    "type": "text",
     "placeholder": "Wat is je adres?"
   },
   {
-
+    "label": "Huisnummer",
+    "name": "houseNumber",
+    "type": "text",
+    "placeholder": "Wat is je huissnummer?"
+  },
+  {
     "label": "Postcode",
+    "name": "zipCode",
+    "type": "text",
     "placeholder": "Wat is je Postcode?"
-  },
-  {
-
-    "label": "Woonplaats",
-    "placeholder": "Wat is je Woonplaats?"
-  },
-  {
-
-    "label": "Geboortedatum",
-    "placeholder": "Wat is je Geboortedatum?"
-  },
-  {
-    "label": "Nieuwe inlogcode",
-    "placeholder": "Wat is je inlogcode?"
-  },
-  {
-
-    "label": "Nogmaals je inlogcode",
-    "placeholder": "Type nog een keer je nieuwe code"
   }
+
+
 ]

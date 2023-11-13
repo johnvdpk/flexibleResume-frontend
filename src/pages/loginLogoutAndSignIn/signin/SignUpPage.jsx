@@ -1,9 +1,8 @@
-import './SigninPage.css'
+import './SignUpPage.css'
 import logo from '../../../assets/flexible resume.svg'
 import signinImage from '../../../assets/signinimage.png'
-import Switch from "../../globalcomponents/Buttons/Switch.jsx";
 import SignUpForm from "./SignUpForm.jsx";
-function SigninPage() {
+function SignUpPage() {
 
 
     return (
@@ -13,11 +12,7 @@ function SigninPage() {
                <div className="div-signin">
                    <img src={logo} className="signin-logo-image" alt="logo" />
                     <h2 className="titel-signin">Aanmelden</h2>
-                   <Switch
-                        rectangleIndex={1}
-                        text="werkzoekende"
 
-                   />
                    <div className="div-space"></div>
                    <SignUpForm />
                    <div className="div-space"></div>
@@ -33,4 +28,4 @@ function SigninPage() {
     )
 }
 
-export default SigninPage
+export default SignUpPage

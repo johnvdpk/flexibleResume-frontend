@@ -40,25 +40,16 @@ async function login(token) {
 
     const userInfo = jwtDecode(token);
     const userEmail = userInfo.sub;
-    console.log(userEmail);
+
 
     try {
-        const response = await axios.get(`http://localhost:8080/api/v1/auth/authenticate/${userEmail}`, {
-
-            headers: {
-                Authorization: `Bearer ${token}`,
-
-            }
-        })
-        console.log(response.data);
-
-
-
 
         toggleIsAuth({
             isAuthenticated: true,
             user: {
                 email: userEmail,
+
+
             },
             status: 'done',
         });

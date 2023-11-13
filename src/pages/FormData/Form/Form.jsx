@@ -1,35 +1,42 @@
 import './Form.css'
-import formData from './JsonDataForm/formProfileJobseeker.json'
 import Input from "./Input/Input.jsx";
-import Button from "../../globalcomponents/Buttons/Button.jsx";
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 
 
 // eslint-disable-next-line react/prop-types
-function Form({formConfig}) {
+function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
 
+    // eslint-disable-next-line react/prop-types
     const mainTitle = formConfig[0].maintitel;
+    // eslint-disable-next-line react/prop-types
     const inputFields = formConfig.slice(1);
 
 
     return (
 
-        <form className="global-form-style">
+        <form className="global-form-style" onSubmit={formOnSubmit}>
 
-            <h3 className='h-maintitel'>{mainTitle}</h3>
+            <h3 className='h-maintitel'>{mainTitle}:</h3>
+            {inputFields.map((inputConfig) => {
 
-            {inputFields.map((formData, index) => (
+                const value = FormData[inputConfig.name];
 
-                <Input
-                key={index}
-                label={formData.label}
-                placeholder={formData.placeholder}
-                />
-                ))}
-            <Button text="verzenden"></Button>
+                 return (
 
-     </form>
-
+                    <Input
+                        key={inputConfig.name}
+                        label={inputConfig.label}
+                        name={inputConfig.name}
+                        type={inputConfig.type}
+                        value={value}
+                        placeholder={inputConfig.placeholder}
+                        onChange={handleInputChange}
+                    />
+                );
+            })}
+           <button type="submit">verzenden</button>
+        </form>
 
 
     )

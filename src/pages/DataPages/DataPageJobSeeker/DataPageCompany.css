@@ -47,6 +47,11 @@
 
 
 
+.p-no-inlog {
+    font-family: Raleway-semibold;
+    align-items: center;
+    padding: 10em;
+}
 
 
 @media (min-width: 900px) {
