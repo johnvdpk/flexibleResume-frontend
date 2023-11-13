@@ -1,15 +1,20 @@
-.div-template {
+.div-templatetwo-wrapper-component {
+    margin: 1em;
+}
+
+.div-templatetwo {
     background-color: var(--background-color);
     display: flex;
     flex-direction: column;
     border: solid 1.5px var(--brand-color);
     border-radius: var(--radius-small);
+    margin: 0.2em;
     width: 95%;
     aspect-ratio: 1/1.414;
     font-size: 7px;
 }
 
-.h2-template {
+.h2-templatetwo {
 
     font-size: 1em;
     font-family: Raleway-bold;
@@ -17,7 +22,7 @@
     margin: 0.2em 0em 0.4em 0em;
 }
 
-.h3-template {
+.h3-templatetwo {
     font-size: 1em;
     font-family: Raleway-semibold;
     color: var(--brand-color);
@@ -27,7 +32,7 @@
 
 .vertical-line {
     width: 1px;
-    margin: 0.1em;
+    margin: 1em;
     background-color: var(--text-color);
     height: 80%
 }
@@ -43,14 +48,14 @@
 
 
 
-.header-template {
+.header-templatetwo {
     display: flex;
     flex-direction: row;
     width: 100%;
-    height: 15%;
-    margin: 1em;
+    border: 1px solid var(--text-color);
+    margin-bottom: 2em;
 }
-    .template-image {
+    .templatetwo-image {
         margin: 1em;
         flex: 0.5 0 50px;
     }
@@ -61,65 +66,66 @@
         padding: 0.2em;
     }
 
-    .template-aboutme {
+    .templatetwo-aboutme {
         flex: 2;
         margin: 1em;
-
+        color: var(--brand-color);
     }
-        .template-aboutme p {
+        .templatetwo-aboutme p {
             font-size: 0.8em;
         }
 
-    .template-profielgegevens {
+    .templatetwo-profielgegevens {
         flex:1.5;
 
 
 
+
     }
-            .template-table {
+            .templatetwo-table {
 
                 margin: 1em;
                 font-size: 0.8em;
                 line-height: 1;
             }
 
-                    .template-table td {
+                    .templatetwo-table td {
                         padding-right: 1em;
                     }
 
-.middle-template {
+.middle-templatetwo {
 
     display: flex;
     flex-direction: column;
-    margin: 1em;
     height: 50%;
+    margin: 3em;
 
 
 }
 
-        .data-template {
+        .data-templatetwo {
             flex: 1;
 
         }
 
-        .item-template {
+        .item-templatetwo {
             margin: 0.2em;
             padding: 0.2em;
 
 
         }
 
-            .p-title-template {
+            .p-title-templatetwo {
                 font-size: 0.9em;
                 font-family: Raleway-bold;
             }
 
-            .p-period-template {
+            .p-period-templatetwo {
                 font-size: 0.6em;
 
             }
 
-            .p-info-template {
+            .p-info-templatetwo {
                 font-size: 0.8em;
                 font-family: Raleway-semibold;
                 margin: 0.3em 0em 0.3em 0em;
@@ -127,27 +133,27 @@
 
             }
 
-            .p-extrainfo-template{
+            .p-extrainfo-templatetwo{
                 font-size: 0.8em;
 
             }
-        .studydata-template {
+        .studydata-templatetwo {
             flex: 1;
 
         }
-        .Personaldata-template {
+        .Personaldata-templatetwo {
             flex: 1;
 
         }
 
 
-.footer-template {
+.footer-templatetwo {
     height: 10%;
 }
 
 @media (min-width: 550px) {
 
-    .div-template {
+    .div-templatetwo {
 
         font-size: 12px;
 
@@ -160,9 +166,10 @@
 @media (min-width: 900px) {
 
 
-    .div-template {
+    .div-templatetwo {
 
         font-size: 14px;
+        margin: 2em;
     }
 
 }

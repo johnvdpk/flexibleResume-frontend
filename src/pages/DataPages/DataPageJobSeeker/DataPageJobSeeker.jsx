@@ -12,7 +12,9 @@ import { AuthContext} from "../../../context/AuthContext.jsx";
 import axios from 'axios';
 import Button from "../../globalcomponents/Buttons/Button.jsx";
 import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
-import Template from "./Templates/Template.jsx";
+import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
+import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
+import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 
 
 function DataPageJobSeeker() {
@@ -518,7 +520,23 @@ function DataPageJobSeeker() {
                {switchButton === buttonConfig.inSide && (
                 <div className='div-template-wrapper'>
 
-                    <Template
+                    <TemplateOne
+                        profileData={jobSeekerData}
+                        aboutMe={cvData.aboutMe}
+                        workData={workInfoData}
+                        studyData={studyInfoData}
+                        personalData={personalInfoData}
+                    />
+
+                    <TemplateTwo
+                        profileData={jobSeekerData}
+                        aboutMe={cvData.aboutMe}
+                        workData={workInfoData}
+                        studyData={studyInfoData}
+                        personalData={personalInfoData}
+                    />
+
+                    <TemplateThree
                         profileData={jobSeekerData}
                         aboutMe={cvData.aboutMe}
                         workData={workInfoData}

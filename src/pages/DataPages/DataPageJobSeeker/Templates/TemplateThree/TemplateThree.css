@@ -1,0 +1,173 @@
+.div-templatethree-wrapper-component {
+    margin: 1em;
+}
+
+.div-templatethree {
+    background-color: var(--text-color);
+    color: var(--text-color-invert);
+    display: flex;
+    flex-direction: column;
+    border: solid 1.5px var(--brand-color);
+    border-radius: var(--radius-small);
+    margin: 0.2em;
+    width: 95%;
+    aspect-ratio: 1/1.414;
+    font-size: 7px;
+}
+
+.h2-templatethree {
+
+    font-size: 1em;
+    font-family: Raleway-bold;
+    margin: 0.2em 0em 0.4em 0em;
+}
+
+.h3-templatethree {
+    font-size: 1em;
+    font-family: Raleway-semibold;
+    margin: 0.2em 0em 0.4em 0em;
+
+}
+
+.vertical-line {
+    width: 1px;
+    margin: 1em;
+    background-color: var(--text-color);
+    height: 80%
+}
+
+.horizontal-line {
+
+    width: 1px;
+    margin: 0.5em 0em 0.5em 0em;
+    background-color: var(--text-color);
+    width: 90%;
+    height: 1px;
+}
+
+
+
+.header-templatethree {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 15%;
+    margin: 1em;
+}
+    .templatethree-image {
+        margin: 1em;
+        flex: 0.5 0 50px;
+    }
+
+    .img-foto {
+        max-width: 100%;
+        max-height: 100%;
+        padding: 0.2em;
+    }
+
+    .templatethree-aboutme {
+        flex: 2;
+        margin: 1em;
+
+    }
+        .templatethree-aboutme p {
+            font-size: 0.8em;
+        }
+
+    .templatethree-profielgegevens {
+        flex:1.5;
+
+
+
+
+    }
+            .templatethree-table {
+
+                margin: 1em;
+                font-size: 0.8em;
+                line-height: 1;
+            }
+
+                    .templatethree-table td {
+                        padding-right: 1em;
+                    }
+
+.middle-templatethree {
+
+    display: flex;
+    flex-direction: column;
+    margin: 2em;
+    height: 50%;
+
+
+}
+
+        .data-templatethree {
+            flex: 1;
+
+        }
+
+        .item-templatethree {
+            margin: 0.2em;
+            padding: 0.2em;
+
+
+        }
+
+            .p-title-templatethree {
+                font-size: 0.9em;
+                font-family: Raleway-bold;
+            }
+
+            .p-period-templatethree {
+                font-size: 0.6em;
+
+            }
+
+            .p-info-templatethree {
+                font-size: 0.8em;
+                font-family: Raleway-semibold;
+                margin: 0.3em 0em 0.3em 0em;
+
+            }
+
+            .p-extrainfo-templatethree{
+                font-size: 0.8em;
+
+            }
+        .studydata-templatethree {
+            flex: 1;
+
+        }
+        .Personaldata-templatethree {
+            flex: 1;
+
+        }
+
+
+.footer-templatethree {
+    height: 10%;
+}
+
+@media (min-width: 550px) {
+
+    .div-templatethree {
+
+        font-size: 12px;
+
+    }
+
+
+}
+
+
+@media (min-width: 900px) {
+
+
+    .div-templatethree {
+
+        font-size: 14px;
+        margin: 2em;
+    }
+
+}
