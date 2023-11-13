@@ -5,25 +5,22 @@
   },
 
   {
-    "label": "Bedrijf",
+    "label": "Hobby",
+    "name": "hobby",
     "type": "text",
-    "placeholder": "Bedrijf"
-  },
-  {
-
-    "label": "Functie",
-    "type": "text",
-    "placeholder": "Wat is/was je functie?"
+    "placeholder": "Wat is je Hobby?"
   },
   {
 
     "label": "Periode",
+    "name": "periodOfHobby",
     "type": "text",
     "placeholder": "Welke periode heb je hier gewerkt?"
   },
   {
 
     "label": "Extra informatie",
+    "name": "hobbyInfo",
     "placeholder": "Korte beschrijving"
   }
 

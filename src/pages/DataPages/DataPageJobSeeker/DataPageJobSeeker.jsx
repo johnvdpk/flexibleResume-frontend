@@ -9,6 +9,8 @@ import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import axios from 'axios';
+import Button from "../../globalcomponents/Buttons/Button.jsx";
+import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
 
 
 function DataPageJobSeeker() {
@@ -29,7 +31,6 @@ function DataPageJobSeeker() {
             firstName: '',
             surName: '',
             dateOfBirth: '',
-            email: '',
             phoneNumber: '',
             residence: '',
             zipCode: '',
@@ -41,6 +42,8 @@ function DataPageJobSeeker() {
         // Werk info
         const [workInfoFormData, setWorkInfoFormData] = useState({
 
+            id:'',
+            cvId: '',
             company:'',
             jobTitle:'',
             periodOfEmployment:'',
@@ -51,6 +54,8 @@ function DataPageJobSeeker() {
         // Studie info
         const [studyInfoFormData, setStudyInfoFormData] = useState( {
 
+            id:'',
+            cvId:'',
             educationalInstitute: '',
             education: '',
             periodOfStudy: '',
@@ -62,6 +67,8 @@ function DataPageJobSeeker() {
 
         const [personalInfoFormData, setPersonalInfoFormData] = useState( {
 
+            id:'',
+            cvId:'',
             hobby: '',
             periodOfHobby: '',
             hobbyInfo: '',
@@ -128,7 +135,7 @@ function DataPageJobSeeker() {
             const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
 
             setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
             console.log("put")
             console.log(response.data)
 
@@ -210,9 +217,13 @@ function DataPageJobSeeker() {
             const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
             setWorkInfoData(response.data);
             console.log("get werkinfo werkt")
-            console.log(response.data)
         } catch(e) {
-            console.error('Krijg niks uit werkinfo')
+            console.error('Axios error:', e);
+            if (e.response) {
+                // Het serverantwoord op het verzoek
+                console.error('Response:', e.response);
+            }
+            console.error('Krijg niks uit werkinfo', e)
         }
     }
     // Axios voor studie info
@@ -221,9 +232,8 @@ function DataPageJobSeeker() {
             const response = await axios.get(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`)
             setStudyInfoData(response.data);
             console.log("get studyinfo werkt")
-            console.log(response.data)
         }catch (e) {
-            console.error("Krijg niks uit de studieinfo")
+            console.error("Krijg niks uit de studieinfo", e)
         }
     }
     // Axios voor persoonlijke info
@@ -232,22 +242,85 @@ function DataPageJobSeeker() {
             const response = await axios.get(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`)
             setPersonalInfoData(response.data);
             console.log("get hobbyinfo werkt")
-            console.log(response.data)
         }catch (e) {
-            console.error("Krijg niks uit de hobbyinfo")
+            console.error("Krijg niks uit de hobbyinfo", e)
         }
     }
+
+
+    // DELETE verzoeken
+
+        // delete van de workinfo
+        async function deleteWorkInfo(id) {
+
+            if (id === null) {
+                console.error("Kan item niet verwijderen zonder ID");
+                return;
+            }
+            try {
+                await axios.delete(`http://localhost:8080/werkzoekende/werkinfo/${id}`);
+                const newWorkInfoData = workInfoData.filter(item => item.id !== id);
+                setWorkInfoData(newWorkInfoData);
+                console.log("Item workinfo verwijderd");
+            } catch (error) {
+                console.error("Error bij het verwijderen van item", error);
+            }
+        }
+
+    // delete van de studyinfo
+    async function deleteStudyInfo(id) {
+
+        if (id === null) {
+            console.error("Kan item niet verwijderen zonder ID");
+            return;
+        }
+        try {
+            await axios.delete(`http://localhost:8080/werkzoekende/studieinfo/${id}`);
+            const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
+            setStudyInfoData(newStudyInfoData);
+            console.log("Item studyinfo verwijderd");
+        } catch (error) {
+            console.error("Error bij het verwijderen van item", error);
+        }
+    }
+
+    // delete van de personalinfo
+    async function deletePersonalInfo(id) {
+
+        if (id === null) {
+            console.error("Kan item niet verwijderen zonder ID");
+            return;
+        }
+        try {
+            await axios.delete(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${id}`);
+            const newPersonalInfoData = workInfoData.filter(item => item.id !== id);
+            setStudyInfoData(newPersonalInfoData);
+            console.log("Item personal info verwijderd");
+        } catch (error) {
+            console.error("Error bij het verwijderen van item", error);
+        }
+    }
+
+
+
+
+
 
 
 
     useEffect(()=> {
 
         const cvId = localStorage.getItem('cvId');
-        getProfileForm(cvId);
-        getWorkInfoForm(cvId);
-        getStudyInfoForm(cvId);
-        getPersonalInfoForm(cvId);
 
+        if(cvId) {
+            getProfileForm(cvId);
+            getWorkInfoForm(cvId);
+            getStudyInfoForm(cvId);
+            getPersonalInfoForm(cvId);
+            console.log("dit is het cv_Id=", + cvId)
+        } else {
+            console.log('cvId niet gevonden in de localstorage')
+        }
 
 
     },[]);
@@ -271,21 +344,24 @@ function DataPageJobSeeker() {
 
 
                        <ButtonForm
-                           text="Profiel gegevens"
+                           text="Profielgegevens"
                            onClick={() => toggleForm(formConfigJobSeeker)}
                        />
                        <ButtonForm
-                           text="Werk Info"
+                           text="Werkgegevens"
                            onClick={() => toggleForm(formConfigWorkInfo)}
                        />
+
                        <ButtonForm
-                           text="Persoonlijke Info"
-                           onClick={() => toggleForm(formConfigPersonalInfo)}
-                       />
-                       <ButtonForm
-                           text="Studie Info"
+                           text="Studiegegevens"
                            onClick={() => toggleForm(formConfigStudyInfo)}
                        />
+
+                       <ButtonForm
+                           text="Persoonlijke gegevens"
+                           onClick={() => toggleForm(formConfigPersonalInfo)}
+                       />
+
                        <ButtonForm
                            text="Kies een template"
 
@@ -323,13 +399,25 @@ function DataPageJobSeeker() {
                )}
 
                {activeProfile === formConfigWorkInfo && (
-               <Form
-                   formConfig={activeProfile}
-                   jobSeekerData={workInfoData}
-                   FormData={workInfoFormData}
-                   handleInputChange={handleInputChangeWorkInfoFormData}
-                   formOnSubmit={createWorkInfoForm}
-               />
+                   <Form
+                       formConfig={activeProfile}
+                       jobSeekerData={workInfoData}
+                       FormData={workInfoFormData}
+                       handleInputChange={handleInputChangeWorkInfoFormData}
+                       formOnSubmit={createWorkInfoForm}
+                   />
+
+               )}
+
+
+               {activeProfile === formConfigStudyInfo && (
+                   <Form
+                       formConfig={activeProfile}
+                       jobSeekerData={studyInfoData}
+                       FormData={studyInfoFormData}
+                       handleInputChange={handleInputChangeStudyInfoFormData}
+                       formOnSubmit={createStudyInfoForm}
+                   />
 
                )}
 
@@ -344,16 +432,6 @@ function DataPageJobSeeker() {
 
                )}
 
-               {activeProfile === formConfigStudyInfo && (
-                   <Form
-                       formConfig={activeProfile}
-                       jobSeekerData={studyInfoData}
-                       FormData={studyInfoFormData}
-                       handleInputChange={handleInputChangeStudyInfoFormData}
-                       formOnSubmit={createStudyInfoForm}
-                   />
-
-               )}
 
 
 
@@ -369,23 +447,93 @@ function DataPageJobSeeker() {
 
                 <div className='div-jobseekerdata'>
                    {jobSeekerData && (
-                       <table className='table-data'>
-                           <thead>
-                           <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
-                           <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
-                           <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
-                           <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
-                           <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
-                           <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
-                           <tr><td>Adres:</td><td>{jobSeekerData.homeAddress}</td></tr>
-                           <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
-                           </thead>
+
+                       <table className='table-persoonlijkegegevenstabel'>
+
+                               <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
+                               <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
+                               <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
+                               <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
+                               <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
+                               <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
+                               <tr><td>Adres:</td><td>{jobSeekerData.homeAddress}</td></tr>
+                               <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
+
                        </table>
                    )}
 
+                </div>
+
+
+               {/*Dit kan nog een component worden*/}
+                <div className='div-workinfodata' >
+
+                    {workInfoData && Array.isArray(workInfoData) && (
+                        <div className='div-cvid-info-data-wrapper'>
+                            {workInfoData.map((item, index) => (
+                            <div className='div-cvid-info-data' key={index}>
+                                <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteWorkInfo(item.id)}/></div>
+                                <div className= 'div-cvid-info-data-child'>
+                                    <div className='div-cvid-info-data-main'>
+                                        <p className='p-cvid-title'>{item.company}</p>
+                                        <p className='p-cvid-period'>{item.periodOfEmployment}</p></div>
+                                    <div className='div-cvid-info-data-second'><p className='p-cvid-info-data-second'>{item.jobTitle}</p></div>
+                                    <div className='div-cvid-info-data-info'><p className='p-cvid-info-data-info'>{item.jobInfo}</p></div>
+                                </div>
+                            </div>
+                            ))}
+                        </div>
+                    )}
 
 
                 </div>
+
+               <div className='div-studyinfodata' >
+
+                   {studyInfoData && Array.isArray(studyInfoData) && (
+                       <div className='div-cvid-info-data-wrapper'>
+                           {studyInfoData.map((item, index) => (
+                               <div className='div-cvid-info-data' key={index}>
+                                   <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteStudyInfo(item.id)}/></div>
+                                   <div className= 'div-cvid-info-data-child'>
+                                       <div className='div-cvid-info-data-main'>
+                                           <p className='p-cvid-title'>{item.educationalInstitute}</p>
+                                           <p className='p-cvid-period'>{item.periodOfStudy}</p></div>
+                                       <div className='div-cvid-info-data-second'><p className='p-cvid-info-data-second'>{item.periodOfStudy}</p></div>
+                                       <div className='div-cvid-info-data-info'><p className='p-cvid-info-data-info'>{item.studyInfo}</p></div>
+                                   </div>
+                               </div>
+                           ))}
+                       </div>
+                   )}
+
+
+               </div>
+
+               <div className='div-personalinfodata' >
+
+                   {personalInfoData && Array.isArray(personalInfoData) && (
+                       <div className='div-cvid-info-data-wrapper'>
+                           {personalInfoData.map((item, index) => (
+                               <div className='div-cvid-info-data' key={index}>
+                                   <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deletePersonalInfo(item.id)}/></div>
+                                   <div className= 'div-cvid-info-data-child'>
+                                       <div className='div-cvid-info-data-main'>
+                                           <p className='p-cvid-title'>{item.hobby}</p>
+                                           <p className='p-cvid-period'>{item.periodOfHobby}</p></div>
+                                       <div className='div-cvid-info-data-second'><p className='p-cvid-info-data-second'>{item.hobbyInfo}</p></div>
+                                   </div>
+                               </div>
+                           ))}
+                       </div>
+                   )}
+
+
+               </div>
+
+
+
+
            </div>
 
 

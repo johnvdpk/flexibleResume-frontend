@@ -1,12 +1,15 @@
 import './Form.css'
 import Input from "./Input/Input.jsx";
+// eslint-disable-next-line no-unused-vars
 import React from "react";
 
 
 // eslint-disable-next-line react/prop-types
 function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
 
+    // eslint-disable-next-line react/prop-types
     const mainTitle = formConfig[0].maintitel;
+    // eslint-disable-next-line react/prop-types
     const inputFields = formConfig.slice(1);
 
 
@@ -34,25 +37,6 @@ function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
             })}
            <button type="submit">verzenden</button>
         </form>
-
-
-     //    <form className="global-form-style" onSubmit={Form}>
-     //
-     //        <h3 className='h-maintitel'>{mainTitle}</h3>
-     //
-     //
-     //        {inputFields.map((formData, index) => (
-     //
-     //            <Input
-     //            key={index}
-     //            label={formData.label}
-     //            placeholder={formData.placeholder}
-     //            />
-     //            ))}
-     //        <Button text="verzenden"></Button>
-     //
-     // </form>
-
 
 
     )

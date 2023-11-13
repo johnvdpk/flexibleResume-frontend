@@ -25,7 +25,7 @@
   {
     "label": "Extra informatie",
     "name": "jobInfo",
-    "type": "textarea",
+    "type": "text",
     "placeholder": "Korte beschrijving"
   }
 

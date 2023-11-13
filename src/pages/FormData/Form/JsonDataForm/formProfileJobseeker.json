@@ -30,7 +30,7 @@
     "label": "Woonplaats",
     "name": "residence",
     "type": "text",
-    "placeholder": "Wat is je telefoonnummer?"
+    "placeholder": "Wat is je woonplaats?"
   },
   {
     "label": "Adres",

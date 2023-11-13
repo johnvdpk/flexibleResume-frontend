@@ -6,24 +6,28 @@
 
   {
     "label": "Opleiding",
+    "name":"educationalInstitute",
     "type": "text",
     "placeholder": "Wat was je opleiding?"
   },
   {
 
     "label": "Educatie",
+    "name":"education",
     "type": "text",
     "placeholder": "Van welke educatie heb je genoten?"
   },
   {
 
     "label": "Periode",
+    "name":"periodOfStudy",
     "type": "text",
     "placeholder": "Welke periode heb je gestudeerd?"
   },
   {
 
     "label": "Extra informatie",
+    "name":"studyInfo",
     "placeholder": "Korte beschrijving"
   }
 
