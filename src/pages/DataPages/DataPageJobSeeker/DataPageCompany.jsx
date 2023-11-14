@@ -34,6 +34,7 @@ function DataPageJobSeeker() {
 
     const [employerDataForm, setEmployerDataForm] = useState( {
 
+        company:'',
         industry: '',
         officeAdress: '',
         officeAdressNumber: '',
@@ -117,6 +118,24 @@ function DataPageJobSeeker() {
             console.error("krijg geen info uit de database")
         }
 
+    }
+
+    async function deleteAccount() {
+        const jwtToken = localStorage.getItem('token');
+        const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+
+        if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+            try {
+                await axios.delete(`http://localhost:8080/auth/user/${email}`);
+                // Logica om gebruiker uit te loggen en de UI bij te werken
+                console.log("Account succesvol verwijderd");
+                logout();
+                navigate("/");
+            } catch (error) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
+                // Toon foutmelding
+            }
+        }
     }
 
 
@@ -224,6 +243,7 @@ function DataPageJobSeeker() {
                         {employerData && (
                             <table className='table-persoonlijkegegevenstabel'>
 
+                                <tr><td>Bedrijf:</td><td>{employerData.company}</td></tr>
                                 <tr><td>Branche:</td><td>{employerData.industry}</td></tr>
                                 <tr><td>Kantooradres:</td><td>{employerData.officeAdress}</td></tr>
                                 <tr><td>Kantoor nummer:</td><td>{employerData.officeAdressNumber}</td></tr>
@@ -238,6 +258,16 @@ function DataPageJobSeeker() {
 
                     </div>
 
+                    <div className='div-cvdata'>
+
+                        {employerData && (
+                            <div className='div-cvdata-child'>
+                                <div><p>{employerData.vision}</p></div>
+                                <div><p>{employerData.mission}</p></div>
+                            </div>
+
+                        )}
+                    </div>
 
                 </div>
 
@@ -245,10 +275,7 @@ function DataPageJobSeeker() {
 
             </div>
 
-            {/* :*/}
 
-            {/*    <p className="p-no-inlog"> Je bent niet inlogt</p>*/}
-            {/*}*/}
         </>
     )
 }

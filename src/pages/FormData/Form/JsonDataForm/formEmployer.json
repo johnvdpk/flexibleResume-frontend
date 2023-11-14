@@ -18,11 +18,16 @@
     "placeholder": "Branche?"
   },
   {
-
-    "label": "Adres",
+    "label": "Kantoor Adres",
     "name": "officeAdress",
     "type": "text",
     "placeholder": "Wat is het kantooradres?"
+  },
+  {
+    "label": "Kanoornummer",
+    "name": "officeAdressNumber",
+    "type": "text",
+    "placeholder": "Wat is het kantoornummer?"
   },
   {
 
@@ -60,7 +65,7 @@
   },
   {
     "label": "Aantal medewerkers",
-    "name": "numberOfEmloyees",
+    "name": "numberOfEmployees",
     "type": "text",
     "placeholder": "Aantal medewerkes"
   }
