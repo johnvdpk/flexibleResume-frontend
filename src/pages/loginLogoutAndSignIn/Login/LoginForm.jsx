@@ -11,7 +11,7 @@ function LoginForm({whichDataPage}) {
     const [password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [addSucces, toggleAddSucces] = useState(false);
+    const [addSucces, toggleAddSucces] = useState('');
 
     async function HandleSubmit(e) {
         e.preventDefault();

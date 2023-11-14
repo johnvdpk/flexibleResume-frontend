@@ -16,12 +16,15 @@ import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
 import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
 import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
+import FileUpload from "./FileUpload/FileUpload.jsx";
 
 
 function DataPageJobSeeker() {
 
     //useContext
-        const {isAuth, logout} = useContext(AuthContext);
+        const {isAuth, user, logout} = useContext(AuthContext);
+
+
 
 
     //useState
@@ -50,6 +53,7 @@ function DataPageJobSeeker() {
             firstName: '',
             surName: '',
             dateOfBirth: '',
+            email: '',
             phoneNumber: '',
             residence: '',
             zipCode: '',
@@ -156,7 +160,6 @@ function DataPageJobSeeker() {
     const payload = JSON.parse(atob(jwtToken.split('.')[1]));
     const jobSeekerEmail = payload.sub;
     const cvId = localStorage.getItem('cvId')
-
 
 
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
@@ -413,17 +416,24 @@ function DataPageJobSeeker() {
     },[]);
 
 
+    if (!isAuth || (user && user.role !== "USER")) {
+        // Redirect of toon foutmelding
+        return <p className="p-no-inlog">Toegang geweigerd. Je bent niet inlogt of je hebt niet de juiste rechten.</p>;
+    }
+
     return (
 
         <>
-            {isAuth ?
+            {/*{isAuth ?*/}
 
        <div className="data-page-wrapper">
 
 
            <div className="div-data-page-menu">
                 <div className="div-profile-foto">
+
                     <img src={profilefoto} className="img-profile-foto" alt="profile foto" />
+                    <FileUpload />
                 </div>
 
                     {/*buttons*/}
@@ -475,6 +485,7 @@ function DataPageJobSeeker() {
            </div>
 
            <div className="div-personal-form">
+
 
 
                {activeProfile === formConfigJobSeeker && (
@@ -595,6 +606,7 @@ function DataPageJobSeeker() {
                                <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
                                <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
                                <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
+                               <tr><td>Email:</td><td>{jobSeekerData.email}</td></tr>
                                <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
                                <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
                                <tr><td>Adres:</td><td>{jobSeekerData.homeAddress}</td></tr>
@@ -618,7 +630,7 @@ function DataPageJobSeeker() {
                {/*Dit kan nog een component worden*/}
                 <div className='div-workinfodata' >
 
-                    {workInfoData && Array.isArray(workInfoData) && (
+                    {workInfoData && Array.isArray(workInfoData) && workInfoData.length > 0 && (
                         <div className='div-cvid-info-data-wrapper'>
                             <h3 className='h-infotitel'>Werkgegevens</h3>
                             {workInfoData.map((item, index) => (
@@ -685,10 +697,10 @@ function DataPageJobSeeker() {
 
        </div>
 
-            :
+           {/* :*/}
 
-               <p className="p-no-inlog"> Je bent niet inlogt</p>
-           }
+           {/*    <p className="p-no-inlog"> Je bent niet inlogt</p>*/}
+           {/*}*/}
         </>
     )
 }

@@ -21,6 +21,7 @@ function AuthContextProvider({children}) {
 
         const token = localStorage.getItem('token');
 
+
         if(token) {
             void login(token);
         } else {
@@ -40,6 +41,7 @@ async function login(token) {
 
     const userInfo = jwtDecode(token);
     const userEmail = userInfo.sub;
+    const userRole = userInfo.role;
 
 
     try {
@@ -48,6 +50,7 @@ async function login(token) {
             isAuthenticated: true,
             user: {
                 email: userEmail,
+                role: userRole
 
 
             },

@@ -8,10 +8,7 @@ function SignUpForm() {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
-    const [firstName, setFirstName] = useState('')
-
-    const [addSucces, toggleAddSucces] = useState(false);
+    const [addSucces, toggleAddSucces] = useState('');
     const [role, setRole] = useState('USER')
 
 
@@ -26,6 +23,7 @@ function SignUpForm() {
                 email: email,
                 password: password,
                 role: role,
+
             });
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('cvId', response.data.cvId);

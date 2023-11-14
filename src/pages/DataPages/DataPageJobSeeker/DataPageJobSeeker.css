@@ -12,6 +12,9 @@
 }
 
     .div-profile-foto {
+        display: flex;
+        flex-direction: row;
+        margin: 1em;
 
     }
 
