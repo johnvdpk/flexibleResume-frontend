@@ -11,12 +11,12 @@ import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Button from "../../globalcomponents/Buttons/Button.jsx";
 import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
 import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
 import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
+
 
 
 function DataPageJobSeeker() {
@@ -399,28 +399,27 @@ function DataPageJobSeeker() {
 
     useEffect(()=> {
 
-        const cvId = localStorage.getItem('cvId');
 
-        if(cvId) {
-            getProfileForm(cvId);
-            getCVForm(cvId);
-            getWorkInfoForm(cvId);
-            getStudyInfoForm(cvId);
-            getPersonalInfoForm(cvId);
-            console.log("dit is het cv_Id=", + cvId)
-        } else {
-            console.log('cvId niet gevonden in de localstorage')
-        }
+        const cvId = localStorage.getItem('cvId')
+
+            if (cvId) {
+                getProfileForm(cvId);
+                getCVForm(cvId);
+                getWorkInfoForm(cvId);
+                getStudyInfoForm(cvId);
+                getPersonalInfoForm(cvId);
+                console.log("dit is het cv_Id=", +cvId)
+            } else {
+                const cvId = 1;
+                console.log(cvId +' cvId niet gevonden in de localstorage')
+            }
 
 
     },[]);
 
-
-    if (!isAuth || (user && user.role !== "USER")) {
-        // Redirect of toon foutmelding
-        return <p className="p-no-inlog">Toegang geweigerd. Je bent niet inlogt of je hebt niet de juiste rechten.</p>;
+    if (!isAuth || (user && user.role !== "USER" && user.role !== "ADMIN")) {
+        return <p className="p-no-inlog">Toegang geweigerd. Je bent niet ingelogd of je hebt niet de juiste rechten.</p>;
     }
-
     return (
 
         <>
@@ -466,10 +465,6 @@ function DataPageJobSeeker() {
                        <ButtonForm
                            text="Kies een template"
                            onClick={()=> toggleButton(buttonConfig.inSide)}
-
-                       />
-                       <ButtonForm
-                           text="Zoek op werkgever"
 
                        />
                        <ButtonForm

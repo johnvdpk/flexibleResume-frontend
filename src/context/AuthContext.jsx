@@ -42,6 +42,7 @@ async function login(token) {
     const userInfo = jwtDecode(token);
     const userEmail = userInfo.sub;
     const userRole = userInfo.role;
+    console.log(userRole);
 
 
     try {

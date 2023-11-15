@@ -8,8 +8,8 @@ import { AuthContext} from "../../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import Button from "../../globalcomponents/Buttons/Button.jsx";
-import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
+
 
 
 function DataPageJobSeeker() {
@@ -24,12 +24,14 @@ function DataPageJobSeeker() {
     const [activeProfile, setActiveProfile] = useState(null);
     const [switchButton, setSwitchButton] = useState(null);
     const [employerData, setEmployerData] = useState(null);
+    const [searchJobSeeker, setSearchJobSeeker] = useState(null);
+    const [searchJobSeekerBySurname, setSearchJobSeekerBySurname] = useState('');
     const navigate = useNavigate();
 
 
     const buttonConfig = {
-        inSide: 'template',
         deleteAcount: 'deleteAcount',
+        SearchJobSeekerSurName: 'SearchJobSeekerSurName',
     }
 
     const [employerDataForm, setEmployerDataForm] = useState( {
@@ -49,8 +51,6 @@ function DataPageJobSeeker() {
     })
 
 
-
-
     // CV gegevens. Nu alleen een About me, maar dit is zo gemaakt om het makkelijker uit te breiden.
     function handleInputChangeEmployerFormData(e) {
         const { name, value } = e.target;
@@ -59,9 +59,9 @@ function DataPageJobSeeker() {
             [name]: value,
         }));
     }
-
-
-
+    const handleInputSurName = (e) => {
+        setSearchJobSeekerBySurname(e.target.value);
+    };
 
     // wissel tussen de verschillende formulieren
     const toggleForm = (profileConfig) => {
@@ -77,7 +77,7 @@ function DataPageJobSeeker() {
     const jwtToken = localStorage.getItem('token');
     const payload = JSON.parse(atob(jwtToken.split('.')[1]));
     const employerEmail = payload.sub;
-    const cvId = localStorage.getItem('cvId')
+
 
 
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
@@ -120,6 +120,33 @@ function DataPageJobSeeker() {
 
     }
 
+
+    async function getJobSeekerInfo() {
+
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/naam`)
+            setSearchJobSeeker(response.data);
+            console.log("get jobseeker")
+            console.log(response.data)
+
+        } catch (e) {
+            console.error("krijg geen info uit de database jobseeker")
+        }
+
+    }
+
+    async function getJobSeekerBySurNameInfo(e) {
+        e.preventDefault();
+        try {
+            const response = await axios.get(`http://localhost:8080/werkzoekende/achternaam/${searchJobSeekerBySurname}`);
+            setSearchJobSeekerBySurname(response.data); // Update de state met de zoekresultaten
+            console.log("Zoekresultaten: surname", response.data);
+        } catch (e) {
+            console.error("Fout bij het ophalen van gegevens: Surnam", e);
+        }
+    }
+
+
     async function deleteAccount() {
         const jwtToken = localStorage.getItem('token');
         const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
@@ -143,15 +170,16 @@ function DataPageJobSeeker() {
 
     useEffect(()=> {
         getEmployerForm()
+        getJobSeekerInfo()
+        getJobSeekerBySurNameInfo()
 
 
 
     },[]);
 
 
-    if (!isAuth || (user && user.role !== "COMPANY")) {
-        // Redirect of toon foutmelding
-        return <p className="p-no-inlog">Toegang geweigerd. Je bent niet inlogt of je hebt niet de juiste rechten.</p>;
+    if (!isAuth || (user && user.role !== "COMPANY" && user.role !== "ADMIN")) {
+        return <p className="p-no-inlog">Toegang geweigerd. Je bent niet ingelogd of je hebt niet de juiste rechten.</p>;
     }
 
     return (
@@ -177,18 +205,11 @@ function DataPageJobSeeker() {
                             text="Bedrijfsgegevens"
                             onClick={() => toggleForm(formConfigEmployer)}
                         />
-                        <ButtonForm
-                            text="Introductie tekst"
 
-                        />
-
-                        <ButtonForm
-                            text="Kies een template"
-                            onClick={()=> toggleButton(buttonConfig.inSide)}
-
-                        />
                         <ButtonForm
                             text="Zoek op werkgever"
+                            onClick={()=>toggleButton(buttonConfig.SearchJobSeekerSurName)}
+
 
                         />
                         <ButtonForm
@@ -217,6 +238,36 @@ function DataPageJobSeeker() {
                         />
 
                     )}
+
+                    {switchButton === buttonConfig.SearchJobSeekerSurName && (
+                        <form onSubmit={getJobSeekerBySurNameInfo}>
+                            <input
+                                className='global-input'
+                                type='text'
+                                value={searchJobSeekerBySurname}
+                                onChange={handleInputSurName}
+                                placeholder="Wie zoek je?"
+                            />
+                            <button type='submit'>zoeken</button>
+                        </form>
+                    )}
+
+                    {searchJobSeekerBySurname && searchJobSeekerBySurname.map(jobSeeker => (
+                        <div key={jobSeeker.id}>
+                            <p>Voornaam: {jobSeeker.firstName}</p>
+                            <p>Achternaam: {jobSeeker.surName}</p>
+                            <p>Email: {jobSeeker.email}</p>
+                            <p>Geboortedatum: {jobSeeker.dateOfBirth}</p>
+                            <p>Telefoonnummer: {jobSeeker.phoneNumber}</p>
+                            <p>Woonplaats: {jobSeeker.residence}</p>
+                            <p>Adres: {jobSeeker.homeAddress}</p>
+                            <p>Huisnummer: {jobSeeker.houseNumber}</p>
+                            <p>Postcode: {jobSeeker.zipCode}</p>
+                        </div>
+                    ))}
+
+
+
 
 
 

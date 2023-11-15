@@ -1,3 +1,4 @@
+import "./FileUpload.css"
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
@@ -37,7 +38,7 @@ function FileUpload() {
 
     return (
         <div className="upload-file-div">
-            <input className='input-file-upload '
+            <input className='input-file-upload'
                 type="file"
                 ref={fileInputRef}
                 onChange={handleFileSelect}
