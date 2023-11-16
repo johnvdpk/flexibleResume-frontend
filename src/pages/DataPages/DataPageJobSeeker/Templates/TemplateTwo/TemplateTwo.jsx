@@ -1,10 +1,11 @@
 import "./TemplateTwo.css"
-import profilephoto from '../../../../../assets/profilefoto.png';
+import defaultrPofilephoto from '../../../../../assets/profilefoto.png';
 import React from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import defaultProfilePhoto from "../../../../../assets/profilefoto.png";
 
-function TemplateTwo({profileData, aboutMe, workData, studyData, personalData}) {
+function TemplateTwo({fileUrl,profileData, aboutMe, workData, studyData, personalData}) {
 
     const generatePDF = () => {
         const input = document.getElementById('template');
@@ -24,7 +25,7 @@ function TemplateTwo({profileData, aboutMe, workData, studyData, personalData}) 
 
                 <div className='header-templatetwo'>
                     <div className='templatetwo-image'>
-                        <img src={profilephoto} className='img-foto' />
+                        <img src={fileUrl || defaultProfilePhoto} className='img-foto' />
                     </div>
 
                     <div className='templatetwo-aboutme'>

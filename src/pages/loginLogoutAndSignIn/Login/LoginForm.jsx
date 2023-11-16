@@ -24,6 +24,8 @@ function LoginForm({whichDataPage}) {
                 password:password,
 
             })
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('cvId', response.data.cvId);
             toggleAddSucces(true);
             console.log(response.data);
             console.log("login bij loginform gelukt")

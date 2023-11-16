@@ -21,6 +21,7 @@
 
     "label": "Extra informatie",
     "name": "hobbyInfo",
+    "type": "text",
     "placeholder": "Korte beschrijving"
   }
 

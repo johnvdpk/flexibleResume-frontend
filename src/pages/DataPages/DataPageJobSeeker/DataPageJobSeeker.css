@@ -14,7 +14,7 @@
     .div-profile-foto {
         display: flex;
         flex-direction: row;
-        margin: 1em;
+        margin: 2em;
 
     }
 
@@ -157,7 +157,9 @@
 }
 
 .img-profile-foto {
-    width: 25%;
+    width: 30%;
+    border: var(--button-color) solid 1px;
+    border-radius: var(--radius-small);
 }
 
 .p-no-inlog {

@@ -1,6 +1,6 @@
 import './DataPageJobSeeker.css'
 import Form from "../../FormData/Form/Form.jsx"
-import profilefoto from "../../../assets/profilefoto.png"
+import defaultProfilePhoto from "../../../assets/profilefoto.png"
 import formConfigJobSeeker from "../../FormData/Form/JsonDataForm/formProfileJobseeker.json"
 import formConfigWorkInfo from "../../FormData/Form/JsonDataForm/formProfileWorkInfo.json"
 import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfilePersonalInfo.json"
@@ -16,6 +16,7 @@ import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
 import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
+import Button from "../../globalcomponents/Buttons/Button.jsx";
 
 
 
@@ -32,6 +33,7 @@ function DataPageJobSeeker() {
         const [switchButton, setSwitchButton] = useState(null);
         const navigate = useNavigate();
 
+        const [fileUrl, setFileUrl] = useState(null);
         const [jobSeekerData, setJobSeekerData] = useState(null);
         const [cvData, setCVData] = useState(null);
         const [workInfoData, setWorkInfoData] = useState(null);
@@ -366,7 +368,7 @@ function DataPageJobSeeker() {
         try {
             await axios.delete(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${id}`);
             const newPersonalInfoData = workInfoData.filter(item => item.id !== id);
-            setStudyInfoData(newPersonalInfoData);
+            setPersonalInfoData(newPersonalInfoData);
             console.log("Item personal info verwijderd");
         } catch (error) {
             console.error("Error bij het verwijderen van item", error);
@@ -393,14 +395,11 @@ function DataPageJobSeeker() {
 
 
 
-
-
-
-
     useEffect(()=> {
 
 
         const cvId = localStorage.getItem('cvId')
+
 
             if (cvId) {
                 getProfileForm(cvId);
@@ -417,6 +416,7 @@ function DataPageJobSeeker() {
 
     },[]);
 
+
     if (!isAuth || (user && user.role !== "USER" && user.role !== "ADMIN")) {
         return <p className="p-no-inlog">Toegang geweigerd. Je bent niet ingelogd of je hebt niet de juiste rechten.</p>;
     }
@@ -430,9 +430,8 @@ function DataPageJobSeeker() {
 
            <div className="div-data-page-menu">
                 <div className="div-profile-foto">
-
-                    <img src={profilefoto} className="img-profile-foto" alt="profile foto" />
-                    <FileUpload />
+                   <img src={fileUrl || defaultProfilePhoto} className="img-profile-foto"/>
+                    <FileUpload setFileUrl={setFileUrl} />
                 </div>
 
                     {/*buttons*/}
@@ -546,6 +545,7 @@ function DataPageJobSeeker() {
                 <div className='div-template-wrapper'>
 
                     <TemplateOne
+                        fileUrl={fileUrl}
                         profileData={jobSeekerData}
                         aboutMe={cvData.aboutMe}
                         workData={workInfoData}
@@ -554,6 +554,7 @@ function DataPageJobSeeker() {
                     />
 
                     <TemplateTwo
+                        fileUrl={fileUrl}
                         profileData={jobSeekerData}
                         aboutMe={cvData.aboutMe}
                         workData={workInfoData}
@@ -562,6 +563,7 @@ function DataPageJobSeeker() {
                     />
 
                     <TemplateThree
+                        fileUrl={fileUrl}
                         profileData={jobSeekerData}
                         aboutMe={cvData.aboutMe}
                         workData={workInfoData}
@@ -624,10 +626,10 @@ function DataPageJobSeeker() {
 
                {/*Dit kan nog een component worden*/}
                 <div className='div-workinfodata' >
-
+                    <h3 className='h-infotitel'>Werkgegevens</h3>
                     {workInfoData && Array.isArray(workInfoData) && workInfoData.length > 0 && (
                         <div className='div-cvid-info-data-wrapper'>
-                            <h3 className='h-infotitel'>Werkgegevens</h3>
+
                             {workInfoData.map((item, index) => (
                             <div className='div-cvid-info-data' key={index}>
                                 <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteWorkInfo(item.id)}/></div>
@@ -645,10 +647,10 @@ function DataPageJobSeeker() {
 
                 </div>
                <div className='div-studyinfodata' >
-
+                   <h3 className='h-infotitel'>Studiegegevens</h3>
                    {studyInfoData && Array.isArray(studyInfoData) && (
                        <div className='div-cvid-info-data-wrapper'>
-                           <h3 className='h-infotitel'>Studiegegevens</h3>
+
                            {studyInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
 
@@ -667,10 +669,10 @@ function DataPageJobSeeker() {
                </div>
 
                <div className='div-personalinfodata' >
-
+                   <h3 className='h-infotitel'>Persoonlijke gegevens</h3>
                    {personalInfoData && Array.isArray(personalInfoData) && (
                        <div className='div-cvid-info-data-wrapper'>
-                           <h3 className='h-infotitel'>Persoonlijke gegevens</h3>
+
                            {personalInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
                                    <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deletePersonalInfo(item.id)}/></div>

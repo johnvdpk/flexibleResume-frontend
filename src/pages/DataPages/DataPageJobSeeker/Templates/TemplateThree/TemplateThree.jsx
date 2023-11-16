@@ -1,10 +1,10 @@
 import "./TemplateThree.css"
-import profilephoto from '../../../../../assets/profilefoto.png';
 import React from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
+import defaultProfilePhoto from '../../../../../assets/profilefoto.png'
 
-function TemplateThree({profileData, aboutMe, workData, studyData, personalData}) {
+function TemplateThree({fileUrl,profileData, aboutMe, workData, studyData, personalData}) {
 
     const generatePDF = () => {
         const input = document.getElementById('template');
@@ -23,7 +23,7 @@ function TemplateThree({profileData, aboutMe, workData, studyData, personalData}
 
                 <div className='header-templatethree'>
                     <div className='templatethree-image'>
-                        <img src={profilephoto} className='img-foto' />
+                        <img src={fileUrl || defaultProfilePhoto} className='img-foto' />
                     </div>
 
                     <div className='templatethree-aboutme'>

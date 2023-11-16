@@ -1,5 +1,5 @@
 .upload-file-div{
-    margin: 1em;
+
 }
 
 .input-file-upload {
@@ -15,7 +15,7 @@
     background-color: var(--button-color);
     color:var(--text-color-invert);
     padding: var(--gap-extra-small)var(--gap-small);
-    margin: var(--gap-small);
+    margin: var(--gap-medium);
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.25s;
@@ -23,4 +23,11 @@
 
 .button-upload:hover {
     background-color: var(--secondary-color);
+}
+
+.p-false-upload {
+    font-size: 0.8em;
+    color: var(--text-color);
+    opacity: 60%;
+    margin: 1em;
 }
