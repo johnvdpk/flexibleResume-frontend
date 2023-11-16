@@ -1,6 +1,7 @@
 import './DataPageJobSeeker.css'
+import './DataPageCompany.css'
 import Form from "../../FormData/Form/Form.jsx"
-import profilefoto from "../../../assets/profilefoto.png"
+import companyLogo from "../../../assets/companylogo.png"
 import formConfigEmployer from "../../FormData/Form/JsonDataForm/formEmployer.json"
 import {useContext, useEffect, useState} from "react"
 import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
@@ -50,12 +51,29 @@ function DataPageJobSeeker() {
 
     })
 
+    const [jobSeekerDataForm, setJobSeekerDataForm] = useState( {
+
+        firstName: '',
+        surName: '',
+        email:'',
+        residence:'',
+
+        })
+
 
     // CV gegevens. Nu alleen een About me, maar dit is zo gemaakt om het makkelijker uit te breiden.
     function handleInputChangeEmployerFormData(e) {
         const { name, value } = e.target;
-        setEmployerDataForm(prevCVData => ({
-            ...prevCVData,
+        setEmployerDataForm(prevEmployerData => ({
+            ...prevEmployerData,
+            [name]: value,
+        }));
+    }
+
+    function handleInputChangeJobSeekerFormData(e) {
+        const { name, value } = e.target;
+        setEmployerDataForm(prevJobSeekerData => ({
+            ...prevJobSeekerData,
             [name]: value,
         }));
     }
@@ -125,7 +143,7 @@ function DataPageJobSeeker() {
 
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/naam`)
-            setSearchJobSeeker(response.data);
+            setJobSeekerDataForm(response.data);
             console.log("get jobseeker")
             console.log(response.data)
 
@@ -193,8 +211,8 @@ function DataPageJobSeeker() {
                 <div className="div-data-page-menu">
                     <div className="div-profile-foto">
 
-                        <img src={profilefoto} className="img-profile-foto" alt="profile foto" />
-                        <FileUpload />
+                        <img src={companyLogo} className="img-profile-foto" alt="company-logo" />
+
                     </div>
 
                     {/*buttons*/}
@@ -240,16 +258,34 @@ function DataPageJobSeeker() {
                     )}
 
                     {switchButton === buttonConfig.SearchJobSeekerSurName && (
-                        <form onSubmit={getJobSeekerBySurNameInfo}>
-                            <input
-                                className='global-input'
-                                type='text'
-                                value={searchJobSeekerBySurname}
-                                onChange={handleInputSurName}
-                                placeholder="Wie zoek je?"
-                            />
-                            <button type='submit'>zoeken</button>
-                        </form>
+                    <div>
+
+
+                                <table className='table-jobseeker-info'>
+                                    <thead>
+                                        <tr>
+                                            <th>Voornaam</th>
+                                            <th>Achternaam</th>
+                                            <th>Email</th>
+                                            <th>Woonplaats</th>
+                                        </tr>
+                                    </thead>
+                                        {jobSeekerDataForm.map((item, index)=> (
+                                    <tbody key={index}>
+                                        <tr >
+                                            <td>{item.firstName}</td>
+                                            <td>{item.surName}</td>
+                                            <td>{item.email}</td>
+                                            <td>{item.residence}</td>
+                                        </tr>
+                                    </tbody>
+                                        ))}
+                                </table>
+
+
+
+                    </div>
+
                     )}
 
                     {searchJobSeekerBySurname && searchJobSeekerBySurname.map(jobSeeker => (
@@ -325,6 +361,7 @@ function DataPageJobSeeker() {
 
 
             </div>
+
 
 
         </>

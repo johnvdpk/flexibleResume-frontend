@@ -1,5 +1,5 @@
 import './MainContent.css'
-import mainimage from '../../../assets/manatwork.png'
+import mainimage from '../../../assets/mainpageimage.png'
 
 function MainContent() {
 
@@ -13,9 +13,8 @@ function MainContent() {
                     </div>
 
                     <div className="main-container-child">
-                        <h2>Uitleg</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur. Sit convallis interdum tincidunt porttitor quisque sed. Luctus tempor semper justo egestas metus et volutpat nulla fringilla. Pulvinar nam eu donec bibendum scelerisque amet. Feugiat venenatis vel arcu mauris mattis. Nibh consequat elit euismod eget. Elementum nulla ornare urna massa eu. Ante fringilla elementum tellus sed tincidunt. Augue tellus viverra aliquet phasellus quis ullamcorper nulla sed faucibus.
-                            Aliquet curabitur in sit eleifend ut ac nunc. Vitae phasellus proin enim tortor. Nisl at aliquet tellus cras nulla viverra turpis id. Leo tempus platea adipiscing pellentesque luctus. At sit dictum viverra tortor vel eget quis amet. Aliquet consectetur euismod ornare sit venenatis ut. Eget in mattis ornare odio praesent egestas viverra. Eleifend aliquam suspendisse eget egestas tempus enim nunc donec. Pellentesque tincidunt eros convallis donec etiam. Feugiat blandit non gravida urna nunc aliquam commodo venenatis id. Ut ultricies rhoncus leo eu orci parturient purus aliquet erat.</p>
+                        <h2>Waarom?</h2>
+                        <p>Flexible Resume is voornamelijk bedoeld voor werkzoekenden. Het is al mogelijk voor bedrijven om zich aan te melden, hoewel de mogelijkheden momenteel nog beperkt zijn. Er wordt hard gewerkt om het voor werkgevers makkelijker te maken om te zoeken naar de kwaliteiten die zij nodig hebben voor hun bedrijf.</p><p>Als werkzoekende maak je een account aan bij ons op Flexible Resume. Eenmaal ingelogd kun je jouw kwaliteiten benoemen. Alles wordt overzichtelijk gehouden, zodat je het op elk moment naar eigen inzicht kunt aanpassen. Voeg nieuwe ervaringen toe of verwijder die je niet meer wilt laten zien. Ook voor werkzoekenden wordt nog hard aan de weg getimmerd. Wij zorgen ervoor dat je binnenkort meerdere cv's kunt maken. Misschien wil je voor elke werkgever een persoonlijk cv maken, zeker als er meerdere templates beschikbaar zijn.</p>
 
                     </div>
 

@@ -15,7 +15,7 @@ function Header() {
 
                 <div className="header-container">
                     <img src={logo} className='header-logo' alt='logo flexible resume'/>
-                    <p>Lorem ipsum dolor sit amet consectetur. Morbi etiam lectus fermentum egestas. Et magna ac massa euismod sociis. Et consequat vivamus risus eget. Condimentum magna porttitor pellentesque enim nibh felis sed nulla malesuada.</p>
+                    <p>Welkom bij Flexible Resume. Zin in een nieuwe baan, maar geen idee waar je moet beginnen met het maken van jouw Curriculum Vitae? Zoek niet verder. Registreer je hier gratis en begin direct met het bouwen van jouw cv. Geef jouw ervaring op, kies een template en bedank ons later. </p>
 
                     <div className="header-container-buttons">
 

@@ -6,6 +6,7 @@ function Footer() {
 
     return (
         <>
+            <div className='extra-footer-space'></div>
             <div className="footer-wrapper">
                 <div className="footerbar">
                     <img src={navlogo} className="nav-logo-image"/>

@@ -1,39 +1,61 @@
 import "./TemplateThree.css"
-import React from 'react';
+import profilePhoto from '../../../../../assets/profilefoto.png';
+import React, {useEffect, useState} from 'react';
 import html2canvas from 'html2canvas';
 import jsPDF from 'jspdf';
-import defaultProfilePhoto from '../../../../../assets/profilefoto.png'
 
-function TemplateThree({fileUrl,profileData, aboutMe, workData, studyData, personalData}) {
+function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, personalData }) {
+    const [base64Image, setBase64Image] = useState('');
+
+    const convertImageToBase64 = (imgUrl) => {
+        const img = new Image();
+        img.crossOrigin = 'Anonymous';
+        img.src = imgUrl;
+
+        img.onload = () => {
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.height = img.naturalHeight;
+            canvas.width = img.naturalWidth;
+            ctx.drawImage(img, 0, 0);
+            const dataURL = canvas.toDataURL('image/png');
+            setBase64Image(dataURL);
+        };
+    };
+
+    useEffect(() => {
+        convertImageToBase64(fileUrl || profilePhoto);
+    }, [fileUrl]);
 
     const generatePDF = () => {
-        const input = document.getElementById('template');
-        html2canvas(input, {scale: 5})
+        const input = document.getElementById('template-three');
+        html2canvas(input, { scale: 5 })
             .then((canvas) => {
-                const imgData = canvas.toDataURL('png')
+                const imgData = canvas.toDataURL('png');
                 const pdf = new jsPDF('a4');
                 pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
                 pdf.save("CV.pdf");
             });
-    }
+    };
+
     return (
-        <div className='div-templatethree-wrapper-component' >
-            <div className='div-templatethree' id='templatethree'>
+        <div className='div-template-three-wrapper-component' >
+            <div className='div-template-three' id='template-three'>
 
 
-                <div className='header-templatethree'>
-                    <div className='templatethree-image'>
-                        <img src={fileUrl || defaultProfilePhoto} className='img-foto' />
+                <div className='header-template-three'>
+                    <div className='template-three-image'>
+                        <img src={base64Image} className='img-foto' alt='profilephoto' />
                     </div>
 
-                    <div className='templatethree-aboutme'>
+                    <div className='template-three-aboutme'>
                         <p>{aboutMe}</p>
                     </div>
 
                     <div className='vertical-line'></div>
 
-                    <div className='templatethree-profielgegevens'>
-                        <table className='templatethree-table'>
+                    <div className='template-three-profielgegevens'>
+                        <table className='template-three-table'>
 
                             <tr><td>{profileData.firstName}</td></tr>
                             <tr><td>{profileData.surName}</td></tr>
@@ -49,44 +71,44 @@ function TemplateThree({fileUrl,profileData, aboutMe, workData, studyData, perso
 
                 </div>
 
-                <div className='middle-templatethree'>
+                <div className='middle-template-three'>
 
-                    <div className='data-templatethree'>
-                        <h3 className='h3-templatethree'>Werkervaring</h3>
+                    <div className='data-template-three'>
+                        <h3 className='h3-template-three'>Werkervaring</h3>
                         <div className='horizontal-line'></div>
                         {workData.map((workItem, index) => (
-                            <div key={index} className='item-templatethree'>
-                                <p className='p-title-templatethree'>{workItem.company}</p>
-                                <p className='p-period-templatethree'>{workItem.periodOfEmployment}</p>
-                                <p className='p-info-templatethree'>{workItem.jobTitle}</p>
-                                <p className='p-extrainfo-templatethree'>{workItem.jobInfo}</p>
+                            <div key={index} className='item-template-three'>
+                                <p className='p-title-template-three'>{workItem.company}</p>
+                                <p className='p-period-template-three'>{workItem.periodOfEmployment}</p>
+                                <p className='p-info-template-three'>{workItem.jobTitle}</p>
+                                <p className='p-extrainfo-template-three'>{workItem.jobInfo}</p>
                             </div>
                         ))}
                     </div>
-                    <div className='data-templatethree'>
+                    <div className='data-template-three'>
 
-                        <h3 className='h3-templatethree'>Studies</h3>
+                        <h3 className='h3-template-three'>Studies</h3>
                         <div className='horizontal-line'></div>
                         {studyData.map((studyItem, index) => (
-                            <div key={index} className='item-templatethree'>
-                                <p className='p-title-templatethree'>{studyItem.educationalInstitute}</p>
-                                <p className='p-period-templatethree'>{studyItem.periodOfStudy}</p>
-                                <p className='p-info-templatethree'>{studyItem.education}</p>
-                                <p className='p-extrainfo-templatethree'>{studyItem.studyInfo}</p>
+                            <div key={index} className='item-template-three'>
+                                <p className='p-title-template-three'>{studyItem.educationalInstitute}</p>
+                                <p className='p-period-template-three'>{studyItem.periodOfStudy}</p>
+                                <p className='p-info-template-three'>{studyItem.education}</p>
+                                <p className='p-extrainfo-template-three'>{studyItem.studyInfo}</p>
                             </div>
                         ))}
 
 
                     </div>
-                    <div className='data-templatethree'>
+                    <div className='data-template-three'>
 
-                        <h3 className='h3-templatethree'>Studies</h3>
+                        <h3 className='h3-template-three'>Hobbys</h3>
                         <div className='horizontal-line'></div>
                         {personalData.map((personalItem, index) => (
-                            <div key={index} className='item-templatethree'>
-                                <p className='p-title-templatethree'>{personalItem.hobby}</p>
-                                <p className='p-period-templatethree'>{personalItem.periodOfHobby}</p>
-                                <p className='p-extrainfo-templatethree'>{personalItem.hobbyInfo}</p>
+                            <div key={index} className='item-template-three'>
+                                <p className='p-title-template-three'>{personalItem.hobby}</p>
+                                <p className='p-period-template-three'>{personalItem.periodOfHobby}</p>
+                                <p className='p-extrainfo-template-three'>{personalItem.hobbyInfo}</p>
                             </div>
                         ))}
 
@@ -95,7 +117,7 @@ function TemplateThree({fileUrl,profileData, aboutMe, workData, studyData, perso
 
                 </div>
 
-                <div className='footer-templatethree'>
+                <div className='footer-template-three'>
                 </div>
 
 

@@ -1,64 +1,28 @@
-.data-page-wrapper {
-    display: flex;
-    flex-direction: column;
-}
+.table-jobseeker-info {
+    overflow-x: auto;
+    background-color: var(--background-color);
+    border-radius: var(--radius-small);
+    border: solid 1px var(--button-color);
+    margin: 2em 0.5em 2em 0.5em;
+    text-align: left;
+    font-size: 14px;
 
-.div-data-page-menu {
-    flex: 1;
-
-    border-radius: var(--radius-medium);
-    padding: 1rem;
-    margin-right: -3em;
-}
-
-.div-profile-foto {
 
 }
 
-.div-data-page-menu-child {
-    margin-top: 1em;
-    margin-left: 0em;
-    border-radius: var(--radius-medium);
-    background-color: var(--secondary-color);
-
+.table-jobseeker-info thead {
+   border-bottom: solid 2px var(--brand-color);
 }
 
+.table-jobseeker-info th {
 
-.div-personal-form {
-    flex: 2;
-    background: var(--secondary-color);
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: var(--radius-medium);
-}
-
-.div-personal-form-data {
-    flex: 2;
-    background: var(--secondary-color);
-    margin: 1rem;
-    padding: 1rem;
-    border-radius: var(--radius-medium);
-}
-
-
-.img-profile-foto {
-    width: 25%;
-}
-
-
-
-.p-no-inlog {
+    padding: 0.5em 0.8em 0.5em 0.8em;
     font-family: Raleway-semibold;
-    align-items: center;
-    padding: 10em;
+
 }
-
-
-@media (min-width: 900px) {
-
-    .data-page-wrapper {
-        flex-direction: row;
-    }
+.table-jobseeker-info td {
+    padding: 0.5em 0.8em 0.5em 0.8em;
 
 
 }
+
