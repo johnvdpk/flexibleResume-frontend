@@ -7,16 +7,16 @@ import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfile
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
 import formConfigCV from "../../FormData/Form/JsonDataForm/formProfileCV.json"
 import {useContext, useEffect, useState} from "react"
-import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
+import ButtonForm from "../../globalcomponents/Buttons/ButtonForm/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin.jsx";
+import ButtonPlusMin from "../../globalcomponents/Buttons/ButtonPlusMin/ButtonPlusMin.jsx";
 import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
 import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
-import Button from "../../globalcomponents/Buttons/Button.jsx";
+import Button from "../../globalcomponents/Buttons/Button/Button.jsx";
 
 
 
@@ -50,6 +50,7 @@ function DataPageJobSeeker() {
         const [cvFormData, setCVFormData] = useState( {
             aboutMe: '',
         })
+
         // Profiel gegegevens
         const [profileFormData, setProfileFormData] = useState({
             firstName: '',
@@ -174,11 +175,10 @@ function DataPageJobSeeker() {
 
             setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
-            console.log("put")
-            console.log(response.data)
+
 
         } catch (e) {
-            console.error("Niet lekker bezig met info sturen naar de database", e);
+            console.error("axios put error", e);
 
 
         }
@@ -193,11 +193,10 @@ function DataPageJobSeeker() {
 
             setCVData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await getCVForm(response.data); // alles ophalen om te zorgen dat alles up to date is
-            console.log("put")
-            console.log(response.data)
+
 
         } catch (e) {
-            console.error("Niet lekker bezig met info sturen naar de database", e);
+            console.error("put axios error", e);
 
 
         }
@@ -214,10 +213,9 @@ function DataPageJobSeeker() {
             const response = await axios.post(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`, workInfoFormData)
             setWorkInfoFormData(response.data)
             getWorkInfoForm(response.data)
-            console.log("post work")
-            console.log(response.data)
+
         } catch (e) {
-            console.log("create work info niet gelukt")
+            console.error("axios post error", e);
         }
     }
 
@@ -229,10 +227,9 @@ function DataPageJobSeeker() {
             const response = await axios.post(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`, personalInfoFormData)
             setPersonalInfoFormData(response.data)
             getPersonalInfoForm(response.data)
-            console.log("post personal")
-            console.log(response.data)
+
         } catch (e) {
-            console.log("create personal info niet gelukt")
+            console.error("axios post error", e)
         }
     }
 
@@ -244,10 +241,9 @@ function DataPageJobSeeker() {
             const response = await axios.post(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`, studyInfoFormData)
             setStudyInfoFormData(response.data)
             getStudyInfoForm(response.data)
-            console.log("post study")
-            console.log(response.data)
+
         } catch (e) {
-            console.log("create study info niet gelukt")
+            console.error("axios post error", e)
         }
     }
 
@@ -260,11 +256,9 @@ function DataPageJobSeeker() {
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
             setJobSeekerData(response.data);
-            console.log("get")
-            console.log(response.data)
 
         } catch (e) {
-            console.error("krijg geen info uit de database")
+            console.error("axios get error", e)
         }
 
     }
@@ -274,11 +268,9 @@ function DataPageJobSeeker() {
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/cv/${cvId}`)
             setCVData(response.data);
-            console.log("get")
-            console.log(response.data)
 
         } catch (e) {
-            console.error("krijg geen info uit de database")
+            console.error("axios get error", e)
         }
 
     }
@@ -290,24 +282,23 @@ function DataPageJobSeeker() {
         try{
             const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
             setWorkInfoData(response.data);
-            console.log("get werkinfo werkt")
+
         } catch(e) {
-            console.error('Axios error:', e);
+            console.error("axios get error", e);
             if (e.response) {
-                // Het serverantwoord op het verzoek
                 console.error('Response:', e.response);
             }
-            console.error('Krijg niks uit werkinfo', e)
         }
     }
+
     // Axios voor studie info
     async function getStudyInfoForm() {
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`)
             setStudyInfoData(response.data);
-            console.log("get studyinfo werkt")
+
         }catch (e) {
-            console.error("Krijg niks uit de studieinfo", e)
+            console.error("axios get error", e)
         }
     }
     // Axios voor persoonlijke info
@@ -315,9 +306,9 @@ function DataPageJobSeeker() {
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`)
             setPersonalInfoData(response.data);
-            console.log("get hobbyinfo werkt")
+
         }catch (e) {
-            console.error("Krijg niks uit de hobbyinfo", e)
+            console.error("axios get error", e)
         }
     }
 
@@ -335,9 +326,8 @@ function DataPageJobSeeker() {
                 await axios.delete(`http://localhost:8080/werkzoekende/werkinfo/${id}`);
                 const newWorkInfoData = workInfoData.filter(item => item.id !== id);
                 setWorkInfoData(newWorkInfoData);
-                console.log("Item workinfo verwijderd");
-            } catch (error) {
-                console.error("Error bij het verwijderen van item", error);
+            } catch (e) {
+                console.error("Error bij het verwijderen van item", e);
             }
         }
 
@@ -352,9 +342,8 @@ function DataPageJobSeeker() {
             await axios.delete(`http://localhost:8080/werkzoekende/studieinfo/${id}`);
             const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
             setStudyInfoData(newStudyInfoData);
-            console.log("Item studyinfo verwijderd");
-        } catch (error) {
-            console.error("Error bij het verwijderen van item", error);
+        } catch (e) {
+            console.error("Error bij het verwijderen van item", e);
         }
     }
 
@@ -369,9 +358,8 @@ function DataPageJobSeeker() {
             await axios.delete(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${id}`);
             const newPersonalInfoData = workInfoData.filter(item => item.id !== id);
             setPersonalInfoData(newPersonalInfoData);
-            console.log("Item personal info verwijderd");
-        } catch (error) {
-            console.error("Error bij het verwijderen van item", error);
+        } catch (e) {
+            console.error("Error bij het verwijderen van item", e);
         }
     }
 
@@ -382,13 +370,13 @@ function DataPageJobSeeker() {
         if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
             try {
                 await axios.delete(`http://localhost:8080/auth/user/${email}`);
-                // Logica om gebruiker uit te loggen en de UI bij te werken
-                console.log("Account succesvol verwijderd");
+                // gebruiker logt ook direct uit.
+
                 logout();
                 navigate("/");
-            } catch (error) {
-                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
-                // Toon foutmelding
+            } catch (e) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
+
             }
         }
     }
@@ -407,10 +395,10 @@ function DataPageJobSeeker() {
                 getWorkInfoForm(cvId);
                 getStudyInfoForm(cvId);
                 getPersonalInfoForm(cvId);
-                console.log("dit is het cv_Id=", +cvId)
+
             } else {
-                const cvId = 1;
-                console.log(cvId +' cvId niet gevonden in de localstorage')
+
+                console.error('cvId niet gevonden in de localstorage')
             }
 
 
@@ -423,7 +411,6 @@ function DataPageJobSeeker() {
     return (
 
         <>
-            {/*{isAuth ?*/}
 
        <div className="data-page-wrapper">
 
@@ -576,18 +563,12 @@ function DataPageJobSeeker() {
                )}
 
 
-
                {switchButton === buttonConfig.deleteAcount && (
                    <div className='delete-acount-wrapper'>
                        <Button text='Acount verwijderen' onClick={deleteAccount}/>
                    </div>
 
                    )}
-
-
-
-
-
 
 
            </div>
@@ -694,10 +675,6 @@ function DataPageJobSeeker() {
 
        </div>
 
-           {/* :*/}
-
-           {/*    <p className="p-no-inlog"> Je bent niet inlogt</p>*/}
-           {/*}*/}
         </>
     )
 }

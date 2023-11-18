@@ -1,11 +1,12 @@
 .table-jobseeker-info {
     overflow-x: auto;
+    width: 90%;
     background-color: var(--background-color);
     border-radius: var(--radius-small);
     border: solid 1px var(--button-color);
     margin: 2em 0.5em 2em 0.5em;
     text-align: left;
-    font-size: 14px;
+    font-size: 7px;
 
 
 }
@@ -16,13 +17,39 @@
 
 .table-jobseeker-info th {
 
-    padding: 0.5em 0.8em 0.5em 0.8em;
+    padding: 0.3em;
     font-family: Raleway-semibold;
 
 }
 .table-jobseeker-info td {
-    padding: 0.5em 0.8em 0.5em 0.8em;
+    padding: 0.3em;
 
 
 }
 
+@media (min-width: 550px) {
+
+    .table-jobseeker-info {
+        overflow-x: auto;
+
+        margin: 2em 0.5em 2em 0.5em;
+        font-size: 14px;
+
+
+    }
+
+    .table-jobseeker-info thead {
+        border-bottom: solid 2px var(--brand-color);
+    }
+
+    .table-jobseeker-info th {
+
+        padding: 0.5em 0.8em 0.5em 0.8em;
+
+    }
+    .table-jobseeker-info td {
+        padding: 0.5em 0.8em 0.5em 0.8em;
+
+
+    }
+}

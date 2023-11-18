@@ -35,13 +35,14 @@
 
 .FAQ-container {
 
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-top: 2em;
+    margin-bottom: 2em;
 
 }
 
 .FAQ-div {
     flex: 1;
+    padding: 1em;
     margin-top: 0.5em;
     margin-bottom: 1.5em;
 }

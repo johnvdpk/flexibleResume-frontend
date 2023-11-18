@@ -1,16 +1,14 @@
-import './DataPageJobSeeker.css'
-import './DataPageCompany.css'
+import './DataPageJobSeeker.css' // Dezelfde CCS styling als DataPageJobseeker.
+import './DataPageCompany.css' // Hier staat de extra CSS in voor de company pagina
 import Form from "../../FormData/Form/Form.jsx"
 import companyLogo from "../../../assets/companylogo.png"
 import formConfigEmployer from "../../FormData/Form/JsonDataForm/formEmployer.json"
 import {useContext, useEffect, useState} from "react"
-import ButtonForm from "../../globalcomponents/Buttons/ButtonForm.jsx"
+import ButtonForm from "../../globalcomponents/Buttons/ButtonForm/ButtonForm.jsx"
 import { AuthContext} from "../../../context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import Button from "../../globalcomponents/Buttons/Button.jsx";
-import FileUpload from "./FileUpload/FileUpload.jsx";
-
+import Button from "../../globalcomponents/Buttons/Button/Button.jsx";
 
 
 function DataPageJobSeeker() {
@@ -18,15 +16,12 @@ function DataPageJobSeeker() {
     //useContext
     const {isAuth, user, logout} = useContext(AuthContext);
 
-
-
-
     //useState
     const [activeProfile, setActiveProfile] = useState(null);
     const [switchButton, setSwitchButton] = useState(null);
     const [employerData, setEmployerData] = useState(null);
-    const [searchJobSeeker, setSearchJobSeeker] = useState(null);
     const [searchJobSeekerBySurname, setSearchJobSeekerBySurname] = useState('');
+    const [workInfoData, setWorkInfoData] = useState(null);
     const navigate = useNavigate();
 
 
@@ -60,8 +55,14 @@ function DataPageJobSeeker() {
 
         })
 
+    const [workInfoDataForm, setWorkInfoDataForm] = useState({
+        company: '',
+        jobTitle: '',
+        periodOfEmployment: '',
+        jobInfo: '',
+    })
 
-    // CV gegevens. Nu alleen een About me, maar dit is zo gemaakt om het makkelijker uit te breiden.
+
     function handleInputChangeEmployerFormData(e) {
         const { name, value } = e.target;
         setEmployerDataForm(prevEmployerData => ({
@@ -70,21 +71,13 @@ function DataPageJobSeeker() {
         }));
     }
 
-    function handleInputChangeJobSeekerFormData(e) {
-        const { name, value } = e.target;
-        setEmployerDataForm(prevJobSeekerData => ({
-            ...prevJobSeekerData,
-            [name]: value,
-        }));
-    }
-    const handleInputSurName = (e) => {
-        setSearchJobSeekerBySurname(e.target.value);
-    };
+
 
     // wissel tussen de verschillende formulieren
     const toggleForm = (profileConfig) => {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
     }
+
 
     const toggleButton = (buttonConfig)=> {
         setSwitchButton(current => current === buttonConfig ? null : buttonConfig);
@@ -108,18 +101,13 @@ function DataPageJobSeeker() {
 
             setEmployerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await setEmployerData(response.data); // alles ophalen om te zorgen dat alles up to date is
-            console.log("put")
-            console.log(response.data)
 
         } catch (e) {
-            console.error("Niet lekker bezig met info sturen naar de database", e);
-
+            console.error("axios put error", e);
 
         }
 
     }
-
-
 
 
 
@@ -129,11 +117,9 @@ function DataPageJobSeeker() {
         try {
             const response = await axios.get(`http://localhost:8080/werkgever/email/${employerEmail}`)
             setEmployerData(response.data);
-            console.log("get")
-            console.log(response.data)
 
         } catch (e) {
-            console.error("krijg geen info uit de database")
+            console.error("axios get error", e)
         }
 
     }
@@ -144,25 +130,30 @@ function DataPageJobSeeker() {
         try {
             const response = await axios.get(`http://localhost:8080/werkzoekende/naam`)
             setJobSeekerDataForm(response.data);
-            console.log("get jobseeker")
-            console.log(response.data)
+
 
         } catch (e) {
-            console.error("krijg geen info uit de database jobseeker")
+            console.error("axios get error", e)
         }
 
     }
 
-    async function getJobSeekerBySurNameInfo(e) {
-        e.preventDefault();
-        try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/achternaam/${searchJobSeekerBySurname}`);
-            setSearchJobSeekerBySurname(response.data); // Update de state met de zoekresultaten
-            console.log("Zoekresultaten: surname", response.data);
-        } catch (e) {
-            console.error("Fout bij het ophalen van gegevens: Surnam", e);
-        }
-    }
+    // Het zou een fijne functie kunnen zijn om op werk ervaring te zoeken. Daarvoor heb je genoeg data nodig om de
+    // jobseeker uiteindelijk aan een workInfo te kunnen koppelen. Voor nu staat de functie uit (werkt nog niet).
+
+
+    // async function fetchMoreData() {
+    //     try {
+    //         // Definieer uw URL's
+    //         const jobSeekerUrl = await axios.get('http://localhost:8080/werkzoekende/naam');
+    //         const cvUrl = await axios.get('http://localhost:8080/werkzoekende/cv/1');
+    //         const workInfoUrl = await axios.get('http://localhost:8080/werkzoekende/werkinfo/1');
+    //
+    //
+    //     } catch (error) {
+    //         console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
+    //     }
+    // }
 
 
     async function deleteAccount() {
@@ -173,12 +164,12 @@ function DataPageJobSeeker() {
             try {
                 await axios.delete(`http://localhost:8080/auth/user/${email}`);
                 // Logica om gebruiker uit te loggen en de UI bij te werken
-                console.log("Account succesvol verwijderd");
+
                 logout();
                 navigate("/");
-            } catch (error) {
-                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
-                // Toon foutmelding
+            } catch (e) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
+
             }
         }
     }
@@ -189,8 +180,6 @@ function DataPageJobSeeker() {
     useEffect(()=> {
         getEmployerForm()
         getJobSeekerInfo()
-        getJobSeekerBySurNameInfo()
-
 
 
     },[]);
@@ -203,7 +192,6 @@ function DataPageJobSeeker() {
     return (
 
         <>
-            {/*{isAuth ?*/}
 
             <div className="data-page-wrapper">
 
@@ -217,7 +205,6 @@ function DataPageJobSeeker() {
 
                     {/*buttons*/}
                     <div className="div-data-page-menu-child">
-
 
                         <ButtonForm
                             text="Bedrijfsgegevens"
@@ -236,14 +223,12 @@ function DataPageJobSeeker() {
 
                         />
 
-
                     </div>
 
 
                 </div>
 
                 <div className="div-personal-form">
-
 
 
                     {activeProfile === formConfigEmployer && (
@@ -282,8 +267,6 @@ function DataPageJobSeeker() {
                                         ))}
                                 </table>
 
-
-
                     </div>
 
                     )}
@@ -303,22 +286,12 @@ function DataPageJobSeeker() {
                     ))}
 
 
-
-
-
-
-
                     {switchButton === buttonConfig.deleteAcount && (
                         <div className='delete-acount-wrapper'>
                             <Button text='Acount verwijderen' onClick={deleteAccount}/>
                         </div>
 
                     )}
-
-
-
-
-
 
 
                 </div>
@@ -348,21 +321,23 @@ function DataPageJobSeeker() {
                     <div className='div-cvdata'>
 
                         {employerData && (
-                            <div className='div-cvdata-child'>
-                                <div><p>{employerData.vision}</p></div>
-                                <div><p>{employerData.mission}</p></div>
-                            </div>
+                            <>
+                                <h3 className='h-infotitel'>Visie</h3>
+                                <div className='div-cvdata-child'>
 
+                                    <p>{employerData.vision}</p>
+                                </div>
+                                <h3 className='h-infotitel'>Missie</h3>
+                                <div className='div-cvdata-child'>
+                                    <p>{employerData.mission}</p>
+                                </div>
+                            </>
                         )}
                     </div>
 
                 </div>
 
-
-
             </div>
-
-
 
         </>
     )

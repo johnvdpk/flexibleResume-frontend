@@ -27,12 +27,11 @@ function SignUpForm() {
             });
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('cvId', response.data.cvId);
-            console.log(response.data)
             toggleAddSucces(true);
 
 
-        } catch (error) {
-            console.error("Er is een fout opgetreden bij het aanmelden", error);
+        } catch (e) {
+            console.error("Er is een fout opgetreden bij het aanmelden", e);
             toggleAddSucces(false);
         }
 

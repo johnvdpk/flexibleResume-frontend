@@ -42,7 +42,6 @@ async function login(token) {
     const userInfo = jwtDecode(token);
     const userEmail = userInfo.sub;
     const userRole = userInfo.role;
-    console.log(userRole);
 
 
     try {
@@ -53,12 +52,10 @@ async function login(token) {
                 email: userEmail,
                 role: userRole
 
-
             },
             status: 'done',
         });
 
-        console.log("De gebruiker is ingelogd")
 
     } catch (e) {
         console.error("De gebruiker kan niet inloggen AuthContext");
@@ -81,7 +78,7 @@ async function login(token) {
             user: null,
             status: 'done',
         });
-        console.log('Gebruiker is uitgelogd!');
+
     }
 
     const contextData = {

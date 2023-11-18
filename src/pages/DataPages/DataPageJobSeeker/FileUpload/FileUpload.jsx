@@ -1,5 +1,4 @@
 import "./FileUpload.css"
-import defaultProfilePhoto from '../../../../assets/profilefoto.png'
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
@@ -39,7 +38,6 @@ function FileUpload({setFileUrl, fileUrl}) {
                 },
             });
             setFileUrl(response.data.url);
-            console.log('Bestand succesvol geüpload:', response.data);
             toggleAddSucces(true);
         } catch (error) {
             console.error('Er is een fout opgetreden bij het uploaden van het bestand:', error);
@@ -57,7 +55,7 @@ function FileUpload({setFileUrl, fileUrl}) {
                 onChange={handleFileSelect}
             />
             <button className="button-upload" onClick={handleButtonClick}>Upload</button>
-            {addSucces === false && <p className='p-false-upload'> Gebruik een png-bestand onder 1MB</p>}
+            {addSucces === false && <p className='p-false-upload'> Gebruik een bestand onder 1MB</p>}
         </div>
     );
 }

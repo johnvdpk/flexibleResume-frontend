@@ -27,13 +27,11 @@ function LoginForm({whichDataPage}) {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('cvId', response.data.cvId);
             toggleAddSucces(true);
-            console.log(response.data);
-            console.log("login bij loginform gelukt")
             login(response.data.token);
             navigate(`/${whichDataPage}`);
 
         } catch (e) {
-            console.error("Loginform inlog niet gelukt");
+            console.error("login error", e);
             toggleAddSucces(false);
 
         }
