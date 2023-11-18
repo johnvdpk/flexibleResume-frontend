@@ -2,6 +2,7 @@
 .faq-transition-enter {
     opacity: 0;
     transform: translateY(-20px);
+    transition: opacity 500ms, transform 500ms;
 }
 
 .faq-transition-enter-active {
@@ -12,7 +13,10 @@
 
 .faq-transition-exit {
     opacity: 1;
+    transform: translateY(0);
+    transition: opacity 500ms, transform 500ms;
 }
+
 
 .faq-transition-exit-active {
     opacity: 0;
@@ -31,13 +35,14 @@
 
 .FAQ-container {
 
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+    margin-top: 2em;
+    margin-bottom: 2em;
 
 }
 
 .FAQ-div {
     flex: 1;
+    padding: 1em;
     margin-top: 0.5em;
     margin-bottom: 1.5em;
 }

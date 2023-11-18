@@ -1,7 +1,7 @@
 import './LoginPage.css'
 import logo from '../../../assets/flexible resume.svg'
 import LoginImage from '../../../assets/loginimage.png'
-import Switch from "../../globalcomponents/Buttons/Switch.jsx";
+import Switch from "../../globalcomponents/Buttons/Switch/Switch.jsx";
 import LoginForm from "./LoginForm.jsx";
 import {useState} from "react";
 function LoginPage() {

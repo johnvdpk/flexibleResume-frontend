@@ -6,41 +6,70 @@
 
   {
     "label": "Bedrijf",
+    "name": "company",
+    "type": "text",
     "placeholder": "Bedrijfsnaam?"
   },
   {
 
     "label": "Branche",
+    "name": "industry",
+    "type": "text",
     "placeholder": "Branche?"
   },
   {
-
-    "label": "Adres",
+    "label": "Kantoor Adres",
+    "name": "officeAdress",
+    "type": "text",
     "placeholder": "Wat is het kantooradres?"
+  },
+  {
+    "label": "Kanoornummer",
+    "name": "officeAdressNumber",
+    "type": "text",
+    "placeholder": "Wat is het kantoornummer?"
   },
   {
 
     "label": "Postcode",
+    "name": "officeZipcode",
+    "type": "text",
     "placeholder": "Wat is de Postcode?"
   },
   {
 
     "label": "Plaats vestiging",
+    "name": "officeCityLocation",
+    "type": "text",
     "placeholder": "Vestiging van het kantoor"
   },
   {
-
     "label": "KVK",
+    "name": "kvk",
+    "type": "text",
     "placeholder": "KVK NR"
   },
   {
-
-    "label": "Nieuwe inlogcode",
-    "placeholder": "Wat is je inlogcode?"
+    "label": "Missie",
+    "name": "mission",
+    "type": "text",
+    "inputType" : "textarea",
+    "placeholder": "Missie van het bedrijf"
   },
   {
-
-    "label": "Nogmaals je inlogcode?",
-    "placeholder": "Type nog een keer je nieuwe code"
+      "label": "Visie",
+      "name": "vision",
+      "type": "text",
+      "inputType" : "textarea",
+      "placeholder": "Visie van het bedrijf"
+  },
+  {
+    "label": "Aantal medewerkers",
+    "name": "numberOfEmployees",
+    "type": "text",
+    "placeholder": "Aantal medewerkes"
   }
+
+
+
 ]

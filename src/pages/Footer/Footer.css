@@ -13,9 +13,14 @@
     justify-content: space-between;
     width: var(--width-total);
 
+
 }
 
 .footer-logo-image {
     margin:1em;
     width: 18%;
+}
+
+.extra-footer-space {
+    height: 20vw;
 }

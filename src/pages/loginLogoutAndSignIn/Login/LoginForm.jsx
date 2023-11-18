@@ -11,7 +11,7 @@ function LoginForm({whichDataPage}) {
     const [password, setPassword] = useState('');
     const {login} = useContext(AuthContext);
     const navigate = useNavigate();
-    const [addSucces, toggleAddSucces] = useState(false);
+    const [addSucces, toggleAddSucces] = useState('');
 
     async function HandleSubmit(e) {
         e.preventDefault();
@@ -24,14 +24,15 @@ function LoginForm({whichDataPage}) {
                 password:password,
 
             })
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('cvId', response.data.cvId);
             toggleAddSucces(true);
-            console.log(response.data);
-            console.log("login bij loginform gelukt")
             login(response.data.token);
             navigate(`/${whichDataPage}`);
 
         } catch (e) {
-            console.error("Loginform inlog niet gelukt");
+            console.error("login error", e);
+            toggleAddSucces(false);
 
         }
 
@@ -43,6 +44,7 @@ function LoginForm({whichDataPage}) {
 
         <form onSubmit={HandleSubmit} className="inlog-form">
             {addSucces === true && <p>inloggen is gelukt</p>}
+            {addSucces === false && <p>Misschien een verkeerd wachtwoord?</p>}
             <input
                 id="email-field"
                 type="email"

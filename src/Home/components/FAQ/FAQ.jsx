@@ -25,7 +25,7 @@ function FAQ() {
                 <h2>FAQ</h2>
                 {faqs.map((faq, index) => (
                     <div key={index}>
-                        <h4>{faq.question}</h4>
+                        <p>{faq.question}</p>
                         <button className="FAQ-button" onClick={() => toggleVisibility(index)}>
                             Wat is het antwoord?&nbsp;&nbsp;{visibleFAQIndex === index ? '  -' : '  +'}
                         </button>

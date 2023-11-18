@@ -12,6 +12,9 @@
 }
 
     .div-profile-foto {
+        display: flex;
+        flex-direction: row;
+        margin: 2em;
 
     }
 
@@ -40,13 +43,36 @@
     border-radius: var(--radius-medium);
 }
 
+.div-template-wrapper {
+    margin-top: 5em;
+}
+
 .div-jobseekerdata {
+
+}
+
+.div-cvdata-child {
+    flex: 1;
+    background: var(--background-color);
+    border: solid 1.5px var(--button-color);
+    border-radius: var(--radius-small);
+    margin: 1em;
+    padding: 1em;
 
 }
 
 .div-cvid-info-data-wrapper {
     display: flex;
     flex-direction: column;
+}
+
+.h-infotitel {
+
+    font-family: Raleway-semibold;
+    font-size: 1.2em;
+    margin-left: 1em;
+    padding: 1em;
+
 }
 
     .div-cvid-info-data {
@@ -112,6 +138,9 @@
                 }
 
 
+
+
+
 .table-persoonlijkegegevenstabel {
     border: 1.5px solid var(--button-color);
     background-color: var(--background-color);
@@ -128,13 +157,19 @@
 }
 
 .img-profile-foto {
-    width: 25%;
+    width: 30%;
+    border: var(--button-color) solid 1px;
+    border-radius: var(--radius-small);
 }
 
 .p-no-inlog {
     font-family: Raleway-semibold;
     align-items: center;
     padding: 10em;
+}
+
+.delete-acount-wrapper {
+    margin: 10em;
 }
 
 @media (min-width: 550px) {
@@ -144,6 +179,10 @@
 
         margin: 2em;
 
+    }
+
+    .div-cvdata-child {
+        margin: 2em;
     }
 
 }

@@ -32,10 +32,11 @@ function Form({ formConfig, handleInputChange, formOnSubmit, FormData }) {
                         value={value}
                         placeholder={inputConfig.placeholder}
                         onChange={handleInputChange}
+                        inputType={inputConfig.inputType}
                     />
                 );
             })}
-           <button type="submit">verzenden</button>
+           <button type="submit">Opslaan</button>
         </form>
 
 

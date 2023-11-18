@@ -2,7 +2,7 @@ import './Navigation.css'
 import navlogo from './assets/FlexibleResume-menu-logo.png'
 
 import {Link} from "react-router-dom";
-import Button from "../globalcomponents/Buttons/Button.jsx";
+import Button from "../globalcomponents/Buttons/Button/Button.jsx";
 import { AuthContext } from "../../context/AuthContext.jsx";
 import {useContext} from "react";
 
@@ -29,8 +29,6 @@ const {isAuth, logout} = useContext(AuthContext);
                                 text="Logout"
                                 onClick={logout}
 
-
-
                             />
 
                             :
@@ -45,7 +43,6 @@ const {isAuth, logout} = useContext(AuthContext);
                             buttonstyle="nav-button"
                             link="/signin"
                             text="Registeren"
-
 
                             />
                             </>
