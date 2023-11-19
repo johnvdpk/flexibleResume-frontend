@@ -306,7 +306,7 @@ function DataPageJobSeeker() {
                                 <tr><td>Bedrijf:</td><td>{employerData.company}</td></tr>
                                 <tr><td>Branche:</td><td>{employerData.industry}</td></tr>
                                 <tr><td>Kantooradres:</td><td>{employerData.officeAdress}</td></tr>
-                                <tr><td>Kantoor nummer:</td><td>{employerData.officeAdressNumber}</td></tr>
+                                <tr><td>Kantoornummer:</td><td>{employerData.officeAdressNumber}</td></tr>
                                 <tr><td>Postcode:</td><td>{employerData.officeZipcode}</td></tr>
                                 <tr><td>Plaats vestiging:</td><td>{employerData.officeCityLocation}</td></tr>
                                 <tr><td>Kvk:</td><td>{employerData.kvk}</td></tr>

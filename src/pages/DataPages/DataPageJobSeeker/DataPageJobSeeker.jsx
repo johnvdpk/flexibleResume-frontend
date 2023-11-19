@@ -430,7 +430,7 @@ function DataPageJobSeeker() {
                            onClick={() => toggleForm(formConfigJobSeeker)}
                        />
                        <ButtonForm
-                           text="Introductie tekst"
+                           text="Introductietekst"
                            onClick={() => toggleForm(formConfigCV)}
                        />
                        <ButtonForm
@@ -582,8 +582,8 @@ function DataPageJobSeeker() {
 
                                <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
                                <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
-                               <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
-                               <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
+                               <tr><td>Geboortedatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
+                               <tr><td>Telefoonnummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
                                <tr><td>Email:</td><td>{jobSeekerData.email}</td></tr>
                                <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
                                <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
