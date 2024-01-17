@@ -171,7 +171,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`, profileFormData)
+            const response = await axios.put(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, profileFormData)
 
             setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
@@ -189,7 +189,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/werkzoekende/cv/cv/${cvId}`, cvFormData)
+            const response = await axios.put(`http://localhost:8080/jobseeker/cv/cv/${cvId}`, cvFormData)
 
             setCVData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await getCVForm(response.data); // alles ophalen om te zorgen dat alles up to date is
@@ -210,7 +210,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`, workInfoFormData)
+            const response = await axios.post(`http://localhost:8080/jobseeker/workinfo/${cvId}`, workInfoFormData)
             setWorkInfoFormData(response.data)
             getWorkInfoForm(response.data)
 
@@ -224,7 +224,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`, personalInfoFormData)
+            const response = await axios.post(`http://localhost:8080/jobseeker/personalinfo/${cvId}`, personalInfoFormData)
             setPersonalInfoFormData(response.data)
             getPersonalInfoForm(response.data)
 
@@ -238,7 +238,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.post(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`, studyInfoFormData)
+            const response = await axios.post(`http://localhost:8080/jobseeker/studyinfo/${cvId}`, studyInfoFormData)
             setStudyInfoFormData(response.data)
             getStudyInfoForm(response.data)
 
@@ -254,7 +254,7 @@ function DataPageJobSeeker() {
     async function getProfileForm() {
 
         try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/email/${jobSeekerEmail}`)
+            const response = await axios.get(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`)
             setJobSeekerData(response.data);
 
         } catch (e) {
@@ -266,7 +266,7 @@ function DataPageJobSeeker() {
     async function getCVForm() {
 
         try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/cv/${cvId}`)
+            const response = await axios.get(`http://localhost:8080/jobseeker/cv/${cvId}`)
             setCVData(response.data);
 
         } catch (e) {
@@ -280,7 +280,7 @@ function DataPageJobSeeker() {
 
     async function getWorkInfoForm() {
         try{
-            const response = await axios.get(`http://localhost:8080/werkzoekende/werkinfo/${cvId}`)
+            const response = await axios.get(`http://localhost:8080/jobseeker/workinfo/${cvId}`)
             setWorkInfoData(response.data);
 
         } catch(e) {
@@ -294,7 +294,7 @@ function DataPageJobSeeker() {
     // Axios voor studie info
     async function getStudyInfoForm() {
         try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/studieinfo/${cvId}`)
+            const response = await axios.get(`http://localhost:8080/jobseeker/studyinfo/${cvId}`)
             setStudyInfoData(response.data);
 
         }catch (e) {
@@ -304,7 +304,7 @@ function DataPageJobSeeker() {
     // Axios voor persoonlijke info
     async function getPersonalInfoForm() {
         try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${cvId}`)
+            const response = await axios.get(`http://localhost:8080/jobseeker/personalinfo/${cvId}`)
             setPersonalInfoData(response.data);
 
         }catch (e) {
@@ -323,7 +323,7 @@ function DataPageJobSeeker() {
                 return;
             }
             try {
-                await axios.delete(`http://localhost:8080/werkzoekende/werkinfo/${id}`);
+                await axios.delete(`http://localhost:8080/jobseeker/workinfo/${id}`);
                 const newWorkInfoData = workInfoData.filter(item => item.id !== id);
                 setWorkInfoData(newWorkInfoData);
             } catch (e) {
@@ -339,7 +339,7 @@ function DataPageJobSeeker() {
             return;
         }
         try {
-            await axios.delete(`http://localhost:8080/werkzoekende/studieinfo/${id}`);
+            await axios.delete(`http://localhost:8080/jobseeker/studyinfo/${id}`);
             const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
             setStudyInfoData(newStudyInfoData);
         } catch (e) {
@@ -355,7 +355,7 @@ function DataPageJobSeeker() {
             return;
         }
         try {
-            await axios.delete(`http://localhost:8080/werkzoekende/persoonlijkeinfo/${id}`);
+            await axios.delete(`http://localhost:8080/jobseeker/personalinfo/${id}`);
             const newPersonalInfoData = workInfoData.filter(item => item.id !== id);
             setPersonalInfoData(newPersonalInfoData);
         } catch (e) {
@@ -430,7 +430,7 @@ function DataPageJobSeeker() {
                            onClick={() => toggleForm(formConfigJobSeeker)}
                        />
                        <ButtonForm
-                           text="Introductie tekst"
+                           text="Introductietekst"
                            onClick={() => toggleForm(formConfigCV)}
                        />
                        <ButtonForm
@@ -582,8 +582,8 @@ function DataPageJobSeeker() {
 
                                <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
                                <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
-                               <tr><td>GeboorteDatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
-                               <tr><td>TelefoonNummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
+                               <tr><td>Geboortedatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
+                               <tr><td>Telefoonnummer:</td><td>{jobSeekerData.phoneNumber}</td></tr>
                                <tr><td>Email:</td><td>{jobSeekerData.email}</td></tr>
                                <tr><td>Woonplaats:</td><td>{jobSeekerData.residence}</td></tr>
                                <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
