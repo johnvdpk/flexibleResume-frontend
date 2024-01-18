@@ -97,7 +97,7 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/werkgever/email/${employerEmail}`, employerDataForm)
+            const response = await axios.put(`http://localhost:8080/employer/email/${employerEmail}`, employerDataForm)
 
             setEmployerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await setEmployerData(response.data); // alles ophalen om te zorgen dat alles up to date is
@@ -115,7 +115,7 @@ function DataPageJobSeeker() {
     async function getEmployerForm() {
 
         try {
-            const response = await axios.get(`http://localhost:8080/werkgever/email/${employerEmail}`)
+            const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`)
             setEmployerData(response.data);
 
         } catch (e) {
@@ -128,7 +128,7 @@ function DataPageJobSeeker() {
     async function getJobSeekerInfo() {
 
         try {
-            const response = await axios.get(`http://localhost:8080/werkzoekende/naam`)
+            const response = await axios.get(`http://localhost:8080/employer/name`)
             setJobSeekerDataForm(response.data);
 
 
