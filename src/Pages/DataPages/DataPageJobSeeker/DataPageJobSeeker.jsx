@@ -170,13 +170,14 @@ function DataPageJobSeeker() {
 
         try {
             const response = await axios.put(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, profileFormData)
-
+            console.log(response.data)
             setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
             await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
 
 
         } catch (e) {
             console.error("axios put error", e);
+            console.log(e.response)
 
 
         }
@@ -611,7 +612,7 @@ function DataPageJobSeeker() {
 
                             {workInfoData.map((item, index) => (
                             <div className='div-cvid-info-data' key={index}>
-                                <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteWorkInfo(item.id)}/></div>
+                                <div className= 'div-cvid-button'><Button text="-" onClick={()=>deleteWorkInfo(item.id)}/></div>
                                 <div className= 'div-cvid-info-data-child'>
                                     <div className='div-cvid-info-data-main'>
                                         <p className='p-cvid-title'>{item.company}</p>
@@ -633,7 +634,7 @@ function DataPageJobSeeker() {
                            {studyInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
 
-                                   <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deleteStudyInfo(item.id)}/></div>
+                                   <div className= 'div-cvid-button'><Button text="-" onClick={()=>deleteStudyInfo(item.id)}/></div>
                                    <div className= 'div-cvid-info-data-child'>
                                        <div className='div-cvid-info-data-main'>
                                            <p className='p-cvid-title'>{item.educationalInstitute}</p>
@@ -654,7 +655,7 @@ function DataPageJobSeeker() {
 
                            {personalInfoData.map((item, index) => (
                                <div className='div-cvid-info-data' key={index}>
-                                   <div className= 'div-cvid-button'><ButtonPlusMin text="-" onClick={()=>deletePersonalInfo(item.id)}/></div>
+                                   <div className= 'div-cvid-button'><Button text="-" onClick={()=>deletePersonalInfo(item.id)}/></div>
                                    <div className= 'div-cvid-info-data-child'>
                                        <div className='div-cvid-info-data-main'>
                                            <p className='p-cvid-title'>{item.hobby}</p>
