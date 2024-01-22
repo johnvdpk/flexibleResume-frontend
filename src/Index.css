@@ -1,0 +1,22 @@
+@font-face {
+  font-family: Raleway;
+  src: url('Assets/font/Raleway/Raleway-Regular.ttf');
+}
+
+@font-face {
+  font-family: Raleway-semibold;
+  src: url('Assets/font/Raleway/Raleway-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: Raleway-bold;
+  src: url('Assets/font/Raleway/Raleway-Bold.ttf');
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+

@@ -1,5 +1,5 @@
 import './MainContent.css'
-import mainimage from '../../assets/mainpageimage.png'
+import mainimage from '../../Assets/mainpageimage.png'
 
 function MainContent() {
 
