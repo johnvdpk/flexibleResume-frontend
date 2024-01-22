@@ -7,7 +7,7 @@ import {useState} from "react";
 function LoginPage() {
 
 
-    const [whichDataPage, setWhichDataPage] = useState("werkzoekende");
+    const [whichDataPage, setWhichDataPage] = useState("jobseeker");
 
     function handleToggle(value) {
         setWhichDataPage(value);
@@ -23,8 +23,8 @@ function LoginPage() {
                     <h2 className="titel-login">Inloggen</h2>
                    <Switch
 
-                   option1="Werkzoekende"
-                   option2="Bedrijf"
+                   option1="jobseeker"
+                   option2="company"
                    onToggle={handleToggle}
                    />
                    <div className="div-space"></div>

@@ -20,7 +20,7 @@
 
     .div-data-page-menu-child {
         margin-top: 1em;
-        margin-left: 0em;
+        margin-left: 0;
         border-radius: var(--radius-medium);
         background-color: var(--secondary-color);
 
@@ -68,7 +68,7 @@
 
 .h-infotitel {
 
-    font-family: Raleway-semibold;
+    font-family: Raleway-semibold, Arial, serif, sans-serif;
     font-size: 1.2em;
     margin-left: 1em;
     padding: 1em;
@@ -103,7 +103,7 @@
 
                     .p-cvid-title {
                         font-size: 1em;
-                        font-family: Raleway-semibold;
+                        font-family: Raleway-semibold, Arial,serif, sans-serif;
                     }
 
                     .p-cvid-period {
@@ -163,7 +163,7 @@
 }
 
 .p-no-inlog {
-    font-family: Raleway-semibold;
+    font-family: Raleway-semibold, Arial,serif, sans-serif;
     align-items: center;
     padding: 10em;
 }

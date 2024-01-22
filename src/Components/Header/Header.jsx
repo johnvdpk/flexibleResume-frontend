@@ -1,7 +1,7 @@
 import './Header.css'
-import logo from '../../../assets/flexible resume.svg'
-import headerimage from '../../../assets/man-and-woman-shake-hands.svg'
-import Button from "../../../pages/globalcomponents/Buttons/Button/Button.jsx";
+import logo from '../../assets/flexible resume.svg'
+import headerimage from '../../assets/man-and-woman-shake-hands.svg'
+import Button from "../../pages/globalcomponents/Buttons/Button/Button.jsx";
 function Header() {
 
 

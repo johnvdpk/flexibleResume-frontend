@@ -15,7 +15,7 @@
 
 .global-input{
     flex: 1;
-    font-family: Raleway;
+    font-family: Raleway, Arial,sans-serif,serif;
     color: var(--text-color);
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);
@@ -28,7 +28,7 @@
 
 .global-textarea {
     flex: 1;
-    font-family: Raleway;
+    font-family: Raleway, Arial,sans-serif,serif;
     color: var(--text-color);
     border-radius: var(--radius-small);
     border: solid 1.5px var(--button-color);

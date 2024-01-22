@@ -11,8 +11,7 @@ function SignUpForm() {
     const [addSucces, toggleAddSucces] = useState('');
     const [role, setRole] = useState('USER')
 
-
-
+    const [errorMessage, setErrorMessage] = useState(''); // New state for error messages
 
     async function HandleSubmit(e) {
         e.preventDefault();
@@ -33,6 +32,7 @@ function SignUpForm() {
         } catch (e) {
             console.error("Er is een fout opgetreden bij het aanmelden", e);
             toggleAddSucces(false);
+            setErrorMessage(e.response?.data?.message || 'Er is een fout opgetreden');
         }
 
 
@@ -48,8 +48,8 @@ function SignUpForm() {
 
             <SwitchSignin
 
-            option1="werkzoekende"
-            option2="bedrijf"
+            option1="jobseeker"
+            option2="company"
             onToggle={setRole}
 
 

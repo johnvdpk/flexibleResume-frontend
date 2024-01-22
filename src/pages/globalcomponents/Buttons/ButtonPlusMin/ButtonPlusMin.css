@@ -7,7 +7,7 @@
     color:var(--text-color-invert);
     padding:  var(--gap-extra-small);
     aspect-ratio: 10/3;
-    font-family: Raleway-bold;
+    font-family: Raleway-bold, Arial, serif, sans-serif;
     font-size: 1em;
     cursor: pointer;
     transition: border-color 0.25s;

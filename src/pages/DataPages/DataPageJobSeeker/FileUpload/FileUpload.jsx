@@ -32,7 +32,7 @@ function FileUpload({setFileUrl, fileUrl}) {
 
 
         try {
-            const response = await axios.post('http://localhost:8080/werkzoekende/cv/upload', formData, {
+            const response = await axios.post('http://localhost:8080/jobseeker/cv/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },

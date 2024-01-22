@@ -26,8 +26,6 @@ function DataPageJobSeeker() {
         const {isAuth, user, logout} = useContext(AuthContext);
 
 
-
-
     //useState
         const [activeProfile, setActiveProfile] = useState(null);
         const [switchButton, setSwitchButton] = useState(null);
@@ -417,7 +415,7 @@ function DataPageJobSeeker() {
 
            <div className="div-data-page-menu">
                 <div className="div-profile-foto">
-                   <img src={fileUrl || defaultProfilePhoto} className="img-profile-foto"/>
+                   <img src={fileUrl || defaultProfilePhoto} className="img-profile-foto" alt='profile photo'/>
                     <FileUpload setFileUrl={setFileUrl} />
                 </div>
 

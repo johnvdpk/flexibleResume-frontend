@@ -18,14 +18,14 @@
     font-size: 1em;
     font-family: Raleway-bold;
     color: var(--brand-color);
-    margin: 0.2em 0em 0.4em 0em;
+    margin: 0.2em 0 0.4em 0;
 }
 
 .h3-template-two {
     font-size: 1em;
     font-family: Raleway-semibold;
     color: var(--brand-color);
-    margin: 0.2em 0em 0.4em 0em;
+    margin: 0.2em 0 0.4em 0;
 }
 
 .vertical-line {
@@ -36,7 +36,7 @@
 }
 
 .horizontal-line {
-    margin: 0.5em 0em 0.5em 0em;
+    margin: 0.5em 0 0.5em 0;
     background-color: var(--text-color);
     width: 90%;
     height: 1px;
@@ -114,7 +114,7 @@
 .p-info-template-two {
     font-size: 0.8em;
     font-family: Raleway-semibold;
-    margin: 0.3em 0em 0.3em 0em;
+    margin: 0.3em 0 0.3em 0;
     color: var(--brand-color);
 }
 

@@ -1,5 +1,5 @@
 // eslint-disable-next-line no-unused-vars
-import './AuthContext.css'
+import React from 'react';
 import {createContext, useEffect, useState} from 'react';
 import { jwtDecode} from "jwt-decode";
 import axios from "axios";
@@ -17,14 +17,27 @@ function AuthContextProvider({children}) {
 
     });
 
+    const isTokenExpired = token => {
+        try {
+            const decoded = jwtDecode(token);
+            const currentTime = Date.now() / 1000; // Convert to seconds
+            return decoded.exp < currentTime;
+        } catch (e) {
+            // If token is invalid or decoding fails
+            return true;
+        }
+    };
+
+
     useEffect(()=> {
 
         const token = localStorage.getItem('token');
 
 
-        if(token) {
+        if(token && !isTokenExpired(token)) {
             void login(token);
         } else {
+            localStorage.removeItem('token');
             toggleIsAuth({
                 isAuthenticated: false,
                 user: null,
@@ -36,6 +49,11 @@ function AuthContextProvider({children}) {
 
 
 async function login(token) {
+
+    if (isTokenExpired(token)) {
+        logout();
+        return;
+    }
 
     localStorage.setItem('token',token);
 

@@ -1,5 +1,5 @@
 import './MainContent.css'
-import mainimage from '../../../assets/mainpageimage.png'
+import mainimage from '../../assets/mainpageimage.png'
 
 function MainContent() {
 
@@ -9,7 +9,7 @@ function MainContent() {
             <div className="main-wrapper">
                 <div className="main-container">
                     <div className="main-container-child">
-                        <img src={mainimage} alt="" className="main-image"/>
+                        <img src={mainimage} alt="Main image" className="main-image"/>
                     </div>
 
                     <div className="main-container-child">

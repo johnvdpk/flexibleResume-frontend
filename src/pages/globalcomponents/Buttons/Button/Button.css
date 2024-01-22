@@ -28,7 +28,7 @@ button.nav-button {
     border-radius: var(--radius-small);
     padding: var(--gap-small)var(--gap-small);
     color: var(--text-color);
-    font-family: Raleway-semibold;
+    font-family: Raleway-semibold, Arial, serif, sans-serif;
     background-color: var(--secondary-color);
 
 }
