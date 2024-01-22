@@ -7,11 +7,9 @@ import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfile
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
 import formConfigCV from "../../FormData/Form/JsonDataForm/formProfileCV.json"
 import {useContext, useEffect, useState} from "react"
-import ButtonForm from "../../../Components/ButtonForm/ButtonForm.jsx"
 import { AuthContext} from "../../../Context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
-import ButtonPlusMin from "../../../Components/ButtonPlusMin/ButtonPlusMin.jsx";
 import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
 import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
@@ -355,7 +353,7 @@ function DataPageJobSeeker() {
         }
         try {
             await axios.delete(`http://localhost:8080/jobseeker/personalinfo/${id}`);
-            const newPersonalInfoData = workInfoData.filter(item => item.id !== id);
+            const newPersonalInfoData = personalInfoData.filter(item => item.id !== id);
             setPersonalInfoData(newPersonalInfoData);
         } catch (e) {
             console.error("Error bij het verwijderen van item", e);
@@ -424,35 +422,43 @@ function DataPageJobSeeker() {
                    <div className="div-data-page-menu-child">
 
 
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Profielgegevens"
                            onClick={() => toggleForm(formConfigJobSeeker)}
+
                        />
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Introductietekst"
                            onClick={() => toggleForm(formConfigCV)}
                        />
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Werkgegevens"
                            onClick={() => toggleForm(formConfigWorkInfo)}
                        />
 
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Studiegegevens"
                            onClick={() => toggleForm(formConfigStudyInfo)}
                        />
 
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Persoonlijke gegevens"
                            onClick={() => toggleForm(formConfigPersonalInfo)}
                        />
 
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Kies een template"
                            onClick={()=> toggleButton(buttonConfig.inSide)}
 
                        />
-                       <ButtonForm
+                       <Button
+                           isFormButton={true}
                            text="Account verwijderen"
                            onClick={()=>toggleButton(buttonConfig.deleteAcount)}
 

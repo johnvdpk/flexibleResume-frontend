@@ -10,7 +10,7 @@ import Footer from "./Pages/Footer/Footer.jsx";
 import DataPageJobSeeker from "./Pages/DataPages/DataPageJobSeeker/DataPageJobSeeker.jsx";
 import AuthContextProvider from "./Context/AuthContext.jsx";
 import Login from "./Pages/LoginLogoutAndSignIn/Login/LoginPage.jsx";
-import DataPageCompany from "./Pages/DataPages/DataPageJobSeeker/DataPageCompany.jsx";
+import DataPageCompany from "./Pages/DataPages/DataPageCompany/DataPageCompany.jsx";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 

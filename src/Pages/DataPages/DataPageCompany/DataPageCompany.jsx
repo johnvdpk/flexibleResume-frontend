@@ -1,10 +1,9 @@
-import './DataPageJobSeeker.css' // Dezelfde CCS styling als DataPageJobseeker.
+import '../DataPageJobSeeker/DataPageJobSeeker.css' // Dezelfde CCS styling als DataPageJobseeker.
 import './DataPageCompany.css' // Hier staat de extra CSS in voor de company pagina
 import Form from "../../FormData/Form/Form.jsx"
 import companyLogo from "../../../Assets/companylogo.png"
 import formConfigEmployer from "../../FormData/Form/JsonDataForm/formEmployer.json"
 import {useContext, useEffect, useState} from "react"
-import ButtonForm from "../../../Components/ButtonForm/ButtonForm.jsx"
 import { AuthContext} from "../../../Context/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
@@ -206,18 +205,21 @@ function DataPageJobSeeker() {
                     {/*buttons*/}
                     <div className="div-data-page-menu-child">
 
-                        <ButtonForm
+                        <Button
+                            isFormButton={true}
                             text="Bedrijfsgegevens"
                             onClick={() => toggleForm(formConfigEmployer)}
                         />
 
-                        <ButtonForm
+                        <Button
+                            isFormButton={true}
                             text="Zoek op werkgever"
                             onClick={()=>toggleButton(buttonConfig.SearchJobSeekerSurName)}
 
 
                         />
-                        <ButtonForm
+                        <Button
+                            isFormButton={true}
                             text="Account verwijderen"
                             onClick={()=>toggleButton(buttonConfig.deleteAcount)}
 
