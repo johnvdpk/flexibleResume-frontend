@@ -11,6 +11,7 @@ import axios from 'axios';
 import Button from "../../../Components/Button/Button.jsx";
 
 
+
 function DataPageJobSeeker() {
 
     //useContext
@@ -97,46 +98,80 @@ function DataPageJobSeeker() {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/employer/email/${employerEmail}`, employerDataForm)
-
-            setEmployerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            await setEmployerData(response.data); // alles ophalen om te zorgen dat alles up to date is
-
-        } catch (e) {
-            console.error("axios put error", e);
-
+            const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'PUT', employerDataForm);
+            setEmployerData(updatedData);
+            await setEmployerData(updatedData);
+        }catch (error) {
+            console.error('Er is een fout opgetreden bij het updaten van de gegevens', error);
         }
 
-    }
+    // async function putProfileForm(e) {
+    //     e.preventDefault();
+    //
+    //     try {
+    //         const response = await axios.put(`http://localhost:8080/employer/email/${employerEmail}`, employerDataForm)
+    //
+    //         setEmployerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+    //         await setEmployerData(response.data); // alles ophalen om te zorgen dat alles up to date is
+    //
+    //     } catch (e) {
+    //         console.error("axios put error", e);
+    //
+    //     }
+    //
+    // }
 
 
 
     // Data vanuit jobseeker entity gefilterd op email
-    async function getEmployerForm() {
 
-        try {
-            const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`)
-            setEmployerData(response.data);
+        async function getEmployerForm() {
 
-        } catch (e) {
-            console.error("axios get error", e)
+                try {
+                  const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'GET');
+                    setEmployerData(updatedData);
+                    await setEmployerData(updatedData);
+        } catch (error) {
+            console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
+                }
+            }
+
+    // async function getEmployerForm() {
+    //
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`)
+    //         setEmployerData(response.data);
+    //
+    //     } catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    //
+    // }
+
+
+        async function getJobSeekerInfo() {
+
+            try {
+                const updatedData = await apiRequest(`http://localhost:8080/employer/name`, 'GET');
+                setJobSeekerDataForm(updatedData);
+                await setJobSeekerDataForm(updatedData);
+            } catch (error) {
+                console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
+        }
         }
 
-    }
-
-
-    async function getJobSeekerInfo() {
-
-        try {
-            const response = await axios.get(`http://localhost:8080/employer/name`)
-            setJobSeekerDataForm(response.data);
-
-
-        } catch (e) {
-            console.error("axios get error", e)
-        }
-
-    }
+    // async function getJobSeekerInfo() {
+    //
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/employer/name`)
+    //         setJobSeekerDataForm(response.data);
+    //
+    //
+    //     } catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    //
+    // }
 
     // Het zou een fijne functie kunnen zijn om op werk ervaring te zoeken. Daarvoor heb je genoeg data nodig om de
     // jobseeker uiteindelijk aan een workInfo te kunnen koppelen. Voor nu staat de functie uit (werkt nog niet).
@@ -156,23 +191,38 @@ function DataPageJobSeeker() {
     // }
 
 
-    async function deleteAccount() {
-        const jwtToken = localStorage.getItem('token');
-        const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+        async function deleteAccount() {
+            const jwtToken = localStorage.getItem('token');
+            const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
 
-        if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
-            try {
-                await axios.delete(`http://localhost:8080/auth/user/${email}`);
-                // Logica om gebruiker uit te loggen en de UI bij te werken
+            if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+                try {
+                   const updatedData = await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
+                   
+                } catch (e) {
+                    console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
 
-                logout();
-                navigate("/");
-            } catch (e) {
-                console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
-
+                }
             }
         }
-    }
+
+    // async function deleteAccount() {
+    //     const jwtToken = localStorage.getItem('token');
+    //     const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+    //
+    //     if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+    //         try {
+    //             await axios.delete(`http://localhost:8080/auth/user/${email}`);
+    //             // Logica om gebruiker uit te loggen en de UI bij te werken
+    //
+    //             logout();
+    //             navigate("/");
+    //         } catch (e) {
+    //             console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
+    //
+    //         }
+    //     }
+    // }
 
 
 
