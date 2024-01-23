@@ -15,6 +15,8 @@ import TemplateTwo from "./Templates/TemplateTwo/TemplateTwo.jsx";
 import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
 import Button from "../../../Components/Button/Button.jsx";
+import {apiRequest} from "../../../Helpers/API/ApiHelper.jsx";
+import log from "eslint-plugin-react/lib/util/log.js";
 
 
 
@@ -163,188 +165,308 @@ function DataPageJobSeeker() {
 
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
 
+
+
     async function putProfileForm(e) {
         e.preventDefault();
 
         try {
-            const response = await axios.put(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, profileFormData)
-            console.log(response.data)
-            setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+            const updatedData = await apiRequest(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, 'PUT', profileFormData);
+            setJobSeekerData(updatedData); // Bijwerken van de staat
 
-
-        } catch (e) {
-            console.error("axios put error", e);
-            console.log(e.response)
-
-
+            // Optioneel: als je direct na de update de nieuwste data wilt ophalen
+            await getProfileForm(); // Zorg dat deze functie ook de apiRequest gebruikt
+        } catch (error) {
+            console.error("Fout bij het bijwerken van het profiel:", error);
         }
-
     }
+
+
+    // async function putProfileForm(e) {
+    //     e.preventDefault();
+    //
+    //     try {
+    //         const response = await axios.put(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, profileFormData)
+    //         console.log(response.data)
+    //         setJobSeekerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+    //         await getProfileForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+    //
+    //
+    //     } catch (e) {
+    //         console.error("axios put error", e);
+    //         console.log(e.response)
+    //
+    //
+    //     }
+    //
+    // }
+
 
     async function putCVForm(e) {
         e.preventDefault();
 
-        try {
-            const response = await axios.put(`http://localhost:8080/jobseeker/cv/cv/${cvId}`, cvFormData)
+        try{
+            const updatedData = await apiRequest(`http://localhost:8080/jobseeker/cv/cv/${cvId}`, 'PUT', cvFormData);
+            setCVData(updatedData);
+            await getCVForm();
 
-            setCVData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-            await getCVForm(response.data); // alles ophalen om te zorgen dat alles up to date is
-
-
-        } catch (e) {
-            console.error("put axios error", e);
-
-
+        } catch (error) {
+            console.error("Fout bij het bijwerken van de CV data:", error);
         }
-
     }
+
+
+    // async function putCVForm(e) {
+    //     e.preventDefault();
+    //
+    //     try {
+    //         const response = await axios.put(`http://localhost:8080/jobseeker/cv/cv/${cvId}`, cvFormData)
+    //
+    //         setCVData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
+    //         await getCVForm(response.data); // alles ophalen om te zorgen dat alles up to date is
+    //
+    //
+    //     } catch (e) {
+    //         console.error("put axios error", e);
+    //
+    //
+    //     }
+    //
+    // }
 
 
 
     // aanmaken van werk informatie
+
     async function createWorkInfoForm(e) {
-        e.preventDefault();
-
+        e.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:8080/jobseeker/workinfo/${cvId}`, workInfoFormData)
-            setWorkInfoFormData(response.data)
-            getWorkInfoForm(response.data)
+            const updatedData = await apiRequest(`http://localhost:8080/jobseeker/workinfo/${cvId}`, 'POST', workInfoFormData);
+            setWorkInfoData(updatedData);
+            await getWorkInfoForm();
 
-        } catch (e) {
-            console.error("axios post error", e);
+
+        } catch (error) {
+            console.error("Fout bij het aanmaken van de werk info:", error);
         }
     }
+
 
     // aanmaken van persoonlijke informatie
+
     async function createPersonalInfoForm(e) {
-        e.preventDefault();
-
+        e.preventDefault()
         try {
-            const response = await axios.post(`http://localhost:8080/jobseeker/personalinfo/${cvId}`, personalInfoFormData)
-            setPersonalInfoFormData(response.data)
-            getPersonalInfoForm(response.data)
-
-        } catch (e) {
-            console.error("axios post error", e)
+            const updatedData = await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${cvId}`, 'POST', personalInfoFormData);
+            setPersonalInfoData(updatedData);
+            await getPersonalInfoForm();
+        } catch (error) {
+            console.error("Fout bij het aanmaken van de persoonlijke info:", error);
         }
     }
+
 
     // aanmaken van studie informatie
-    async function createStudyInfoForm(e) {
-        e.preventDefault();
 
-        try {
-            const response = await axios.post(`http://localhost:8080/jobseeker/studyinfo/${cvId}`, studyInfoFormData)
-            setStudyInfoFormData(response.data)
-            getStudyInfoForm(response.data)
-
-        } catch (e) {
-            console.error("axios post error", e)
-        }
-    }
-
+   async function createStudyInfoForm(e) {
+        e.preventDefault()
+       try {
+           const updatedData = await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${cvId}`, 'POST', studyInfoFormData);
+           setStudyInfoData(updatedData);
+           await getStudyInfoForm();
+       } catch (error) {
+           console.error("Fout bij het aanmaken van de studie info:", error);
+       }
+   }
 
 
 
     // Data vanuit jobseeker entity gefilterd op email
-    async function getProfileForm() {
 
+async function getProfileForm() {
         try {
-            const response = await axios.get(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`)
-            setJobSeekerData(response.data);
+            const response = await apiRequest(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, 'GET');
+            setJobSeekerData(response);
 
-        } catch (e) {
-            console.error("axios get error", e)
+        } catch (error) {
+            console.error("Fout bij het ophalen van de profiel data:", error);
         }
+}
 
-    }
+    // async function getProfileForm() {
+    //
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`)
+    //         setJobSeekerData(response.data);
+    //
+    //     } catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    //
+    // }
 
     async function getCVForm() {
 
         try {
-            const response = await axios.get(`http://localhost:8080/jobseeker/cv/${cvId}`)
-            setCVData(response.data);
+            const response = await apiRequest(`http://localhost:8080/jobseeker/cv/${cvId}`, 'GET');
+            setCVData(response);
 
-        } catch (e) {
-            console.error("axios get error", e)
+
+        } catch (error) {
+            console.error("Fout bij het ophalen van de CV data:", error);
         }
-
     }
+
+    // async function getCVForm() {
+    //
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/jobseeker/cv/${cvId}`)
+    //         setCVData(response.data);
+    //
+    //     } catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    //
+    // }
 
 
     // Axios voor werk info
 
     async function getWorkInfoForm() {
-        try{
-            const response = await axios.get(`http://localhost:8080/jobseeker/workinfo/${cvId}`)
-            setWorkInfoData(response.data);
+        try {
+            const response = await apiRequest(`http://localhost:8080/jobseeker/workinfo/${cvId}`, 'GET');
+            setWorkInfoData(response);
 
-        } catch(e) {
-            console.error("axios get error", e);
-            if (e.response) {
-                console.error('Response:', e.response);
-            }
+        } catch (error) {
+            console.error("Fout bij het ophalen van de werk info:", error);
         }
     }
+
+    // async function getWorkInfoForm() {
+    //     try{
+    //         const response = await axios.get(`http://localhost:8080/jobseeker/workinfo/${cvId}`)
+    //         setWorkInfoData(response.data);
+    //
+    //     } catch(e) {
+    //         console.error("axios get error", e);
+    //         if (e.response) {
+    //             console.error('Response:', e.response);
+    //         }
+    //     }
+    // }
 
     // Axios voor studie info
+
     async function getStudyInfoForm() {
         try {
-            const response = await axios.get(`http://localhost:8080/jobseeker/studyinfo/${cvId}`)
-            setStudyInfoData(response.data);
+            const response = await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${cvId}`, 'GET');
+            setStudyInfoData(response);
 
-        }catch (e) {
-            console.error("axios get error", e)
+        } catch (error) {
+            console.error("Fout bij het ophalen van de studie info:", error);
         }
     }
+    // async function getStudyInfoForm() {
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/jobseeker/studyinfo/${cvId}`)
+    //         setStudyInfoData(response.data);
+    //
+    //     }catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    // }
+
+
     // Axios voor persoonlijke info
+
     async function getPersonalInfoForm() {
         try {
-            const response = await axios.get(`http://localhost:8080/jobseeker/personalinfo/${cvId}`)
-            setPersonalInfoData(response.data);
+            const response = await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${cvId}`, 'GET');
+            setPersonalInfoData(response);
 
-        }catch (e) {
-            console.error("axios get error", e)
+
+        } catch (error) {
+            console.error("Fout bij het ophalen van de persoonlijke info:", error);
         }
     }
+    // async function getPersonalInfoForm() {
+    //     try {
+    //         const response = await axios.get(`http://localhost:8080/jobseeker/personalinfo/${cvId}`)
+    //         setPersonalInfoData(response.data);
+    //
+    //     }catch (e) {
+    //         console.error("axios get error", e)
+    //     }
+    // }
 
 
     // DELETE verzoeken
 
         // delete van de workinfo
+
         async function deleteWorkInfo(id) {
 
-            if (id === null) {
-                console.error("Kan item niet verwijderen zonder ID");
-                return;
-            }
-            try {
-                await axios.delete(`http://localhost:8080/jobseeker/workinfo/${id}`);
-                const newWorkInfoData = workInfoData.filter(item => item.id !== id);
-                setWorkInfoData(newWorkInfoData);
-            } catch (e) {
-                console.error("Error bij het verwijderen van item", e);
-            }
+                if (id === null) {
+                    console.error("Kan item niet verwijderen zonder ID");
+                    return;
+                }
+                try {
+                    await apiRequest(`http://localhost:8080/jobseeker/workinfo/${id}`, 'DELETE');
+                    const newWorkInfoData = workInfoData.filter(item => item.id !== id);
+                    setWorkInfoData(newWorkInfoData);
+                } catch (e) {
+                    console.error("Error bij het verwijderen van item", e);
+                }
         }
 
-    // delete van de studyinfo
-    async function deleteStudyInfo(id) {
+        // async function deleteWorkInfo(id) {
+        //
+        //     if (id === null) {
+        //         console.error("Kan item niet verwijderen zonder ID");
+        //         return;
+        //     }
+        //     try {
+        //         await axios.delete(`http://localhost:8080/jobseeker/workinfo/${id}`);
+        //         const newWorkInfoData = workInfoData.filter(item => item.id !== id);
+        //         setWorkInfoData(newWorkInfoData);
+        //     } catch (e) {
+        //         console.error("Error bij het verwijderen van item", e);
+        //     }
+        // }
 
+    // delete van de studyinfo
+
+    async function deleteStudyInfo(id) {
         if (id === null) {
             console.error("Kan item niet verwijderen zonder ID");
             return;
         }
         try {
-            await axios.delete(`http://localhost:8080/jobseeker/studyinfo/${id}`);
+            await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${id}`, 'DELETE');
             const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
             setStudyInfoData(newStudyInfoData);
-        } catch (e) {
-            console.error("Error bij het verwijderen van item", e);
+        } catch (error) {
+            console.error("Error bij het verwijderen van item", error);
         }
     }
 
+    // async function deleteStudyInfo(id) {
+    //
+    //     if (id === null) {
+    //         console.error("Kan item niet verwijderen zonder ID");
+    //         return;
+    //     }
+    //     try {
+    //         await axios.delete(`http://localhost:8080/jobseeker/studyinfo/${id}`);
+    //         const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
+    //         setStudyInfoData(newStudyInfoData);
+    //     } catch (e) {
+    //         console.error("Error bij het verwijderen van item", e);
+    //     }
+    // }
+
     // delete van de personalinfo
+
     async function deletePersonalInfo(id) {
 
         if (id === null) {
@@ -352,13 +474,27 @@ function DataPageJobSeeker() {
             return;
         }
         try {
-            await axios.delete(`http://localhost:8080/jobseeker/personalinfo/${id}`);
+            await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${id}`, 'DELETE');
             const newPersonalInfoData = personalInfoData.filter(item => item.id !== id);
             setPersonalInfoData(newPersonalInfoData);
-        } catch (e) {
-            console.error("Error bij het verwijderen van item", e);
+        }catch (error) {
+            console.error("Error bij het verwijderen van item", error);
         }
     }
+    // async function deletePersonalInfo(id) {
+    //
+    //     if (id === null) {
+    //         console.error("Kan item niet verwijderen zonder ID");
+    //         return;
+    //     }
+    //     try {
+    //         await axios.delete(`http://localhost:8080/jobseeker/personalinfo/${id}`);
+    //         const newPersonalInfoData = personalInfoData.filter(item => item.id !== id);
+    //         setPersonalInfoData(newPersonalInfoData);
+    //     } catch (e) {
+    //         console.error("Error bij het verwijderen van item", e);
+    //     }
+    // }
 
     async function deleteAccount() {
         const jwtToken = localStorage.getItem('token');
@@ -366,41 +502,69 @@ function DataPageJobSeeker() {
 
         if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
             try {
-                await axios.delete(`http://localhost:8080/auth/user/${email}`);
+                await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
                 // gebruiker logt ook direct uit.
 
                 logout();
                 navigate("/");
-            } catch (e) {
-                console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
+            } catch (error) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
 
             }
         }
     }
 
+    // async function deleteAccount() {
+    //     const jwtToken = localStorage.getItem('token');
+    //     const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+    //
+    //     if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+    //         try {
+    //             await axios.delete(`http://localhost:8080/auth/user/${email}`);
+    //             // gebruiker logt ook direct uit.
+    //
+    //             logout();
+    //             navigate("/");
+    //         } catch (e) {
+    //             console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
+    //
+    //         }
+    //     }
+    // }
 
 
-    useEffect(()=> {
 
+    useEffect(() => {
+        const source = axios.CancelToken.source();
 
-        const cvId = localStorage.getItem('cvId')
+        const loadData = async () => {
+            try {
+                const cvId = localStorage.getItem('cvId');
+                if (!cvId) {
+                    throw new Error('cvId niet gevonden in de localstorage');
+                }
 
-
-            if (cvId) {
-                getProfileForm(cvId);
-                getCVForm(cvId);
-                getWorkInfoForm(cvId);
-                getStudyInfoForm(cvId);
-                getPersonalInfoForm(cvId);
-
-            } else {
-
-                console.error('cvId niet gevonden in de localstorage')
+                // Voer de asynchrone functies uit met de cancel token
+                await getProfileForm(cvId, source.token);
+                await getCVForm(cvId, source.token);
+                await getWorkInfoForm(cvId, source.token);
+                await getStudyInfoForm(cvId, source.token);
+                await getPersonalInfoForm(cvId, source.token);
+            } catch (error) {
+                if (!axios.isCancel(error)) {
+                    console.error('Er is een fout opgetreden:', error);
+                    // Bijwerken van een error state kan hier indien nodig
+                }
             }
+        };
 
+        loadData();
 
-    },[]);
-
+        // Cleanup functie die wordt uitgevoerd bij het unmounten
+        return () => {
+            source.cancel('Component DataPageJobSeeker is unmounted');
+        };
+    }, []);
 
     if (!isAuth || (user && user.role !== "USER" && user.role !== "ADMIN")) {
         return <p className="p-no-inlog">Toegang geweigerd. Je bent niet ingelogd of je hebt niet de juiste rechten.</p>;
