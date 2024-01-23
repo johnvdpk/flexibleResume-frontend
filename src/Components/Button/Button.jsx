@@ -7,14 +7,16 @@ function Button({link,buttonstyle,text,onClick,isFormButton}) {
     if (isFormButton) {
         return (
             <button className='button-left-menu' onClick={onClick} type='button'>
-                <view className='object'></view>
+                <div className='object'></div>
                 {text}
             </button>
         );
     }
 
     return (
-        <Link to={link}><button className={buttonstyle} onClick={onClick} type='button'>{text}</button></Link>
+        <Link to={link}>
+            <button className={buttonstyle} onClick={onClick} type='button'>{text}</button>
+        </Link>
     )
 
 }

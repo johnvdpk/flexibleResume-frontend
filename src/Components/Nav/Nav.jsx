@@ -1,4 +1,4 @@
-import HamburgerMenu from "../hamburger-menu/HamburgerMenu.jsx";
+import HamburgerMenu from "../HamburgerMenu/HamburgerMenu.jsx";
 import {useState} from "react";
 
 

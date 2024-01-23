@@ -14,19 +14,16 @@
 
 .div-template-one {
     background-color: var(--background-color-one);
-    border: solid 1px var(--brand-color-one);
-    border-radius: var(--radius-small-one);
-    margin: 0.2em;
     width: 95%;
     aspect-ratio: 1/1.414;
     font-size: 8px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .h2-template-one, .h3-template-one {
     font-size: 1em;
-    font-family: 'Open Sans', sans-serif; /* Strak lettertype */
+    font-family: 'Open Sans', sans-serif;
     color: var(--brand-color-one);
     margin: 0.2em 0 0.4em 0;
 }
@@ -61,7 +58,8 @@
 
 .img-foto {
     max-width: 100%;
-    border-radius: 50%; /* Ronde profielfoto */
+    border: solid 1px var(--brand-color-one);
+    border-radius: 2px;
 }
 
 .template-one-aboutme {

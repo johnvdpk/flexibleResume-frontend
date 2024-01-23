@@ -14,14 +14,12 @@
 
 .div-template-three {
     background-color: var(--background-color-one);
-    border: solid 1px var(--brand-color-one);
-    border-radius: var(--radius-small-one);
-    margin: 0.2em;
     width: 95%;
     aspect-ratio: 1/1.414;
+    margin: 0 0 2em 3em;
     font-size: 8px;
     font-family: 'Helvetica Neue', Arial, sans-serif;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
 
 .h2-template-three, .h3-template-three {
@@ -61,7 +59,7 @@
 
 .img-foto {
     max-width: 100%;
-    border-radius: 50%; /* Ronde profielfoto */
+
 }
 
 .template-three-aboutme {

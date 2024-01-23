@@ -222,12 +222,51 @@ function DataPageCompany() {
         }
 
 
-        useEffect(() => {
-            getEmployerForm()
-            getJobSeekerInfo()
+    useEffect(() => {
+        const source = axios.CancelToken.source();
+
+        const getEmployerForm = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`, {
+                    cancelToken: source.token,
+                });
+                setEmployerData(response.data);
+            } catch (error) {
+                if (!axios.isCancel(error)) {
+                    console.error("axios get error", error);
+                }
+            }
+        };
+
+        const getJobSeekerInfo = async () => {
+            try {
+                const response = await axios.get(`http://localhost:8080/employer/name`, {
+                    cancelToken: source.token,
+                });
+                setJobSeekerDataForm(response.data);
+            } catch (error) {
+                if (!axios.isCancel(error)) {
+                    console.error("axios get error", error);
+                }
+            }
+        };
+
+        getEmployerForm();
+        getJobSeekerInfo();
+
+        // Cleanup-functie
+        return () => {
+            source.cancel('Component DataPageCompany is unmounted');
+        };
+    }, []);
 
 
-        }, []);
+    // useEffect(() => {
+        //     getEmployerForm()
+        //     getJobSeekerInfo()
+        //
+        //
+        // }, []);
 
 
         if (!isAuth || (user && user.role !== "COMPANY" && user.role !== "ADMIN")) {
