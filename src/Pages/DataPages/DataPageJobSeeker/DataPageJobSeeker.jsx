@@ -163,6 +163,8 @@ function DataPageJobSeeker() {
     const cvId = localStorage.getItem('cvId')
 
 
+
+
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
 
 

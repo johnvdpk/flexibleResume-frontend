@@ -21,8 +21,8 @@ function DataPageCompany() {
     const [activeProfile, setActiveProfile] = useState(null);
     const [switchButton, setSwitchButton] = useState(null);
     const [employerData, setEmployerData] = useState({});
-    const [searchJobSeekerBySurname, setSearchJobSeekerBySurname] = useState({});
-    const [workInfoData, setWorkInfoData] = useState({});
+    const [searchJobSeekerBySurname, setSearchJobSeekerBySurname] = useState(null);
+    const [workInfoData, setWorkInfoData] = useState(null);
     const navigate = useNavigate();
 
 
@@ -160,7 +160,7 @@ function DataPageCompany() {
         async function getJobSeekerInfo() {
 
             try {
-                const response = await axios.get(`http://localhost:8080/employer/name`)
+                const response = await axios.get(`http://localhost:8080/jobseeker/name`)
                 setJobSeekerDataForm(response.data);
 
 
@@ -240,7 +240,7 @@ function DataPageCompany() {
 
         const getJobSeekerInfo = async () => {
             try {
-                const response = await axios.get(`http://localhost:8080/employer/name`, {
+                const response = await axios.get(`http://localhost:8080/jobseeker/name`, {
                     cancelToken: source.token,
                 });
                 setJobSeekerDataForm(response.data);
