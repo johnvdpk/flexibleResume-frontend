@@ -35,6 +35,22 @@
     border-radius: var(--radius-medium);
 }
 
+.div-dashboard-intro {
+    margin: 2em 2em 4em 2em;
+}
+
+        .div-dashboard-intro p {
+        font-size: 0.8em;
+
+        }
+        .div-dashboard-intro h3 {
+            font-size: 1.2em;
+            font-familiy: Raleway-bold;
+            font-weight: 800;
+            margin: 0 0 0.5em 0;
+        }
+
+
 .div-personal-form-data {
     flex: 2;
     background: var(--secondary-color);

@@ -45,18 +45,18 @@ function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, per
 
                 <div className='header-template-three'>
                     <div className='template-three-image'>
-                        <img src={base64Image} className='img-foto' alt='profilephoto' />
+                        <img src={base64Image} className='img-foto-three' alt='profilephoto' />
                     </div>
 
                     <div className='template-three-aboutme'>
                         <p>{aboutMe}</p>
                     </div>
 
-                    <div className='vertical-line'></div>
+                    <div className='vertical-line-three'></div>
 
                     <div className='template-three-profielgegevens'>
                         <table className='template-three-table'>
-
+                            <tbody>
                             <tr><td>{profileData.firstName}</td></tr>
                             <tr><td>{profileData.surName}</td></tr>
                             <tr><td>{profileData.dateOfBirth}</td></tr>
@@ -65,7 +65,7 @@ function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, per
                             <tr><td>{profileData.zipCode}</td></tr>
                             <tr><td>{profileData.homeAddress}</td></tr>
                             <tr><td>{profileData.houseNumber}</td></tr>
-
+                            </tbody>
                         </table>
                     </div>
 
@@ -75,7 +75,7 @@ function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, per
 
                     <div className='data-template-three'>
                         <h3 className='h3-template-three'>Werkervaring</h3>
-                        <div className='horizontal-line'></div>
+                        <div className='horizontal-line-three'></div>
                         {workData.map((workItem, index) => (
                             <div key={index} className='item-template-three'>
                                 <p className='p-title-template-three'>{workItem.company}</p>
@@ -88,7 +88,7 @@ function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, per
                     <div className='data-template-three'>
 
                         <h3 className='h3-template-three'>Studies</h3>
-                        <div className='horizontal-line'></div>
+                        <div className='horizontal-line-three'></div>
                         {studyData.map((studyItem, index) => (
                             <div key={index} className='item-template-three'>
                                 <p className='p-title-template-three'>{studyItem.educationalInstitute}</p>
@@ -103,7 +103,7 @@ function TemplateThree({ fileUrl, profileData, aboutMe, workData, studyData, per
                     <div className='data-template-three'>
 
                         <h3 className='h3-template-three'>Hobbys</h3>
-                        <div className='horizontal-line'></div>
+                        <div className='horizontal-line-three'></div>
                         {personalData.map((personalItem, index) => (
                             <div key={index} className='item-template-three'>
                                 <p className='p-title-template-three'>{personalItem.hobby}</p>

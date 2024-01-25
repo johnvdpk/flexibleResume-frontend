@@ -75,6 +75,7 @@ function DataPageJobSeeker() {
             jobTitle:'',
             periodOfEmployment:'',
             jobInfo:'',
+
         });
 
 
@@ -123,8 +124,6 @@ function DataPageJobSeeker() {
 
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
 
-
-
     async function putProfileForm(e) {
         e.preventDefault();
 
@@ -170,9 +169,7 @@ function DataPageJobSeeker() {
         }
     }
 
-
     // aanmaken van persoonlijke informatie
-
     async function createPersonalInfoForm(e) {
         e.preventDefault()
         try {
@@ -184,9 +181,7 @@ function DataPageJobSeeker() {
         }
     }
 
-
     // aanmaken van studie informatie
-
    async function createStudyInfoForm(e) {
         e.preventDefault()
        try {
@@ -198,20 +193,17 @@ function DataPageJobSeeker() {
        }
    }
 
-
-
     // Data vanuit jobseeker entity gefilterd op email
 
-async function getProfileForm() {
-        try {
-            const response = await apiRequest(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, 'GET');
-            setJobSeekerData(response);
+    async function getProfileForm() {
+            try {
+                const response = await apiRequest(`http://localhost:8080/jobseeker/email/${jobSeekerEmail}`, 'GET');
+                setJobSeekerData(response);
 
-        } catch (error) {
-            console.error("Fout bij het ophalen van de profiel data:", error);
-        }
-}
-
+            } catch (error) {
+                console.error("Fout bij het ophalen van de profiel data:", error);
+            }
+    }
 
 
     async function getCVForm() {
@@ -228,7 +220,6 @@ async function getProfileForm() {
 
 
     // Axios voor werk info
-
     async function getWorkInfoForm() {
         try {
             const response = await apiRequest(`http://localhost:8080/jobseeker/workinfo/${cvId}`, 'GET');
@@ -241,7 +232,6 @@ async function getProfileForm() {
 
 
     // Axios voor studie info
-
     async function getStudyInfoForm() {
         try {
             const response = await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${cvId}`, 'GET');
@@ -253,7 +243,6 @@ async function getProfileForm() {
     }
 
     // Axios voor persoonlijke info
-
     async function getPersonalInfoForm() {
         try {
             const response = await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${cvId}`, 'GET');
@@ -287,59 +276,59 @@ async function getProfileForm() {
 
 
 
-    // delete van de studyinfo
+                // delete van de studyinfo
 
-    async function deleteStudyInfo(id) {
-        if (id === null) {
-            console.error("Kan item niet verwijderen zonder ID");
-            return;
+        async function deleteStudyInfo(id) {
+                if (id === null) {
+                    console.error("Kan item niet verwijderen zonder ID");
+                    return;
+                }
+                try {
+                    await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${id}`, 'DELETE');
+                    const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
+                    setStudyInfoData(newStudyInfoData);
+                } catch (error) {
+                    console.error("Error bij het verwijderen van item", error);
+                }
         }
-        try {
-            await apiRequest(`http://localhost:8080/jobseeker/studyinfo/${id}`, 'DELETE');
-            const newStudyInfoData = studyInfoData.filter(item => item.id !== id);
-            setStudyInfoData(newStudyInfoData);
-        } catch (error) {
-            console.error("Error bij het verwijderen van item", error);
-        }
-    }
 
 
 
     // delete van de personalinfo
 
-    async function deletePersonalInfo(id) {
+        async function deletePersonalInfo(id) {
 
-        if (id === null) {
-            console.error("Kan item niet verwijderen zonder ID");
-            return;
+                if (id === null) {
+                    console.error("Kan item niet verwijderen zonder ID");
+                    return;
+                }
+                try {
+                    await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${id}`, 'DELETE');
+                    const newPersonalInfoData = personalInfoData.filter(item => item.id !== id);
+                    setPersonalInfoData(newPersonalInfoData);
+                }catch (error) {
+                    console.error("Error bij het verwijderen van item", error);
+                }
         }
-        try {
-            await apiRequest(`http://localhost:8080/jobseeker/personalinfo/${id}`, 'DELETE');
-            const newPersonalInfoData = personalInfoData.filter(item => item.id !== id);
-            setPersonalInfoData(newPersonalInfoData);
-        }catch (error) {
-            console.error("Error bij het verwijderen van item", error);
+
+
+        async function deleteAccount() {
+                const jwtToken = localStorage.getItem('token');
+                const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+
+                if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+                    try {
+                        await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
+                        // gebruiker logt ook direct uit.
+
+                        logout();
+                        navigate("/");
+                    } catch (error) {
+                        console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
+
+                    }
+                }
         }
-    }
-
-
-    async function deleteAccount() {
-        const jwtToken = localStorage.getItem('token');
-        const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
-
-        if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
-            try {
-                await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
-                // gebruiker logt ook direct uit.
-
-                logout();
-                navigate("/");
-            } catch (error) {
-                console.error("Er is een fout opgetreden bij het verwijderen van het account", error);
-
-            }
-        }
-    }
 
 
     useEffect(() => {
@@ -377,8 +366,9 @@ async function getProfileForm() {
     if (!isAuth || (user && user.role !== "USER" && user.role !== "ADMIN")) {
         return <p className="p-no-inlog">Toegang geweigerd. Je bent niet ingelogd of je hebt niet de juiste rechten.</p>;
     }
-    return (
 
+
+    return (
         <>
 
        <div className="data-page-wrapper">
@@ -444,7 +434,10 @@ async function getProfileForm() {
 
            <div className="div-personal-form">
 
-
+               <div className='div-dashboard-intro'>
+                   <h3>Dashboard</h3>
+                   <p>Welkom bij het dashboard van Flexible Resume. Vul hier je gegevens in, zoals werk, studie, hobby's en een kort stukje over jezelf. Upload een foto en ga naar de templates om jouw cv uit te kiezen.</p>
+               </div>
 
                {activeProfile === formConfigJobSeeker && (
                    <Form
@@ -556,7 +549,7 @@ async function getProfileForm() {
                 <div className='div-jobseekerdata'>
                    {jobSeekerData && (
                        <table className='table-persoonlijkegegevenstabel'>
-
+                            <tbody>
                                <tr><td>Naam:</td><td>{jobSeekerData.firstName}</td></tr>
                                <tr><td>Achternaam:</td><td>{jobSeekerData.surName}</td></tr>
                                <tr><td>Geboortedatum:</td><td>{jobSeekerData.dateOfBirth}</td></tr>
@@ -566,7 +559,7 @@ async function getProfileForm() {
                                <tr><td>Postcode:</td><td>{jobSeekerData.zipCode}</td></tr>
                                <tr><td>Adres:</td><td>{jobSeekerData.homeAddress}</td></tr>
                                <tr><td>Huisnummer:</td><td>{jobSeekerData.houseNumber}</td></tr>
-
+                            </tbody>
                        </table>
                    )}
 

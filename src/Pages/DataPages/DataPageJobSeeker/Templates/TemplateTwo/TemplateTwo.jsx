@@ -45,18 +45,18 @@ function TemplateTwo({ fileUrl, profileData, aboutMe, workData, studyData, perso
 
                 <div className='header-template-two'>
                     <div className='template-two-image'>
-                        <img src={base64Image} className='img-foto' alt='profilephoto' />
+                        <img src={base64Image} className='img-foto-two' alt='profilephoto' />
                     </div>
 
                     <div className='template-two-aboutme'>
                         <p>{aboutMe}</p>
                     </div>
 
-                    <div className='vertical-line'></div>
+                    {/*<div className='vertical-line'></div>*/}
 
                     <div className='template-two-profielgegevens'>
                         <table className='template-two-table'>
-
+                        <tbody>
                             <tr><td>{profileData.firstName}</td></tr>
                             <tr><td>{profileData.surName}</td></tr>
                             <tr><td>{profileData.dateOfBirth}</td></tr>
@@ -65,7 +65,7 @@ function TemplateTwo({ fileUrl, profileData, aboutMe, workData, studyData, perso
                             <tr><td>{profileData.zipCode}</td></tr>
                             <tr><td>{profileData.homeAddress}</td></tr>
                             <tr><td>{profileData.houseNumber}</td></tr>
-
+                        </tbody>
                         </table>
                     </div>
 

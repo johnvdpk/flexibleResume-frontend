@@ -45,7 +45,7 @@ function TemplateOne({ fileUrl, profileData, aboutMe, workData, studyData, perso
 
                 <div className='header-template-one'>
                     <div className='template-one-image'>
-                        <img src={base64Image} className='img-foto' alt='profilephoto' />
+                        <img src={base64Image} className='img-foto-one' alt='profilephoto' />
                     </div>
 
                     <div className='template-one-aboutme'>
@@ -56,7 +56,7 @@ function TemplateOne({ fileUrl, profileData, aboutMe, workData, studyData, perso
 
                     <div className='template-one-profielgegevens'>
                         <table className='template-one-table'>
-
+                            <tbody>
                             <tr><td>{profileData.firstName}</td></tr>
                             <tr><td>{profileData.surName}</td></tr>
                             <tr><td>{profileData.dateOfBirth}</td></tr>
@@ -65,7 +65,7 @@ function TemplateOne({ fileUrl, profileData, aboutMe, workData, studyData, perso
                             <tr><td>{profileData.zipCode}</td></tr>
                             <tr><td>{profileData.homeAddress}</td></tr>
                             <tr><td>{profileData.houseNumber}</td></tr>
-
+                            </tbody>
                         </table>
                     </div>
 

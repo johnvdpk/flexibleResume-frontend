@@ -4,7 +4,7 @@
     /*/////////////////       COLORS        /////////////////*/
     --primary-color: #6F66AE;
     --secondary-color: #E5DCCD;
-    --brand-color: #393361;
+    --brand-color: #11055b;
     --background-color: #FFFDF9;
     --background-color-company: #ffffff;
 
@@ -17,7 +17,7 @@
     --gray: #BFBFBF;
 
 
-    --text-color: #292546;
+    --text-color: #0E191B;
     --text-color-brand: #393361;
     --text-color-invert: #FFFDF9;
 
@@ -96,6 +96,7 @@
 h1 {
     font-size: 3rem;
     margin: 0.5em 0 0.5em 0;
+
 }
 
 h2 {

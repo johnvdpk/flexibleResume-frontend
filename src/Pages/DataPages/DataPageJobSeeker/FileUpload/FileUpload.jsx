@@ -2,6 +2,7 @@ import "./FileUpload.css"
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
 
+
 function FileUpload({setFileUrl, fileUrl}) {
 
     const [selectedFile, setSelectedFile] = useState(null);
@@ -30,20 +31,35 @@ function FileUpload({setFileUrl, fileUrl}) {
         formData.append('file', file);
         formData.append('cvId', cvId);
 
+        // Haal het JWT-token op
+        const token = localStorage.getItem('token'); // Zorg ervoor dat dit de juiste sleutel is voor uw token
+
 
         try {
             const response = await axios.post('http://localhost:8080/jobseeker/cv/upload', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
+                    'Authorization': `Bearer ${token}`,
                 },
             });
-            setFileUrl(response.data.url);
+
+            // Na succesvol uploaden, haal de afbeelding op een geautoriseerde manier op
+            const downloadResponse = await axios.get(response.data.url, {
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                },
+                responseType: 'blob'
+            });
+
+            // Maak een Blob-URL uit de response
+            const blobUrl = window.URL.createObjectURL(new Blob([downloadResponse.data]));
+            setFileUrl(blobUrl); // Update de staat met de Blob-URL
             toggleAddSucces(true);
+
         } catch (error) {
             console.error('Er is een fout opgetreden bij het uploaden van het bestand:', error);
             toggleAddSucces(false);
         }
-
     }
 
     return (

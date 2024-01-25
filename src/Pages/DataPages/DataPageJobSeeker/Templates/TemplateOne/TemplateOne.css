@@ -1,3 +1,13 @@
+@media (max-width:1000px) {
+
+    .div-template-one-wrapper-component {
+        display: none;
+    }
+}
+
+@media (min-width: 1000px) {
+
+
 /* Eigentijdse en Stijlvolle herstijling voor 'Template-One' */
 
 :root {
@@ -14,9 +24,10 @@
 
 .div-template-one {
     background-color: var(--background-color-one);
-    width: 95%;
+    color: #0E191B;
+    min-width: 750px;
     aspect-ratio: 1/1.414;
-    font-size: 8px;
+    font-size: 0.8rem;
     font-family: 'Helvetica Neue', Arial, sans-serif;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
 }
@@ -56,9 +67,9 @@
     flex: 0.5;
 }
 
-.img-foto {
+.img-foto-one {
     max-width: 100%;
-    border: solid 1px var(--brand-color-one);
+    border: solid 2px var(--brand-color-one);
     border-radius: 2px;
 }
 
@@ -78,8 +89,8 @@
 }
 
 .template-one-table {
-    margin: 1em;
-    font-size: 0.8em;
+    margin: 2em 0 0 0;
+    font-size: 0.9em;
     line-height: 1.2;
 }
 
@@ -121,15 +132,4 @@
     font-size: 0.8em;
 }
 
-@media (min-width: 550px) {
-    .div-template-one {
-        font-size: 10px;
-    }
-}
-
-@media (min-width: 900px) {
-    .div-template-one {
-        font-size: 12px;
-        margin: 2em;
-    }
 }
