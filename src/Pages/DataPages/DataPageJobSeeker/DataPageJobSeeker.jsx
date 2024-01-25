@@ -16,6 +16,7 @@ import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
 import Button from "../../../Components/Button/Button.jsx";
 import {apiRequest} from "../../../Helpers/API/ApiHelper.jsx";
+import { useFormData } from "../../../Helpers/UseFormData/UseFormData.jsx";
 import log from "eslint-plugin-react/lib/util/log.js";
 
 
@@ -44,13 +45,14 @@ function DataPageJobSeeker() {
             deleteAcount: 'deleteAcount',
         }
 
-
-        const [cvFormData, setCVFormData] = useState( {
+        // About me
+        const [cvFormData, handleCVFormData] = useFormData( {
             aboutMe: '',
         })
 
         // Profiel gegegevens
-        const [profileFormData, setProfileFormData] = useState({
+
+        const [profileFormData, handleProfileFormChange] = useFormData({
             firstName: '',
             surName: '',
             dateOfBirth: '',
@@ -64,7 +66,8 @@ function DataPageJobSeeker() {
         });
 
         // Werk info
-        const [workInfoFormData, setWorkInfoFormData] = useState({
+
+        const [workInfoFormData, handleWorkInfoData ] = useFormData( {
 
             id:'',
             cvId: '',
@@ -76,7 +79,7 @@ function DataPageJobSeeker() {
 
 
         // Studie info
-        const [studyInfoFormData, setStudyInfoFormData] = useState( {
+        const [studyInfoFormData, handleStudyInfoFormData] = useFormData( {
 
             id:'',
             cvId:'',
@@ -88,8 +91,7 @@ function DataPageJobSeeker() {
         })
 
         // Hobby info
-
-        const [personalInfoFormData, setPersonalInfoFormData] = useState( {
+        const [personalInfoFormData, handlePersonalInfoFormData] = useFormData( {
 
             id:'',
             cvId:'',
@@ -98,52 +100,6 @@ function DataPageJobSeeker() {
             hobbyInfo: '',
 
         })
-
-    // CV gegevens. Nu alleen een About me, maar dit is zo gemaakt om het makkelijker uit te breiden.
-    function handleInputChangeCVFormData(e) {
-        const { name, value } = e.target;
-        setCVFormData(prevCVData => ({
-            ...prevCVData,
-            [name]: value,
-        }));
-    }
-
-
-        // Persoonlijke gegevens form
-        function handleInputChangeProfileFormData(e) {
-            const { name, value } = e.target;
-            setProfileFormData(prevFormData => ({
-                ...prevFormData,
-                [name]: value,
-            }));
-        }
-
-        // Werk informatie form
-        function handleInputChangeWorkInfoFormData(e) {
-            const { name, value } = e.target;
-            setWorkInfoFormData(prevFormData => ({
-                ...prevFormData,
-                [name]: value,
-            }));
-        }
-
-        // Studie informatie form
-        function handleInputChangeStudyInfoFormData(e) {
-            const { name, value } = e.target;
-            setStudyInfoFormData(prevFormData => ({
-                ...prevFormData,
-                [name]: value,
-            }));
-        }
-
-        // Persoonlijke informatie (hobbys) form
-        function handleInputChangePersonalInfoFormData(e) {
-            const { name, value } = e.target;
-            setPersonalInfoFormData(prevFormData => ({
-                ...prevFormData,
-                [name]: value,
-            }));
-        }
 
 
         // wissel tussen de verschillende formulieren
@@ -495,7 +451,7 @@ async function getProfileForm() {
                        formConfig={activeProfile}
                        jobSeekerData={jobSeekerData}
                        FormData={profileFormData}
-                       handleInputChange={handleInputChangeProfileFormData}
+                       handleInputChange={handleProfileFormChange}
                        formOnSubmit={putProfileForm}
                    />
 
@@ -507,7 +463,7 @@ async function getProfileForm() {
                    formConfig={activeProfile}
                    jobSeekerData={cvData}
                    FormData={cvFormData}
-                   handleInputChange={handleInputChangeCVFormData}
+                   handleInputChange={handleCVFormData}
                    formOnSubmit={putCVForm}
 
 
@@ -520,7 +476,7 @@ async function getProfileForm() {
                        formConfig={activeProfile}
                        jobSeekerData={workInfoData}
                        FormData={workInfoFormData}
-                       handleInputChange={handleInputChangeWorkInfoFormData}
+                       handleInputChange={handleWorkInfoData}
                        formOnSubmit={createWorkInfoForm}
                    />
 
@@ -532,7 +488,7 @@ async function getProfileForm() {
                        formConfig={activeProfile}
                        jobSeekerData={studyInfoData}
                        FormData={studyInfoFormData}
-                       handleInputChange={handleInputChangeStudyInfoFormData}
+                       handleInputChange={handleStudyInfoFormData}
                        formOnSubmit={createStudyInfoForm}
                    />
 
@@ -543,7 +499,7 @@ async function getProfileForm() {
                        formConfig={activeProfile}
                        jobSeekerData={personalInfoData}
                        FormData={personalInfoFormData}
-                       handleInputChange={handleInputChangePersonalInfoFormData}
+                       handleInputChange={handlePersonalInfoFormData}
                        formOnSubmit={createPersonalInfoForm}
                    />
 
