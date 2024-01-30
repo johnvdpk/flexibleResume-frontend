@@ -1,0 +1,136 @@
+@media (max-width:1000px) {
+
+    .div-template-three-wrapper-component {
+        display: none;
+    }
+}
+
+@media (min-width: 1000px) {
+
+    :root {
+        --background-color-three: #ffffff; /* Zachtgrijze achtergrond */
+        --brand-color-three: #65205f; /* Diepgroene accentkleur */
+        --text-color-three: #000000; /* Donkergrijs voor tekst */
+        --radius-small-three: 10px; /* Zachtere ronde hoeken */
+    }
+
+    .div-template-three-wrapper-component {
+        margin: 1em;
+
+    }
+
+    .div-template-three {
+        background-color: var(--background-color-three);
+        min-width: 750px;
+        aspect-ratio: 1/1.414;
+        margin: 0.2em;
+        font-size: 1em;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+    }
+
+    .h2-template-three, .h3-template-three {
+        font-size: 1em;
+        font-family: 'Open Sans', sans-serif; /* Strak lettertype */
+        color: var(--brand-color-three);
+        margin: 0.2em 0 0.4em 0;
+    }
+
+    .vertical-line-three {
+        width: 3px;
+        border-radius: 50%;
+        margin: 1em;
+        background-color: var(--brand-color-three);
+        height: 80%;
+    }
+
+    .horizontal-line-three {
+        width: 90%;
+        height: 3px;
+        border-radius: 50%;
+        margin: 0.5em 0em;
+        background-color: var(--brand-color-three);
+    }
+
+    .header-template-three {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 15%;
+        margin: 1em;
+        align-items: center;
+    }
+
+    .template-three-image {
+        margin: 1em;
+        flex: 0.5;
+    }
+
+    .img-foto-three {
+        max-width: 100%;
+        border-radius: 20%;
+        border: 2px var(--brand-color-three) solid;
+
+    }
+
+    .template-three-aboutme {
+        flex: 2;
+        margin: 1em;
+
+    }
+
+    .template-three-aboutme p {
+        font-size: 0.8em;
+    }
+
+
+    .template-three-profielgegevens {
+        flex: 1.5;
+        padding: 0.5em;
+    }
+
+    .template-three-table {
+        margin: 1em;
+        font-size: 0.8em;
+        line-height: 1.2;
+    }
+
+    .template-three-table td {
+        padding-right: 1em;
+    }
+
+    .middle-template-three {
+        display: flex;
+        flex-direction: column;
+        margin: 1em;
+        height: 50%;
+    }
+
+    .data-template-three {
+        flex: 1;
+        margin: 1em;
+    }
+
+    .item-template-three {
+        margin: 0.2em;
+        padding: 0.2em;
+        background-color: #ffffff; /* Witte achtergrond voor items */
+        border-radius: 5px; /* Ronde hoeken voor items */
+    }
+
+    .p-title-template-three, .p-info-template-three, .p-extrainfo-template-three {
+        font-size: 0.8em;
+        color: var(--text-color-three);
+    }
+
+    .p-period-template-three {
+        font-size: 0.7em;
+    }
+
+    .footer-template-three {
+        height: 10%;
+        text-align: center;
+        font-size: 0.8em;
+    }
+
+}

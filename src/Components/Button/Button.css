@@ -1,0 +1,91 @@
+
+button {
+
+    border-radius: var(--radius-medium);
+    border: 1px solid transparent;
+    background-color: var(--button-color);
+    color:var(--text-color-invert);
+    padding: var(--gap-small)var(--gap-large);
+    margin: var(--gap-small);
+    font-size: 1em;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+button:hover {
+    background-color: var(--button-color-hover);
+}
+
+/* SECONDARY BUTTON */
+
+
+button.secondary-button {
+
+    background-color: var(--brand-color);
+
+}
+
+
+button.secondary-button:hover {
+    background-color: var(--button-color-hover);
+
+}
+
+/* NAV BUTTON */
+
+button.nav-button:hover {
+    background-color: var(--primary-color);
+    color: var(--text-color-invert);
+}
+
+
+button.nav-button {
+    font-size: 0.8rem;
+    border-radius: var(--radius-small);
+    padding: var(--gap-small)var(--gap-small);
+    color: var(--text-color);
+    font-family: Raleway-semibold, Arial, serif, sans-serif;
+    background-color: var(--secondary-color);
+
+}
+
+/* LEFTMENU BUTTON */
+
+.button-left-menu {
+
+    border-radius: var(--radius-medium);
+    border: 1px solid transparent;
+    background-color: var(--secondary-color);
+    color:var(--text-color);
+    font-size: 1em;
+    cursor: pointer;
+
+
+    width: 15em;
+    text-align: left;
+    margin: 0;
+
+}
+
+.object {
+    display: inline-block;
+    background-color: var(--almost-white);
+    width: 0.8rem;
+    aspect-ratio: 1/1;
+    border-radius:var(--radius-extra-large);
+    margin-right: 0.8rem;
+
+}
+
+.button-left-menu:hover > .object {
+    background-color: var(--brand-color);
+}
+
+.button-left-menu:focus {
+    background-color: var(--button-color);
+    color: var(--text-color-invert);
+}
+
+
+
+

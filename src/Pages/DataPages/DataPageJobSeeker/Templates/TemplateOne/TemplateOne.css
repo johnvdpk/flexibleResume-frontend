@@ -1,0 +1,135 @@
+@media (max-width:1000px) {
+
+    .div-template-one-wrapper-component {
+        display: none;
+    }
+}
+
+@media (min-width: 1000px) {
+
+
+/* Eigentijdse en Stijlvolle herstijling voor 'Template-One' */
+
+:root {
+    --background-color-one: #f8f8f8; /* Zachtgrijze achtergrond */
+    --brand-color-one: #5b8c85; /* Diepgroene accentkleur */
+    --text-color-one: #333333; /* Donkergrijs voor tekst */
+    --radius-small-one: 10px; /* Zachtere ronde hoeken */
+}
+
+.div-template-one-wrapper-component {
+    margin: 1em;
+
+}
+
+.div-template-one {
+    background-color: var(--background-color-one);
+    color: #0E191B;
+    min-width: 750px;
+    aspect-ratio: 1/1.414;
+    font-size: 0.8rem;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+.h2-template-one, .h3-template-one {
+    font-size: 1em;
+    font-family: 'Open Sans', sans-serif;
+    color: var(--brand-color-one);
+    margin: 0.2em 0 0.4em 0;
+}
+
+.vertical-line {
+    width: 1px;
+    margin: 1em;
+    background-color: var(--text-color-one);
+    height: 80%;
+}
+
+.horizontal-line {
+    width: 90%;
+    height: 1px;
+    margin: 0.5em 0;
+    background-color: var(--text-color-one);
+}
+
+.header-template-one {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 15%;
+    margin: 1em;
+    align-items: center;
+}
+
+.template-one-image {
+    margin: 1em;
+    flex: 0.5;
+}
+
+.img-foto-one {
+    max-width: 100%;
+    border: solid 2px var(--brand-color-one);
+    border-radius: 2px;
+}
+
+.template-one-aboutme {
+    flex: 2;
+    margin: 1em;
+
+}
+.template-one-aboutme p {
+    font-size: 0.8em;
+}
+
+
+.template-one-profielgegevens {
+    flex: 1.5;
+    padding: 0.5em;
+}
+
+.template-one-table {
+    margin: 2em 0 0 0;
+    font-size: 0.9em;
+    line-height: 1.2;
+}
+
+.template-one-table td {
+    padding-right: 1em;
+}
+
+.middle-template-one {
+    display: flex;
+    flex-direction: column;
+    margin: 1em;
+    height: 50%;
+}
+
+.data-template-one {
+    flex: 1;
+    margin: 1em;
+}
+
+.item-template-one {
+    margin: 0.2em;
+    padding: 0.2em;
+    background-color: #ffffff; /* Witte achtergrond voor items */
+    border-radius: 5px; /* Ronde hoeken voor items */
+}
+
+.p-title-template-one, .p-info-template-one, .p-extrainfo-template-one {
+    font-size: 0.8em;
+    color: var(--text-color-one);
+}
+
+.p-period-template-one {
+    font-size: 0.7em;
+}
+
+.footer-template-one {
+    height: 10%;
+    text-align: center;
+    font-size: 0.8em;
+}
+
+}
