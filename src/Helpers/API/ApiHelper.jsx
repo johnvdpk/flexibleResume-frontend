@@ -3,7 +3,7 @@ import axios from "axios";
 
 export const apiRequest = async (url, method, data = null) => {
     try {
-        // Haal de JWT-token op uit localStorage
+
         const jwtToken = localStorage.getItem('token');
 
         // Configureer de headers
@@ -20,7 +20,7 @@ export const apiRequest = async (url, method, data = null) => {
         return response.data;
     } catch (error) {
         console.error('fout bij API request', error);
-        throw error; // Het is handig om de error te gooien zodat je deze kunt afhandelen in de aanroepende code
+        throw error;
     }
 };
 

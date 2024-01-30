@@ -3,7 +3,7 @@ import navlogo from '../../Assets/FlexibleResume-menu-logo.png'
 
 import {Link} from "react-router-dom";
 import Button from "../../Components/Button/Button.jsx";
-import { AuthContext } from "../../Context/AuthContext.jsx";
+import { AuthContext } from "../../Hooks/AuthContext/AuthContext.jsx";
 import {useContext} from "react";
 
 

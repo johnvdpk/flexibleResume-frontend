@@ -7,7 +7,7 @@ import formConfigPersonalInfo from "../../FormData/Form/JsonDataForm/formProfile
 import formConfigStudyInfo from "../../FormData/Form/JsonDataForm/formProfileStudyInfo.json"
 import formConfigCV from "../../FormData/Form/JsonDataForm/formProfileCV.json"
 import {useContext, useEffect, useState} from "react"
-import { AuthContext} from "../../../Context/AuthContext.jsx";
+import { AuthContext} from "../../../Hooks/AuthContext/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios';
 import TemplateOne from "./Templates/TemplateOne/TemplateOne.jsx";
@@ -16,7 +16,7 @@ import TemplateThree from "./Templates/TemplateThree/TemplateThree.jsx";
 import FileUpload from "./FileUpload/FileUpload.jsx";
 import Button from "../../../Components/Button/Button.jsx";
 import {apiRequest} from "../../../Helpers/API/ApiHelper.jsx";
-import { useFormData } from "../../../Helpers/UseFormData/UseFormData.jsx";
+import { useFormData } from "../../../Hooks/UseFormData/UseFormData.jsx";
 import log from "eslint-plugin-react/lib/util/log.js";
 
 
@@ -436,6 +436,7 @@ function DataPageJobSeeker() {
 
                <div className='div-dashboard-intro'>
                    <h3>Dashboard</h3>
+                   <div className='horizontal-line'></div>
                    <p>Welkom bij het dashboard van Flexible Resume. Vul hier je gegevens in, zoals werk, studie, hobby's en een kort stukje over jezelf. Upload een foto en ga naar de templates om jouw cv uit te kiezen.</p>
                </div>
 

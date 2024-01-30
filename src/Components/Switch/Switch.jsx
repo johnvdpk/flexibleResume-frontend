@@ -1,6 +1,6 @@
 import './Switch.css';
 // eslint-disable-next-line react/prop-types
-function Switch({ option1, option2, onToggle }) {
+function Switch({ option1, option2, option1Name, option2Name, onToggle }) {
     return (
         <div className="div-switch">
             <label className="label-switch">
@@ -11,7 +11,7 @@ function Switch({ option1, option2, onToggle }) {
                     value={option1}
                     onChange={() => onToggle(option1)}
                 />
-                {option1}
+                {option1Name}
             </label>
 
             <label className="label-switch">
@@ -22,7 +22,7 @@ function Switch({ option1, option2, onToggle }) {
                     value={option2}
                     onChange={() => onToggle(option2)}
                 />
-                {option2}
+                {option2Name}
             </label>
         </div>
     );

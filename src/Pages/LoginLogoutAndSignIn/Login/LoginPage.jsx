@@ -25,6 +25,8 @@ function LoginPage() {
 
                    option1="jobseeker"
                    option2="company"
+                   option1Name="Werkzoekende"
+                   option2Name="Werkgever"
                    onToggle={handleToggle}
                    />
                    <div className="div-space"></div>

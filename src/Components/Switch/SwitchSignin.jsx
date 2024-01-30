@@ -1,6 +1,6 @@
 import './Switch.css';
 // eslint-disable-next-line react/prop-types
-function Switch({ option1, option2, onToggle }) {
+function Switch({ option1, option2,onToggle }) {
     return (
         <div className="div-switch">
             <label className="label-switch">

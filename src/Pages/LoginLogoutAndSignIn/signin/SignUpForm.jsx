@@ -48,8 +48,8 @@ function SignUpForm() {
 
             <SwitchSignin
 
-            option1="jobseeker"
-            option2="company"
+            option1="werkzoekende"
+            option2="werkgever"
             onToggle={setRole}
 
 

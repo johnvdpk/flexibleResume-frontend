@@ -1,7 +1,7 @@
 import './LoginForm.css'
 import axios from "axios";
 import {useContext, useState} from "react";
-import { AuthContext} from "../../../Context/AuthContext.jsx";
+import { AuthContext} from "../../../Hooks/AuthContext/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 
 // eslint-disable-next-line react/prop-types

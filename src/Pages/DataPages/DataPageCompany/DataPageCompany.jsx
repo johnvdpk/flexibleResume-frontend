@@ -4,9 +4,10 @@ import Form from "../../FormData/Form/Form.jsx"
 import companyLogo from "../../../Assets/companylogo.png"
 import formConfigEmployer from "../../FormData/Form/JsonDataForm/formEmployer.json"
 import {useContext, useEffect, useState} from "react"
-import { AuthContext} from "../../../Context/AuthContext.jsx";
+import { AuthContext} from "../../../Hooks/AuthContext/AuthContext.jsx";
 import { useNavigate } from "react-router-dom";
 import { apiRequest } from "../../../Helpers/API/ApiHelper.jsx";
+import { useFormData } from "../../../Hooks/UseFormData/UseFormData.jsx";
 import axios from 'axios';
 import Button from "../../../Components/Button/Button.jsx";
 
@@ -31,7 +32,7 @@ function DataPageCompany() {
         SearchJobSeekerSurName: 'SearchJobSeekerSurName',
     }
 
-    const [employerDataForm, setEmployerDataForm] = useState({
+    const [employerDataForm, handleEmployerDataForm] = useFormData({
 
         company: '',
         industry: '',
@@ -64,15 +65,6 @@ function DataPageCompany() {
     })
 
 
-    function handleInputChangeEmployerFormData(e) {
-        const {name, value} = e.target;
-        setEmployerDataForm(prevEmployerData => ({
-            ...prevEmployerData,
-            [name]: value,
-        }));
-    }
-
-
     // wissel tussen de verschillende formulieren
     const toggleForm = (profileConfig) => {
         setActiveProfile(current => current === profileConfig ? null : profileConfig);
@@ -92,145 +84,86 @@ function DataPageCompany() {
 
     // Er is bij het registeren al een jobseeker aangemaakt. Het is niet nodig om een nieuwe aan te maken. Enkel updaten.
 
-    // async function putProfileForm(e) {
-    //     e.preventDefault();
-    //
-    //     try {
-    //         const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'PUT', employerDataForm);
-    //         setEmployerData(updatedData);
-    //         await setEmployerData(updatedData);
-    //     } catch (error) {
-    //         console.error('Er is een fout opgetreden bij het updaten van de gegevens', error);
-    //     }
-    // }
-        async function putProfileForm(e) {
-            e.preventDefault();
+    async function putProfileForm(e) {
+        e.preventDefault();
 
-            try {
-                const response = await axios.put(`http://localhost:8080/employer/email/${employerEmail}`, employerDataForm)
-
-                setEmployerData(response.data) // bijwerken van de staat, met refreshen zie je ook de nieuwe data.
-                await setEmployerData(response.data); // alles ophalen om te zorgen dat alles up to date is
-
-            } catch (e) {
-                console.error("axios put error", e);
-
-            }
-
+        try {
+            const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'PUT', employerDataForm);
+            setEmployerData(updatedData);
+            await setEmployerData(updatedData);
+        } catch (error) {
+            console.error('Er is een fout opgetreden bij het updaten van de gegevens', error);
         }
+    }
+
 
 
         // Data vanuit jobseeker entity gefilterd op email
 
-        // async function getEmployerForm() {
-        //
-        //     try {
-        //         const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'GET');
-        //         setEmployerData(updatedData);
-        //         await setEmployerData(updatedData);
-        //     } catch (error) {
-        //         console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
-        //     }
-        // }
-
         async function getEmployerForm() {
 
             try {
-                const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`)
-                setEmployerData(response.data);
-
-            } catch (e) {
-                console.error("axios get error", e)
+                const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'GET');
+                setEmployerData(updatedData);
+                await setEmployerData(updatedData);
+            } catch (error) {
+                console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
             }
-
         }
 
 
-        // async function getJobSeekerInfo() {
-        //
-        //     try {
-        //         const updatedData = await apiRequest(`http://localhost:8080/employer/name`, 'GET');
-        //         setJobSeekerDataForm(updatedData);
-        //         await setJobSeekerDataForm(updatedData);
-        //     } catch (error) {
-        //         console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
-        //     }
-        // }
 
         async function getJobSeekerInfo() {
 
             try {
-                const response = await axios.get(`http://localhost:8080/jobseeker/name`)
-                setJobSeekerDataForm(response.data);
-
-
-            } catch (e) {
-                console.error("axios get error", e)
+                const updatedData = await apiRequest(`http://localhost:8080/jobseeker/name`, 'GET');
+                setJobSeekerDataForm(updatedData);
+                await setJobSeekerDataForm(updatedData);
+            } catch (error) {
+                console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
             }
-
         }
 
-        // Het zou een fijne functie kunnen zijn om op werk ervaring te zoeken. Daarvoor heb je genoeg data nodig om de
-        // jobseeker uiteindelijk aan een workInfo te kunnen koppelen. Voor nu staat de functie uit (werkt nog niet).
-
-
-        // async function fetchMoreData() {
+        // async function getWorkInfo() {
         //     try {
-        //         // Definieer uw URL's
-        //         const jobSeekerUrl = await axios.get('http://localhost:8080/werkzoekende/naam');
-        //         const cvUrl = await axios.get('http://localhost:8080/werkzoekende/cv/1');
-        //         const workInfoUrl = await axios.get('http://localhost:8080/werkzoekende/werkinfo/1');
-        //
-        //
+        //         const updatedData = await apiRequest(`http://localhost:8080/jobseeker/workinfo/`, 'GET');
+        //         setWorkInfoData(updatedData);
+        //         await setWorkInfoData(updatedData);
         //     } catch (error) {
         //         console.error('Er is een fout opgetreden bij het ophalen van de gegevens', error);
         //     }
         // }
 
 
-        // async function deleteAccount() {
-        //     const jwtToken = localStorage.getItem('token');
-        //     const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
-        //
-        //     if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
-        //         try {
-        //             const updatedData = await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
-        //
-        //         } catch (e) {
-        //             console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
-        //
-        //         }
-        //     }
-        // }
+    async function deleteAccount() {
+        const jwtToken = localStorage.getItem('token');
+        const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
 
-        async function deleteAccount() {
-            const jwtToken = localStorage.getItem('token');
-            const email = JSON.parse(atob(jwtToken.split('.')[1])).sub;
+        if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
+            try {
+                await apiRequest(`http://localhost:8080/auth/user/${email}`, 'DELETE');
+                // Logica om gebruiker uit te loggen en de UI bij te werken
 
-            if (window.confirm("Weet je zeker dat je je account wilt verwijderen? Dit kan niet ongedaan worden gemaakt!")) {
-                try {
-                    await axios.delete(`http://localhost:8080/auth/user/${email}`);
-                    // Logica om gebruiker uit te loggen en de UI bij te werken
+                logout();
+                navigate("/");
+            } catch (e) {
+                console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
 
-                    logout();
-                    navigate("/");
-                } catch (e) {
-                    console.error("Er is een fout opgetreden bij het verwijderen van het account", e);
-
-                }
             }
         }
+    }
+
 
 
     useEffect(() => {
         const source = axios.CancelToken.source();
 
-        const getEmployerForm = async () => {
+
+        const getEmployerForm = async () =>{
             try {
-                const response = await axios.get(`http://localhost:8080/employer/email/${employerEmail}`, {
-                    cancelToken: source.token,
-                });
-                setEmployerData(response.data);
+                const updatedData = await apiRequest(`http://localhost:8080/employer/email/${employerEmail}`, 'GET');
+                setEmployerData(updatedData);
+                await setEmployerData(updatedData);
             } catch (error) {
                 if (!axios.isCancel(error)) {
                     console.error("axios get error", error);
@@ -238,18 +171,19 @@ function DataPageCompany() {
             }
         };
 
-        const getJobSeekerInfo = async () => {
+
+        const getJobSeekerInfo = async () =>{
             try {
-                const response = await axios.get(`http://localhost:8080/jobseeker/name`, {
-                    cancelToken: source.token,
-                });
-                setJobSeekerDataForm(response.data);
+                const updatedData = await apiRequest(`http://localhost:8080/jobseeker/name`, 'GET');
+                setJobSeekerDataForm(updatedData);
+                await setJobSeekerDataForm(updatedData);
             } catch (error) {
                 if (!axios.isCancel(error)) {
                     console.error("axios get error", error);
                 }
             }
         };
+
 
         getEmployerForm();
         getJobSeekerInfo();
@@ -260,13 +194,6 @@ function DataPageCompany() {
         };
     }, []);
 
-
-    // useEffect(() => {
-        //     getEmployerForm()
-        //     getJobSeekerInfo()
-        //
-        //
-        // }, []);
 
 
         if (!isAuth || (user && user.role !== "COMPANY" && user.role !== "ADMIN")) {
@@ -318,13 +245,20 @@ function DataPageCompany() {
 
                     <div className="div-personal-form">
 
+                        <div className='div-dashboard-intro'>
+                            <h3>Dashboard</h3>
+                            <div className='horizontal-line'></div>
+                            <p>Welkom bij het dashboard van Flexible Resume. Vul hier je bedrijfsgegevens in. Momenteel
+                                kun je zoeken naar werkzoekenden en hier vacatures plaatsen. Binnenkort volgt een nieuwe
+                                update.</p>
+                        </div>
 
                         {activeProfile === formConfigEmployer && (
                             <Form
                                 formConfig={activeProfile}
                                 jobSeekerData={employerData}
                                 FormData={employerDataForm}
-                                handleInputChange={handleInputChangeEmployerFormData}
+                                handleInputChange={handleEmployerDataForm}
                                 formOnSubmit={putProfileForm}
                             />
 
@@ -390,7 +324,7 @@ function DataPageCompany() {
                         <div className='div-jobseekerdata'>
                             {employerData && (
                                 <table className='table-persoonlijkegegevenstabel'>
-
+                                    <tbody>
                                     <tr>
                                         <td>Bedrijf:</td>
                                         <td>{employerData.company}</td>
@@ -424,7 +358,7 @@ function DataPageCompany() {
                                         <td>{employerData.numberOfEmployees}</td>
                                     </tr>
 
-
+                                    </tbody>
                                 </table>
                             )}
 

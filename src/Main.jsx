@@ -8,7 +8,7 @@ import SignUpPage from "./Pages/LoginLogoutAndSignIn/signin/SignUpPage.jsx";
 import NotFound from "./Pages/NotFound/NotFound.jsx";
 import Footer from "./Pages/Footer/Footer.jsx";
 import DataPageJobSeeker from "./Pages/DataPages/DataPageJobSeeker/DataPageJobSeeker.jsx";
-import AuthContextProvider from "./Context/AuthContext.jsx";
+import AuthContextProvider from "./Hooks/AuthContext/AuthContext.jsx";
 import Login from "./Pages/LoginLogoutAndSignIn/Login/LoginPage.jsx";
 import DataPageCompany from "./Pages/DataPages/DataPageCompany/DataPageCompany.jsx";
 

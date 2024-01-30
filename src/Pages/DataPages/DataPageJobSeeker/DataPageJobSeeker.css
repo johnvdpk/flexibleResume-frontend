@@ -46,7 +46,8 @@
         .div-dashboard-intro h3 {
             font-size: 1.2em;
             font-familiy: Raleway-bold;
-            font-weight: 800;
+            color: var(--text-color-brand);
+            font-weight: 1200;
             margin: 0 0 0.5em 0;
         }
 
